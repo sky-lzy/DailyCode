@@ -10,6 +10,8 @@ void setup()
 	Serial.begin(9600);
 	pinMode(TrgPin, OUTPUT);
 	pinMode(EcoPin, INPUT);
+	pinMode(R, OUTPUT);
+	pinMode(G, OUTPUT);
 	pinMode(beep, OUTPUT);
 }
 
@@ -27,10 +29,10 @@ void loop()
 	{
 		digitalWrite(beep, HIGH);
 		digitalWrite(R, HIGH);
-		delay(100);
+		delay(150);
 		digitalWrite(beep, LOW);
 		digitalWrite(R, LOW);
-		delay(150);
+		delay(100);
 	}
 	else
 	{
