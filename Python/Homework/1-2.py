@@ -12,7 +12,7 @@ now_word = []
 for i in range(len(word)):
     now_word.append('_')
 
-# print(word)
+print(word)
 
 flag = False
 while (not flag) and num:
