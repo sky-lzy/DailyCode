@@ -21,6 +21,8 @@ def lock(str, k):
 # 读取文件 3-1.txt 中的内容并加密
 file = open("Python\\Homework\\3-1.txt", 'r')
 str = file.read()
+file.close()
+
 k = int(input("请输入您需要加密的位数(1~25)："))
 while k < 1 or k > 25:
     k = int(input("请输入正确范围(1~25)："))
