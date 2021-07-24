@@ -1,14 +1,12 @@
 #include "score.h"
-#include <iostream>
 
-//构造函数定义
 Score::Score(const std::string &s, const std::string &sn, const std::string &tn, const int hg, const int c)
     : subject(s), student_name(sn), teacher_name(tn), credit(c)
 {
     setScore(hg);
 }
 
-void Score::print_score() const
+void Score::print() const
 {
     std::cout << subject << "  " << credit << " " << HundredMark_Score << "  "
               << Graded_Score << "  " << courseGPA << std::endl;
@@ -77,4 +75,19 @@ void Score::setScore(const int hg)
         Graded_Score = "F";
         courseGPA = 1.0;
     }
+}
+
+std::istream &operator>>(std::istream &input, Score &sc)
+{
+    int temp;
+    input >> sc.subject >> sc.student_name >> sc.teacher_name >> temp >> sc.credit;
+    sc.setScore(temp);
+    return input;
+}
+
+std::ostream &operator<<(std::ostream &output, const Score &sc)
+{
+    output << sc.getSubject() << sc.getStudentName() << sc.getTeacherName() << sc.getHundredMarkScore()
+    << sc.getGradedScore() << sc.getCourseGPA() << sc.getCredit() << std::endl;
+    return output;
 }

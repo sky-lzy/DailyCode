@@ -1,8 +1,13 @@
 #include "student.h"
-#include <iostream>
 #include <algorithm>
 
 int Student::student_number = 1;
+
+Student::Student()
+{
+    number = 202101000 + student_number;
+    ++student_number;
+}
 
 Student::Student(const std::string &n, const char s, const int g, const std::string &d)
     : People(n, s), grade(g), department(d), GPA(0), total_credits(0)
@@ -28,7 +33,20 @@ void Student::print() const
 
     std::cout << "所有成绩如下：" << std::endl;
     std::for_each(report.begin(), report.end(), [](const Score &s)
-                  { s.print_score(); });
+                  { s.print(); });
 
-    std::cout << "总学分：" << total_credits << "  " << "总学分绩：" << GPA;
+    std::cout << "总学分：" << total_credits << "  "
+              << "总学分绩：" << GPA;
+}
+
+std::istream &operator>>(std::istream &input, Student &stu)
+{
+    input >> stu.name >> stu.sex >> stu.grade >> stu.department;
+    return input;
+}
+
+std::ostream &operator<<(std::ostream &output, const Student &stu)
+{
+    output << stu.getName() << stu.getSex() << stu.getNumber() << stu.getGrade() << stu.getDepartment() << std::endl;
+    return output;
 }

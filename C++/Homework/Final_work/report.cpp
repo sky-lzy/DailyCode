@@ -12,3 +12,14 @@ void Report::print() const
     std::for_each(report.begin(), report.end(), [](const Score &s)
                   { s.print_score(); });
 }
+
+bool Report::delete_score(const std::string &sub)
+{
+    bool flag = true;
+    auto tem = std::find(report.begin(), report.end(), sub);
+    if (tem != report.end())
+        report.erase(tem);
+    else
+        flag = false;
+    return flag;
+}

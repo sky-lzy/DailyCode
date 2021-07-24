@@ -2,7 +2,9 @@
 #define SCORE_H
 
 #include <string>
+#include <iostream>
 
+//Score类，由学生单门课程信息组成
 class Score
 {
 protected:
@@ -15,14 +17,30 @@ protected:
     int credit;               //学分
 
 public:
+    Score();
+    //构造函数，传参：学科、学生姓名、授课教师、百分制成绩、学分
     Score(const std::string &, const std::string &, const std::string &, const int, const int);
-    virtual void print_score() const;
+
+    //打印信息
+    virtual void print() const;
+
+    //设置成绩
     void setScore(const int);
 
-    const std::string getStudent_Name() const { return student_name; }
-    const std::string getTeacher_Name() const { return teacher_name; }
-    const double getCourseGPA() const { return courseGPA; }
-    const int getCredit() const { return credit; }
+    void setSubject(const std::string &s) { subject = s; }
+    void setStudentName(const std::string &sn) { student_name = sn; }
+    void setTeacherName(const std::string &tn) { teacher_name = tn; }
+
+    std::string getSubject() const { return subject; }
+    std::string getStudentName() const { return student_name; }
+    std::string getTeacherName() const { return teacher_name; }
+    int getHundredMarkScore() const { return HundredMark_Score; }
+    std::string getGradedScore() const { return Graded_Score; }
+    double getCourseGPA() const { return courseGPA; }
+    int getCredit() const { return credit; }
+
+    friend std::istream &operator>>(std::istream &, Score &);
+    friend std::ostream &operator<<(std::ostream &, const Score &);
 };
 
 #endif

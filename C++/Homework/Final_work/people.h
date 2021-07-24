@@ -3,17 +3,25 @@
 
 #include <string>
 
-//People类的定义，本类为抽象基类
+//People抽象基类
 class People
 {
 protected:
     std::string name; //姓名
     char sex;         //性别：m 男，f 女
-    int number;       //编号，学生以01，助教02，教师03开头
+    int number;       //编号，学生20xx01xxx，教师20xx02xxx
 
 public:
+    People() {}
     People(const std::string &n, const char s) : name(n), sex(s) {}
     virtual void print() const = 0;
+
+    void setName(const std::string &n) { name = n; }
+    void setSex(const char c) { sex = c; }
+
+    std::string getName() const { return name; }
+    char getSex() const { return sex; }
+    int getNumber() const { return number; }
 };
 
 #endif
