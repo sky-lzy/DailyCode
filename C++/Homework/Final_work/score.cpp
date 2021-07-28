@@ -1,5 +1,7 @@
 #include "score.h"
 
+Score::Score() {}
+
 Score::Score(const std::string &s, const std::string &sn, const std::string &tn, const int hg, const int c)
     : subject(s), student_name(sn), teacher_name(tn), credit(c)
 {
@@ -87,7 +89,7 @@ std::istream &operator>>(std::istream &input, Score &sc)
 
 std::ostream &operator<<(std::ostream &output, const Score &sc)
 {
-    output << sc.getSubject() << sc.getStudentName() << sc.getTeacherName() << sc.getHundredMarkScore()
-    << sc.getGradedScore() << sc.getCourseGPA() << sc.getCredit() << std::endl;
+    output << sc.getSubject() << " " << sc.getStudentName() << " " << sc.getTeacherName() << " " << sc.getHundredMarkScore()
+           << " " << sc.getGradedScore() << " " << sc.getCourseGPA() << " " << sc.getCredit() << std::endl;
     return output;
 }

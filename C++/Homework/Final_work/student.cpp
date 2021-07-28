@@ -28,7 +28,7 @@ void Student::add_score(const Score &inputScore)
     add_score(inputScore.getSubject(), inputScore.getTeacherName(), inputScore.getHundredMarkScore(), inputScore.getCredit());
 }
 
-void Student::print() const
+void Student::print(bool flag) const
 {
     std::cout << "姓名：" << name << std::endl;
     std::cout << "性别：" << sex << std::endl;
@@ -36,12 +36,15 @@ void Student::print() const
     std::cout << "年级：" << grade << std::endl;
     std::cout << "院系：" << department << std::endl;
 
-    std::cout << "所有成绩如下：" << std::endl;
-    std::for_each(report.begin(), report.end(), [](const Score &s)
-                  { s.print(); });
+    if (flag)
+    {
+        std::cout << "所有成绩如下：" << std::endl;
+        std::for_each(report.begin(), report.end(), [](const Score &s)
+                      { s.print(); });
+    }
 
     std::cout << "总学分：" << total_credits << "  "
-              << "总学分绩：" << GPA;
+              << "总学分绩：" << GPA << std::endl;
 }
 
 std::istream &operator>>(std::istream &input, Student &stu)
@@ -52,9 +55,9 @@ std::istream &operator>>(std::istream &input, Student &stu)
 
 std::ostream &operator<<(std::ostream &output, const Student &stu)
 {
-    output << stu.getName() << stu.getSex() << stu.getNumber() << stu.getGrade() << stu.getDepartment() << std::endl;
+    output << stu.getName() << " " << stu.getSex() << " " << stu.getNumber() << " " << stu.getGrade() << " " << stu.getDepartment() << std::endl;
     std::for_each(stu.report.begin(), stu.report.end(), [&output](const Score &s)
                   { output << s; });
-    output << stu.total_credits << stu.GPA << std::endl;
+    output << stu.total_credits << " " << stu.GPA << std::endl;
     return output;
 }

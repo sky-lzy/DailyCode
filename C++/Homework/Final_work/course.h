@@ -22,6 +22,9 @@ public:
     //计算课程平均分
     void calculate();
 
+    //打印信息
+    virtual void print(bool flag = false) const;
+
     void setSubject(const std::string &s) { subject = s; }
     void setTeacherName(const std::string &tn) { teacher_name = tn; }
     void setCredit(const int c) { credit = c; }

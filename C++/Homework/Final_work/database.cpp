@@ -81,9 +81,9 @@ void Database::ReadScore(const std::string &ScoreFile_in)
             throw Exception(ScoreFile_in, "读取数据", "只读");
 
         Score_List.emplace_back(tempScore);
-        std::string tempStudentName = tempScore.getStudentName();
-        std::string tempTeacherName = tempScore.getTeacherName();
-        std::string tempCourseName = tempScore.getSubject();
+        const std::string tempStudentName = tempScore.getStudentName();
+        const std::string tempTeacherName = tempScore.getTeacherName();
+        const std::string tempCourseName = tempScore.getSubject();
 
         auto ptrStudent = std::find_if(Student_List.begin(), Student_List.end(), [&tempStudentName](const Student &st)
                                        { return tempStudentName == st.getName(); });
@@ -166,4 +166,108 @@ void Database::showCourse() const
     std::cout << "共有 " << Course_List.size() << " 门课程，如下：" << std::endl;
     std::for_each(Course_List.begin(), Course_List.end(), [](const Course &c)
                   { c.print(); });
+}
+
+void Database::searchStudent(const std::string &StudentName)
+{
+    auto ptrStudent = std::find_if(Student_List.begin(), Student_List.end(), [&StudentName](const Student &st)
+                                   { return StudentName == st.getName(); });
+    if (ptrStudent != Student_List.end())
+        ptrStudent->print(true);
+    else
+        throw "没有找到该学生！";
+}
+
+void Database::searchTeacher(const std::string &TeacherName)
+{
+    auto ptrTeacher = std::find_if(Teacher_List.begin(), Teacher_List.end(), [&TeacherName](const Teacher &t)
+                                   { return TeacherName == t.getName(); });
+    if (ptrTeacher != Teacher_List.end())
+        ptrTeacher->print(true);
+    else
+        throw "没有找到该教师！";
+}
+
+void Database::searchCourse(const std::string &CourseName)
+{
+    auto ptrCourse = std::find_if(Course_List.begin(), Course_List.end(), [&CourseName](const Course &c)
+                                  { return CourseName == c.getSubject(); });
+    if (ptrCourse != Course_List.end())
+        ptrCourse->print(true);
+    else
+        throw "没有找到该课程！";
+}
+
+void Database::AddStudent(const Student &addStudent)
+{
+    const std::string tempName = addStudent.getName();
+    if (std::find_if(Student_List.begin(), Student_List.end(), [&tempName](const Student &st)
+                     { return tempName == st.getName(); }) != Student_List.end())
+        throw "该学生已存在！";
+    else
+        Student_List.emplace_back(addStudent);
+}
+
+void Database::AddTeacher(const Teacher &addTeacher)
+{
+    const std::string tempName = addTeacher.getName();
+    if (std::find_if(Teacher_List.begin(), Teacher_List.end(), [&tempName](const Teacher &st)
+                     { return tempName == st.getName(); }) != Teacher_List.end())
+        throw "该教师已存在！";
+    else
+        Teacher_List.emplace_back(addTeacher);
+}
+
+void Database::AddCourse(const Course &addCourse)
+{
+    const std::string tempName = addCourse.getSubject();
+    if (std::find_if(Course_List.begin(), Course_List.end(), [&tempName](const Course &st)
+                     { return tempName == st.getSubject(); }) != Course_List.end())
+        throw "该课程已存在！";
+    else
+        Course_List.emplace_back(addCourse);
+}
+
+void Database::AddScore(const Score &addScore)
+{
+    if (std::find_if(Score_List.begin(), Score_List.end(), [&addScore](const Score &tem)
+                     { return addScore.getStudentName() == tem.getStudentName() && addScore.getSubject() == tem.getSubject(); }) != Score_List.end())
+        throw "该成绩已存在！";
+
+    auto ptrStudent = std::find_if(Student_List.begin(), Student_List.end(), [&addScore](const Student &st)
+                                   { return addScore.getStudentName() == st.getName(); });
+    if (ptrStudent == Student_List.end())
+        throw "该学生不存在！";
+
+    auto ptrTeacher = std::find_if(Teacher_List.begin(), Teacher_List.end(), [&addScore](const Teacher &tea)
+                                   { return addScore.getTeacherName() == tea.getName(); });
+    if (ptrTeacher == Teacher_List.end())
+        throw "该授课教师不存在！";
+
+    auto ptrCourse = std::find_if(Course_List.begin(), Course_List.end(), [&addScore](const Course &cour)
+                                  { return addScore.getSubject() == cour.getSubject(); });
+    if (ptrCourse == Course_List.end())
+        throw "该课程不存在！";
+
+    Score_List.emplace_back(addScore);
+    ptrStudent->add_score(addScore);
+    ptrCourse->add_score(addScore);
+    ptrTeacher->add_course(addScore.getSubject());
+}
+
+void Database::DeleteScore(const Score &deleteScore)
+{
+    auto ptrScore = std::find_if(Score_List.begin(), Score_List.end(), [&deleteScore](const Score &tem)
+                                 { return deleteScore.getStudentName() == tem.getStudentName() && deleteScore.getSubject() == tem.getSubject(); });
+    if (ptrScore == Score_List.end())
+        throw "该成绩不存在！";
+    Score_List.erase(ptrScore);
+
+    auto ptrStudent = std::find_if(Student_List.begin(), Student_List.end(), [&deleteScore](const Student &st)
+                                   { return deleteScore.getStudentName() == st.getName(); });
+    ptrStudent->delete_score(deleteScore.getSubject());
+
+    auto ptrCourse = std::find_if(Course_List.begin(), Course_List.end(), [&deleteScore](const Course &cour)
+                                  { return deleteScore.getSubject() == cour.getSubject(); });
+    ptrCourse->delete_score(deleteScore.getSubject());
 }

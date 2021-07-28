@@ -17,6 +17,21 @@ Teacher::Teacher(const std::string &n, const char s, const std::string &d)
     ++teacher_number;
 }
 
+void Teacher::print(bool flag) const
+{
+    std::cout << "姓名：" << name << std::endl;
+    std::cout << "性别：" << sex << std::endl;
+    std::cout << "工号：" << number << std::endl;
+    std::cout << "院系：" << department << std::endl;
+
+    if (flag)
+    {
+        std::cout << "教授的课程：" << std::endl;
+        std::for_each(course.begin(), course.end(), [](const std::string &s)
+                      { std::cout << s << std::endl; });
+    }
+}
+
 void Teacher::add_course(const std::string &c)
 {
     if (std::find(course.begin(), course.end(), c) == course.end())
@@ -42,5 +57,6 @@ std::istream &operator>>(std::istream &input, Teacher &t)
 
 std::ostream &operator<<(std::ostream &output, const Teacher &t)
 {
-    output << t.getName() << t.getSex() << t.getNumber() << t.getDepartment() << std::endl;
+    output << t.getName() << " " << t.getSex() << " " << t.getNumber() << " " << t.getDepartment() << std::endl;
+    return output;
 }

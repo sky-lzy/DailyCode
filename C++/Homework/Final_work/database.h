@@ -12,10 +12,10 @@
 class Database
 {
 private:
-    std::vector<Student> Student_List;//学生信息
-    std::vector<Teacher> Teacher_List;//教师信息
-    std::vector<Score> Score_List;//课程分数信息
-    std::vector<Course> Course_List;//课程信息
+    std::vector<Student> Student_List; //学生信息
+    std::vector<Teacher> Teacher_List; //教师信息
+    std::vector<Score> Score_List;     //课程分数信息
+    std::vector<Course> Course_List;   //课程信息
 
 public:
     //构造函数
@@ -38,12 +38,6 @@ public:
     void WriteTeacher(const std::string &TeacherFile_out) const;
     void WriteCourse(const std::string &CourseFile_out) const;
 
-    //增加课程成绩
-    void AddScoreList(const Score &addScore);
-
-    //删除课程成绩
-    bool DeleteScoreList(const Score &addScore);
-
     //显示所有信息
     void showAll() const;
 
@@ -52,10 +46,19 @@ public:
     void showTeacher() const;
     void showCourse() const;
 
-    //查找相关信息
-    bool searchStudent(const std::string &StudentName);
-    bool searchTeacher(const std::string &TeacherName);
-    bool searchCourse(const std::string &CourseName);
+    //查找并显示相关信息
+    void searchStudent(const std::string &StudentName);
+    void searchTeacher(const std::string &TeacherName);
+    void searchCourse(const std::string &CourseName);
+
+    //增加信息
+    void AddStudent(const Student &addStudent);
+    void AddTeacher(const Teacher &addTeacher);
+    void AddCourse(const Course &addCourse);
+    void AddScore(const Score &addScore);
+
+    //删除信息
+    void DeleteScore(const Score &deleteScore);
 };
 
 #endif

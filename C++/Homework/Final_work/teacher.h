@@ -22,7 +22,7 @@ public:
     bool delete_course(const std::string &c);
 
     //打印教师信息
-    virtual void print() const;
+    virtual void print(bool flag = false) const;
 
     void setDepartment(const std::string &d) { department = d; }
     std::string getDepartment() const { return department; }

@@ -4,7 +4,8 @@
 
 double Report::add_score(const std::string &sub, const std::string &sn, const std::string &tn, const int s, const int c)
 {
-    return report.emplace_back(sub, sn, tn, s, c).getCourseGPA();
+    report.emplace_back(sub, sn, tn, s, c);
+    return (report.end() - 1)->getCourseGPA();
 }
 
 void Report::print() const
@@ -16,7 +17,8 @@ void Report::print() const
 bool Report::delete_score(const std::string &sub)
 {
     bool flag = true;
-    auto tem = std::find(report.begin(), report.end(), sub);
+    auto tem = std::find_if(report.begin(), report.end(), [&sub](const Score &sc)
+                            { return sub == sc.getSubject(); });
     if (tem != report.end())
         report.erase(tem);
     else

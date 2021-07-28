@@ -22,7 +22,7 @@ public:
     Student(const std::string &, const char, const int, const std::string &);
 
     //打印学生信息
-    virtual void print() const;
+    virtual void print(bool flag = false) const;
 
     //增加科目的成绩，传参：学科、授课教师、百分制成绩、学分
     virtual void add_score(const std::string &sub, const std::string &tn, const int s, const int c);

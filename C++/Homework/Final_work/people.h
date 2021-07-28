@@ -14,7 +14,7 @@ protected:
 public:
     People() {}
     People(const std::string &n, const char s) : name(n), sex(s) {}
-    virtual void print() const = 0;
+    virtual void print(bool flag = false) const = 0;
 
     void setName(const std::string &n) { name = n; }
     void setSex(const char c) { sex = c; }
