@@ -10,7 +10,7 @@ double Report::add_score(const std::string &sub, const std::string &sn, const st
 void Report::print() const
 {
     std::for_each(report.begin(), report.end(), [](const Score &s)
-                  { s.print_score(); });
+                  { s.print(); });
 }
 
 bool Report::delete_score(const std::string &sub)

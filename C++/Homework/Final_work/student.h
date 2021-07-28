@@ -26,6 +26,7 @@ public:
 
     //增加科目的成绩，传参：学科、授课教师、百分制成绩、学分
     virtual void add_score(const std::string &sub, const std::string &tn, const int s, const int c);
+    virtual void add_score(const Score &inputScore);
 
     void setGrade(const int g) { grade = g; }
     void setDepartment(const std::string &d) { department = d; }

@@ -23,6 +23,11 @@ void Student::add_score(const std::string &sub, const std::string &tn, const int
     total_credits += c;                                          //计算总学分
 }
 
+void Student::add_score(const Score &inputScore)
+{
+    add_score(inputScore.getSubject(), inputScore.getTeacherName(), inputScore.getHundredMarkScore(), inputScore.getCredit());
+}
+
 void Student::print() const
 {
     std::cout << "姓名：" << name << std::endl;
@@ -48,5 +53,8 @@ std::istream &operator>>(std::istream &input, Student &stu)
 std::ostream &operator<<(std::ostream &output, const Student &stu)
 {
     output << stu.getName() << stu.getSex() << stu.getNumber() << stu.getGrade() << stu.getDepartment() << std::endl;
+    std::for_each(stu.report.begin(), stu.report.end(), [&output](const Score &s)
+                  { output << s; });
+    output << stu.total_credits << stu.GPA << std::endl;
     return output;
 }

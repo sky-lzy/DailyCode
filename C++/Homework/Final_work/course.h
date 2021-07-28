@@ -16,6 +16,9 @@ public:
     //构造函数，传参：学科、授课教师、学分
     Course(const std::string &s, const std::string &tn, const int c);
 
+    //增加成绩
+    virtual void add_score(const Score &inputScore);
+
     //计算课程平均分
     void calculate();
 

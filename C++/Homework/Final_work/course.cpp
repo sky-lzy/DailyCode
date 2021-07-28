@@ -14,6 +14,11 @@ void Course::calculate()
     average = s / n;
 }
 
+void Course::add_score(const Score &inputScore)
+{
+    Report::add_score(inputScore.getSubject(), inputScore.getStudentName(), inputScore.getTeacherName(), inputScore.getHundredMarkScore(), inputScore.getCredit());
+}
+
 std::istream &operator>>(std::istream &input, Course &cs)
 {
     input >> cs.subject >> cs.teacher_name >> cs.credit;
@@ -23,5 +28,7 @@ std::istream &operator>>(std::istream &input, Course &cs)
 std::ostream &operator<<(std::ostream &output, const Course &cs)
 {
     output << cs.getSubject() << cs.getTeacherName() << cs.getCredit() << cs.getAverage() << std::endl;
+    std::for_each(cs.report.begin(), cs.report.end(), [&output](const Score &s)
+                  { output << s; });
     return output;
 }

@@ -19,7 +19,8 @@ Teacher::Teacher(const std::string &n, const char s, const std::string &d)
 
 void Teacher::add_course(const std::string &c)
 {
-    course.emplace_back(c);
+    if (std::find(course.begin(), course.end(), c) == course.end())
+        course.emplace_back(c);
 }
 
 bool Teacher::delete_course(const std::string &c)
