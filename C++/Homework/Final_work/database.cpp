@@ -168,7 +168,7 @@ void Database::showCourse() const
                   { c.print(); });
 }
 
-void Database::searchStudent(const std::string &StudentName)
+void Database::searchStudent(const std::string &StudentName) const
 {
     auto ptrStudent = std::find_if(Student_List.begin(), Student_List.end(), [&StudentName](const Student &st)
                                    { return StudentName == st.getName(); });
@@ -178,7 +178,7 @@ void Database::searchStudent(const std::string &StudentName)
         throw "没有找到该学生！";
 }
 
-void Database::searchTeacher(const std::string &TeacherName)
+void Database::searchTeacher(const std::string &TeacherName) const
 {
     auto ptrTeacher = std::find_if(Teacher_List.begin(), Teacher_List.end(), [&TeacherName](const Teacher &t)
                                    { return TeacherName == t.getName(); });
@@ -188,7 +188,7 @@ void Database::searchTeacher(const std::string &TeacherName)
         throw "没有找到该教师！";
 }
 
-void Database::searchCourse(const std::string &CourseName)
+void Database::searchCourse(const std::string &CourseName) const
 {
     auto ptrCourse = std::find_if(Course_List.begin(), Course_List.end(), [&CourseName](const Course &c)
                                   { return CourseName == c.getSubject(); });

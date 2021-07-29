@@ -3,12 +3,12 @@
 
 #include "database.h"
 #include "exception.h"
-#include <memory>
 
 class Interface
 {
 private:
-    std::shared_ptr<Database> ptrDatabase;
+    Database database; //数据库
+    static bool First; //首次执行
 
 public:
     //构造函数
@@ -18,10 +18,16 @@ public:
     bool Running();
 
     //程序指令
-    void FirstInterface(); //首界面
-    bool Show();           //查询整体数据信息
-    bool Search();         //查询具体信息
-    bool Modify();         //修改信息
+    void FirstInterface() const; //首界面
+    void Show() const;           //查询整体数据信息
+    bool Search() const;         //查询具体信息
+    bool AddData() const;        //增加数据信息
+    bool AddScore();             //录入学生成绩
+    bool DeleteScore();          //删除学生成绩
+    void exit();                 //退出系统
+
+    //暂停
+    void pause();
 };
 
 #endif

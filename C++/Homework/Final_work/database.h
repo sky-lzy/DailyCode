@@ -47,9 +47,9 @@ public:
     void showCourse() const;
 
     //查找并显示相关信息
-    void searchStudent(const std::string &StudentName);
-    void searchTeacher(const std::string &TeacherName);
-    void searchCourse(const std::string &CourseName);
+    void searchStudent(const std::string &StudentName) const;
+    void searchTeacher(const std::string &TeacherName) const;
+    void searchCourse(const std::string &CourseName) const;
 
     //增加信息
     void AddStudent(const Student &addStudent);
