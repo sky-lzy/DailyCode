@@ -2,6 +2,8 @@
 #include <iostream>
 #include <algorithm>
 
+Report::Report() {}
+
 double Report::add_score(const std::string &sub, const std::string &sn, const std::string &tn, const int s, const int c)
 {
     report.emplace_back(sub, sn, tn, s, c);

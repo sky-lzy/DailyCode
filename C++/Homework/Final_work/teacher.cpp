@@ -4,7 +4,7 @@
 
 int Teacher::teacher_number = 1;
 
-Teacher::Teacher()
+Teacher::Teacher() : People(), department("")
 {
     number = 202102000 + teacher_number;
     ++teacher_number;

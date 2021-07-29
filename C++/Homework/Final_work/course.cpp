@@ -1,9 +1,9 @@
 #include "course.h"
 #include <algorithm>
 
-Course::Course() {}
+Course::Course() : subject(""), teacher_name(""), credit(0), average(0) {}
 
-Course::Course(const std::string &s, const std::string &tn, const int c) : subject(s), teacher_name(tn), credit(c) {}
+Course::Course(const std::string &s, const std::string &tn, const int c) : subject(s), teacher_name(tn), credit(c), average(0) {}
 
 void Course::calculate()
 {

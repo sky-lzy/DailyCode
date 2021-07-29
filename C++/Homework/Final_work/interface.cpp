@@ -11,7 +11,7 @@ bool Interface::Running()
     std::cin.clear(); //排除错误
     std::cin.sync();  //清空输入缓冲区
 
-    if (First) //第一次读取文件信息
+    /* if (First) //第一次读取文件信息
     {
         First = false;
         try
@@ -23,7 +23,7 @@ bool Interface::Running()
             std::cout << e.FileName << " 文件在以 " << e.OpenMode << " 方式 " << e.operate << " 时出错！" << std::endl;
             return false;
         }
-    }
+    } */
 
     FirstInterface(); //打印首界面
 

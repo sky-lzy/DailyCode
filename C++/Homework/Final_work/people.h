@@ -12,7 +12,7 @@ protected:
     int number;       //编号，学生20xx01xxx，教师20xx02xxx
 
 public:
-    People() {}
+    People() : name(""), sex('\0') {}
     People(const std::string &n, const char s) : name(n), sex(s) {}
     virtual void print(bool flag = false) const = 0;
 

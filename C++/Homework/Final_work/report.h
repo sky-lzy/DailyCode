@@ -11,6 +11,9 @@ protected:
     std::vector<Score> report;
 
 public:
+    //构造函数
+    Report();
+
     //向report中添加成绩，返回对应绩点
     virtual double add_score(const std::string &sub, const std::string &sn, const std::string &tn, const int s, const int c);
 

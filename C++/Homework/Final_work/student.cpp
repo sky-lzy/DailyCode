@@ -3,7 +3,7 @@
 
 int Student::student_number = 1;
 
-Student::Student()
+Student::Student() : People(), grade(0), department(""), GPA(0), total_credits(0)
 {
     number = 202101000 + student_number;
     ++student_number;

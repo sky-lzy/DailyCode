@@ -1,6 +1,9 @@
 #include "score.h"
 
-Score::Score() {}
+Score::Score() : subject(""), student_name(""), teacher_name(""), credit(0)
+{
+    setScore(0);
+}
 
 Score::Score(const std::string &s, const std::string &sn, const std::string &tn, const int hg, const int c)
     : subject(s), student_name(sn), teacher_name(tn), credit(c)
@@ -10,7 +13,7 @@ Score::Score(const std::string &s, const std::string &sn, const std::string &tn,
 
 void Score::print() const
 {
-    std::cout << subject << "  " << credit << " " << HundredMark_Score << "  "
+    std::cout << subject << "  " << credit << "  " << HundredMark_Score << "  "
               << Graded_Score << "  " << courseGPA << std::endl;
 }
 
@@ -75,7 +78,7 @@ void Score::setScore(const int hg)
     else
     {
         Graded_Score = "F";
-        courseGPA = 1.0;
+        courseGPA = 0.0;
     }
 }
 
