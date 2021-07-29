@@ -1,6 +1,8 @@
 #include "course.h"
 #include <algorithm>
 
+Course::Course() {}
+
 Course::Course(const std::string &s, const std::string &tn, const int c) : subject(s), teacher_name(tn), credit(c) {}
 
 void Course::calculate()

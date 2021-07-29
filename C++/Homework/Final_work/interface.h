@@ -21,13 +21,13 @@ public:
     void FirstInterface() const; //首界面
     void Show() const;           //查询整体数据信息
     bool Search() const;         //查询具体信息
-    bool AddData() const;        //增加数据信息
+    bool AddData();              //增加数据信息
     bool AddScore();             //录入学生成绩
     bool DeleteScore();          //删除学生成绩
-    void exit();                 //退出系统
+    void exit() const;           //退出系统
 
     //暂停
-    void pause();
+    void pause() const;
 };
 
 #endif

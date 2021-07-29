@@ -215,7 +215,7 @@ bool Interface::Search() const
     return false;
 }
 
-bool Interface::AddScore()
+bool Interface::AddData()
 {
     system("cls");
     std::cin.clear();
@@ -270,7 +270,7 @@ bool Interface::AddScore()
             database.AddCourse(tempCourse);
             break;
         case 4:
-            
+
         default:
             break;
         }
@@ -285,5 +285,81 @@ bool Interface::AddScore()
 
 bool Interface::AddScore()
 {
-    
+    system("cls");
+    std::cin.clear();
+    std::cin.sync();
+
+    Score tempScore;
+    std::cout << "请输入成绩信息：";
+    try
+    {
+        if (!(std::cin >> tempScore))
+            throw "输入成绩信息有误！";
+
+        database.AddScore(tempScore);
+    }
+    catch (const std::string &s)
+    {
+        std::cout << s << std::endl;
+        return true;
+    }
+    return false;
+}
+
+bool Interface::DeleteScore()
+{
+    system("cls");
+    std::cin.clear();
+    std::cin.sync();
+
+    Score tempScore;
+    std::cout << "请输入需要删除的学生姓名及学科：";
+
+    std::string tempName, tempSubject;
+    std::cin >> tempName >> tempSubject;
+    tempScore.setStudentName(tempName);
+    tempScore.setSubject(tempSubject);
+    try
+    {
+        database.DeleteScore(tempScore);
+    }
+    catch (const std::string &s)
+    {
+        std::cout << s << std::endl;
+        return true;
+    }
+    return false;
+}
+
+void Interface::exit() const
+{
+    system("cls");
+    std::cin.clear();
+    std::cin.sync();
+
+    std::cout << "是否需要保存数据？(y/n)：";
+    char tempChar;
+    std::cin >> tempChar;
+
+    if (tempChar == 'y')
+    {
+        try
+        {
+            database.WriteAll();
+        }
+        catch (const Exception &e)
+        {
+            std::cout << e.FileName << " 文件在以 " << e.OpenMode << " 方式 " << e.operate << " 时出错！" << std::endl;
+        }
+    }
+
+    std::cout << "谢谢使用，再见！" << std::endl;
+}
+
+void Interface::pause() const
+{
+    std::cin.clear();
+    std::cin.sync();
+    std::cout << "请按任意键继续..." << std::endl;
+    getchar();
 }

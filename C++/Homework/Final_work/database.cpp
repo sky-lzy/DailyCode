@@ -8,9 +8,9 @@ void Database::ReadAll()
 {
     try
     {
-        ReadStudent("student_in.txt");
-        ReadTeacher("Teacher_in.txt");
-        ReadScore("score_in.txt");
+        ReadStudent("C++\\Homework\\Final_work\\student_in.txt");
+        ReadTeacher("C++\\Homework\\Final_work\teacher_in.txt");
+        ReadScore("C++\\Homework\\Final_work\\score_in.txt");
     }
     catch (const Exception &e)
     {
