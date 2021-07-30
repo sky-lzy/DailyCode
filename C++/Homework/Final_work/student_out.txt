@@ -1,0 +1,130 @@
+Alice		f	202101034	2	Physics
+Analysis	Alice	Chen	90	A-	4	5
+Algebra	Alice	Wu	86	B+	3.6	4
+Writing	Alice	Jiang	92	A-	4	2
+11	3.85
+Bob			m	202101035	1	Math
+Analysis	Bob	Chen	88	B+	3.6	5
+Algebra	Bob	Wu	92	A-	4	4
+Writing	Bob	Jiang	95	A	4	2
+11	3.82
+Carol		f	202101036	2	Math
+Analysis	Carol	Chen	68	C-	2	5
+Algebra	Carol	Wu	62	D	1.3	4
+Writing	Carol	Jiang	85	B+	3.6	2
+11	2.04
+Dave		m	202101037	3	Biology
+Analysis	Dave	Chen	75	C+	2.6	5
+Algebra	Dave	Wu	62	D	1.3	4
+Writing	Dave	Jiang	79	B-	3	2
+11	2.20
+Eve			m	202101038	1	ElectronicEngineering
+Analysis	Eve	Chen	60	D	1.3	5
+Algebra	Eve	Wu	83	B	3.3	4
+Writing	Eve	Jiang	91	A-	4	2
+11	2.52
+Francis		f	202101039	3	Chemistry
+Analysis	Francis	Chen	95	A	4	5
+Algebra	Francis	Wu	89	B+	3.6	4
+Writing	Francis	Jiang	85	B+	3.6	2
+11	3.78
+Grace		f	202101040	3	Chemistry
+Analysis	Grace	Chen	100	A+	4	5
+Algebra	Grace	Wu	97	A	4	4
+Writing	Grace	Jiang	88	B+	3.6	2
+11	3.93
+Hans		m	202101041	2	Physics
+Analysis	Hans	Chen	92	A-	4	5
+Algebra	Hans	Wu	98	A+	4	4
+Writing	Hans	Jiang	93	A-	4	2
+11	4.00
+Isabella	f	202101042	1	ElectronicEngineering
+Analysis	Isabella	Chen	83	B	3.3	5
+Algebra	Isabella	Wu	92	A-	4	4
+Writing	Isabella	Jiang	87	B+	3.6	2
+11	3.61
+Jason		m	202101043	3	ComputerScience
+Analysis	Jason	Chen	75	C+	2.6	5
+Algebra	Jason	Wu	69	C-	2	4
+Writing	Jason	Jiang	91	A-	4	2
+11	2.64
+Kate		f	202101044	2	Biology
+Analysis	Kate	Chen	91	A-	4	5
+Algebra	Kate	Wu	77	B-	3	4
+Writing	Kate	Jiang	96	A	4	2
+11	3.64
+Louis		f	202101045	1	Math
+Analysis	Louis	Chen	64	D+	1.6	5
+Algebra	Louis	Wu	56	F	0	4
+Writing	Louis	Jiang	90	A-	4	2
+11	1.45
+Margaret	m	202101046	1	ComputerScience
+Analysis	Margaret	Chen	72	C	2.3	5
+Algebra	Margaret	Wu	60	D	1.3	4
+Writing	Margaret	Jiang	81	B	3.3	2
+11	2.12
+Nathan		m	202101047	1	Chemistry
+Analysis	Nathan	Sun	78	B-	3	5
+Algebra	Nathan	Wu	83	B	3.3	4
+Writing	Nathan	Jiang	89	B+	3.6	2
+11	3.22
+Olivia		f	202101048	3	Chemistry
+Analysis	Olivia	Sun	80	B	3.3	5
+Algebra	Olivia	Wu	75	C+	2.6	4
+Writing	Olivia	Jiang	93	A-	4	2
+11	3.17
+Paul		m	202101049	4	Physics
+Analysis	Paul	Sun	91	A-	4	5
+Algebra	Paul	Wu	92	A-	4	4
+Writing	Paul	Jiang	92	A-	4	2
+11	4.00
+Queen		f	202101033	2	ElectronicEngineering
+Analysis	Queen	Sun	87	B+	3.6	5
+Algebra	Queen	Wu	74	C+	2.6	4
+Writing	Queen	Jiang	83	B	3.3	2
+11	3.18
+Richard		m	202101050	1	Physics
+Analysis	Richard	Sun	54	F	0	5
+Algebra	Richard	Wu	62	D	1.3	4
+Writing	Richard	Jiang	91	A-	4	2
+11	1.20
+Susan		f	202101051	3	Math
+Analysis	Susan	Sun	79	B-	3	5
+Algebra	Susan	Wu	67	C-	2	4
+Writing	Susan	Jiang	88	B+	3.6	2
+11	2.75
+Thomas		m	202101052	4	ComputerScience
+Analysis	Thomas	Sun	67	C-	2	5
+Algebra	Thomas	Wu	53	F	0	4
+Writing	Thomas	Jiang	75	C+	2.6	2
+11	1.38
+Uma			f	202101053	2	Biology
+Analysis	Uma	Sun	95	A	4	5
+Algebra	Uma	Wu	80	B	3.3	4
+Writing	Uma	Jiang	84	B	3.3	2
+11	3.62
+Vivian		m	202101054	2	ElectronicEngineering
+Analysis	Vivian	Sun	66	D+	1.6	5
+Algebra	Vivian	Wu	78	B-	3	4
+Writing	Vivian	Jiang	89	B+	3.6	2
+11	2.47
+Winnie		f	202101055	1	Chemistry
+Analysis	Winnie	Sun	72	C	2.3	5
+Algebra	Winnie	Wu	64	D+	1.6	4
+Writing	Winnie	Jiang	97	A	4	2
+11	2.35
+Xander		m	202101056	1	Physics
+Analysis	Xander	Sun	85	B+	3.6	5
+Algebra	Xander	Wu	79	B-	3	4
+Writing	Xander	Jiang	91	A-	4	2
+11	3.45
+Yansmine	m	202101057	3	Math
+Analysis	Yansmine	Sun	47	F	0	5
+Algebra	Yansmine	Wu	56	F	0	4
+Writing	Yansmine	Jiang	87	B+	3.6	2
+11	0.65
+Zach		f	202101058	2	ComputerScience
+Analysis	Zach	Sun	83	B	3.3	5
+Algebra	Zach	Wu	74	C+	2.6	4
+Writing	Zach	Jiang	82	B	3.3	2
+11	3.05

@@ -16,6 +16,9 @@ public:
     //构造函数，传参：姓名、性别、院系
     Teacher(const std::string &n, const char s, const std::string &d);
 
+    //拷贝构造函数
+    Teacher(const Teacher &copyTeacher);
+
     //增加教授的课程名
     void add_course(const std::string &c);
     //删去教授的课程名，返回是否成功

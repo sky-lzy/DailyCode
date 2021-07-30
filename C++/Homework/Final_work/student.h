@@ -21,6 +21,9 @@ public:
     //构造函数，传参：姓名、性别、年级、院系
     Student(const std::string &, const char, const int, const std::string &);
 
+    //拷贝构造函数
+    Student(const Student &copyStudent);
+
     //打印学生信息
     virtual void print(bool flag = false) const;
 

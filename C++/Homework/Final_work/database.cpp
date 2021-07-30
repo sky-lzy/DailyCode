@@ -9,7 +9,7 @@ void Database::ReadAll()
     try
     {
         ReadStudent("C++\\Homework\\Final_work\\student_in.txt");
-        ReadTeacher("C++\\Homework\\Final_work\teacher_in.txt");
+        ReadTeacher("C++\\Homework\\Final_work\\teacher_in.txt");
         ReadScore("C++\\Homework\\Final_work\\score_in.txt");
     }
     catch (const Exception &e)
@@ -22,9 +22,9 @@ void Database::WriteAll() const
 {
     try
     {
-        WriteStudent("teacher_out.txt");
-        WriteTeacher("teacher_out.txt");
-        WriteCourse("course_out.txt");
+        WriteStudent("C++\\Homework\\Final_work\\student_out.txt");
+        WriteTeacher("C++\\Homework\\Final_work\\teacher_out.txt");
+        WriteCourse("C++\\Homework\\Final_work\\course_out.txt");
     }
     catch (const Exception &e)
     {
@@ -39,7 +39,7 @@ void Database::ReadStudent(const std::string &StudentFile_in)
         throw Exception(StudentFile_in, "打开文件", "只读");
 
     Student tempStudent;
-    while (!student_in.eof())
+    while (student_in.peek() != EOF)
     {
         if (!(student_in >> tempStudent))
             throw Exception(StudentFile_in, "读取数据", "只读");
@@ -57,7 +57,7 @@ void Database::ReadTeacher(const std::string &TeacherFile_in)
         throw Exception(TeacherFile_in, "打开文件", "只读");
 
     Teacher tempTeacher;
-    while (!teacher_in.eof())
+    while (teacher_in.peek() != EOF)
     {
         if (!(teacher_in >> tempTeacher))
             throw Exception(TeacherFile_in, "读取数据", "只读");
@@ -75,7 +75,7 @@ void Database::ReadScore(const std::string &ScoreFile_in)
         throw Exception(ScoreFile_in, "打开文件", "只读");
 
     Score tempScore;
-    while (!score_in.eof())
+    while (score_in.peek() != EOF)
     {
         if (!(score_in >> tempScore))
             throw Exception(ScoreFile_in, "读取数据", "只读");
@@ -96,7 +96,10 @@ void Database::ReadScore(const std::string &ScoreFile_in)
         auto ptrCourse = std::find_if(Course_List.begin(), Course_List.end(), [&tempCourseName](const Course &st)
                                       { return tempCourseName == st.getSubject(); });
         if (ptrCourse == Course_List.end())
+        {
             Course_List.emplace_back(tempScore.getSubject(), tempScore.getTeacherName(), tempScore.getCredit());
+            (Course_List.end() - 1)->add_score(tempScore);
+        }
         else
             ptrCourse->add_score(tempScore);
     }
@@ -152,6 +155,7 @@ void Database::showStudent() const
     std::cout << "共有 " << Student_List.size() << " 个学生，如下：" << std::endl;
     std::for_each(Student_List.begin(), Student_List.end(), [](const Student &s)
                   { s.print(); });
+    std::cout << std::endl;
 }
 
 void Database::showTeacher() const
@@ -159,6 +163,7 @@ void Database::showTeacher() const
     std::cout << "共有 " << Teacher_List.size() << " 个教师，如下：" << std::endl;
     std::for_each(Teacher_List.begin(), Teacher_List.end(), [](const Teacher &t)
                   { t.print(); });
+    std::cout << std::endl;
 }
 
 void Database::showCourse() const
@@ -166,6 +171,7 @@ void Database::showCourse() const
     std::cout << "共有 " << Course_List.size() << " 门课程，如下：" << std::endl;
     std::for_each(Course_List.begin(), Course_List.end(), [](const Course &c)
                   { c.print(); });
+    std::cout << std::endl;
 }
 
 void Database::searchStudent(const std::string &StudentName) const

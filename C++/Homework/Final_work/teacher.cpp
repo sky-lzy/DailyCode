@@ -17,11 +17,17 @@ Teacher::Teacher(const std::string &n, const char s, const std::string &d)
     ++teacher_number;
 }
 
+Teacher::Teacher(const Teacher &copyTeacher) : People(copyTeacher.name, copyTeacher.sex), department(copyTeacher.department)
+{
+    number = 202102000 + teacher_number;
+    ++teacher_number;
+}
+
 void Teacher::print(bool flag) const
 {
-    std::cout << "姓名：" << name << std::endl;
-    std::cout << "性别：" << sex << std::endl;
-    std::cout << "工号：" << number << std::endl;
+    std::cout << "姓名：" << name << '\t';
+    std::cout << "性别：" << sex << '\t';
+    std::cout << "工号：" << number << '\t';
     std::cout << "院系：" << department << std::endl;
 
     if (flag)
@@ -57,6 +63,6 @@ std::istream &operator>>(std::istream &input, Teacher &t)
 
 std::ostream &operator<<(std::ostream &output, const Teacher &t)
 {
-    output << t.getName() << " " << t.getSex() << " " << t.getNumber() << " " << t.getDepartment() << std::endl;
+    output << t.getName() << '\t' << t.getSex() << '\t' << t.getNumber() << '\t' << t.getDepartment() << std::endl;
     return output;
 }

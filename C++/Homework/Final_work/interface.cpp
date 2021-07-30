@@ -11,7 +11,7 @@ bool Interface::Running()
     std::cin.clear(); //排除错误
     std::cin.sync();  //清空输入缓冲区
 
-    /* if (First) //第一次读取文件信息
+    if (First) //第一次读取文件信息
     {
         First = false;
         try
@@ -21,9 +21,10 @@ bool Interface::Running()
         catch (const Exception &e)
         {
             std::cout << e.FileName << " 文件在以 " << e.OpenMode << " 方式 " << e.operate << " 时出错！" << std::endl;
+            pause();
             return false;
         }
-    } */
+    }
 
     FirstInterface(); //打印首界面
 
@@ -207,9 +208,10 @@ bool Interface::Search() const
             break;
         }
     }
-    catch (const std::string &s)
+    catch (const char *s)
     {
         std::cout << s << std::endl;
+        pause();
         return true;
     }
     return false;
@@ -275,9 +277,10 @@ bool Interface::AddData()
             break;
         }
     }
-    catch (const std::string &s)
+    catch (const char *s)
     {
         std::cout << s << std::endl;
+        pause();
         return true;
     }
     return false;
@@ -298,9 +301,10 @@ bool Interface::AddScore()
 
         database.AddScore(tempScore);
     }
-    catch (const std::string &s)
+    catch (const char *s)
     {
         std::cout << s << std::endl;
+        pause();
         return true;
     }
     return false;
@@ -323,9 +327,10 @@ bool Interface::DeleteScore()
     {
         database.DeleteScore(tempScore);
     }
-    catch (const std::string &s)
+    catch (const char *s)
     {
         std::cout << s << std::endl;
+        pause();
         return true;
     }
     return false;
@@ -350,6 +355,7 @@ void Interface::exit() const
         catch (const Exception &e)
         {
             std::cout << e.FileName << " 文件在以 " << e.OpenMode << " 方式 " << e.operate << " 时出错！" << std::endl;
+            pause();
         }
     }
 

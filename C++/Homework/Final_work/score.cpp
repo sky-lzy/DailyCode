@@ -1,4 +1,5 @@
 #include "score.h"
+#include <iomanip>
 
 Score::Score() : subject(""), student_name(""), teacher_name(""), credit(0)
 {
@@ -13,8 +14,12 @@ Score::Score(const std::string &s, const std::string &sn, const std::string &tn,
 
 void Score::print() const
 {
-    std::cout << subject << "  " << credit << "  " << HundredMark_Score << "  "
-              << Graded_Score << "  " << courseGPA << std::endl;
+    std::cout << subject << '\t';
+    if (subject.size() < 8)
+        std::cout << '\t';
+    std::cout << credit << '\t' << HundredMark_Score << '\t' << Graded_Score << '\t';
+    std::cout << std::fixed << std::setprecision(2) << courseGPA << std::endl;
+    std::cout.unsetf(std::ios::fixed);
 }
 
 void Score::setScore(const int hg)
@@ -92,7 +97,7 @@ std::istream &operator>>(std::istream &input, Score &sc)
 
 std::ostream &operator<<(std::ostream &output, const Score &sc)
 {
-    output << sc.getSubject() << " " << sc.getStudentName() << " " << sc.getTeacherName() << " " << sc.getHundredMarkScore()
-           << " " << sc.getGradedScore() << " " << sc.getCourseGPA() << " " << sc.getCredit() << std::endl;
+    output << sc.getSubject() << '\t' << sc.getStudentName() << '\t' << sc.getTeacherName() << '\t' << sc.getHundredMarkScore()
+           << '\t' << sc.getGradedScore() << '\t' << sc.getCourseGPA() << '\t' << sc.getCredit() << std::endl;
     return output;
 }

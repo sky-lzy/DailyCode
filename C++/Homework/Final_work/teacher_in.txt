@@ -1,0 +1,16 @@
+Zhao    m   Physics
+Qian    f   Math
+Sun     f   Math
+Li      m   Chemistry
+Zhou    m   Physics
+Wu      f   Math
+Zheng   m   ElectronicEngineering
+Wang    f   Chemistry
+Feng    f   ComputerScience
+Chen    m   Math
+Chu     m   Physics
+Wei     f   Chinese
+Jiang   f   WritingCenter
+Shen    m   SportCenter
+Han     m   Marxism
+Yang    f   Marxism
