@@ -2,7 +2,7 @@ import torch
 import torch.nn as nn
 from torch.utils.data import random_split, DataLoader
 from torch.utils.tensorboard import SummaryWriter
-from net import Net
+from net import Net_1
 from mydata import MyData
 
 # tensorboard可视化
@@ -22,8 +22,8 @@ test_dataloader = DataLoader(test_dataset, batch_size=32, shuffle=True)
 device = torch.device('cuda')
 
 # 构建神经网络实例
-net = Net()
-# net = torch.load('net_gpu.pth')
+net = Net_1()
+# net = torch.load('.pth')
 net.to(device)
 
 # 定义损失函数
@@ -91,7 +91,7 @@ for i in range(train_epoch):
 
     # 保存训练模型
     if (i + 1) % 5 == 0:
-        torch.save(net, 'net_gpu_{}.pth'.format(i + 1))
+        torch.save(net, 'net_1_{}.pth'.format(i + 1))
         print('模型已保存')
 
 writer.close()
