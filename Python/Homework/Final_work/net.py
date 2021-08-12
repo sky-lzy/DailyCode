@@ -64,13 +64,18 @@ class Net_2(nn.Module):
             nn.ReLU(True),
             nn.MaxPool2d(3, 2),
 
+            nn.Conv2d(256, 256, 3, 1, 0),
+            nn.ReLU(True),
+            nn.MaxPool2d(2),
+
             nn.Flatten(),
 
-            nn.Linear(4096, 4096),
+            nn.Linear(1024, 16),
             nn.ReLU(True),
-            nn.Dropout2d(0.5, True),
+            # nn.Dropout2d(0.5, False),
 
-            nn.Linear(4096, 2)
+            nn.Linear(16, 2),
+            # nn.Softmax(0)
         )
 
     def forward(self, x):
