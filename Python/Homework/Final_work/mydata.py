@@ -28,7 +28,7 @@ class MyData(Dataset):
         self.data_dir = 'data'
 
         self.transform = torchvision.transforms.Compose([
-            torchvision.transforms.Resize((227, 227)),
+            torchvision.transforms.Resize((64, 64)),
             torchvision.transforms.ToTensor()])
 
         male_file.close()

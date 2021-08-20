@@ -2,7 +2,7 @@ import torch
 import torch.nn as nn
 from torch.utils.data import random_split, DataLoader
 from torch.utils.tensorboard import SummaryWriter
-from net import Net_2
+from net import Net_1
 from mydata import MyData
 
 # tensorboard可视化
@@ -15,14 +15,14 @@ train_size = int(0.8 * all_size)
 test_size = all_size - train_size
 train_dataset, test_dataset = random_split(all_data, [train_size, test_size])
 
-train_dataloader = DataLoader(train_dataset, batch_size=16, shuffle=True)
-test_dataloader = DataLoader(test_dataset, batch_size=16, shuffle=True)
+train_dataloader = DataLoader(train_dataset, batch_size=32, shuffle=True)
+test_dataloader = DataLoader(test_dataset, batch_size=32, shuffle=True)
 
 # 设置训练设备
 device = torch.device('cuda')
 
 # 构建神经网络实例
-net = Net_2()
+net = Net_1()
 # net = torch.load('.pth')
 net.to(device)
 
@@ -31,9 +31,9 @@ loss_func = nn.CrossEntropyLoss()
 loss_func.to(device)
 
 # 设置学习率和优化器
-learning_rate = 0.01
+learning_rate = 0.001
 net_optimizer = torch.optim.Adam(net.parameters(), lr=learning_rate)
-net_scheduler = torch.optim.lr_scheduler.StepLR(net_optimizer, 5, 0.8)
+# net_scheduler = torch.optim.lr_scheduler.StepLR(net_optimizer, 5, 0.8)
 
 # 设置训练参数
 total_train_step = 0
@@ -58,7 +58,7 @@ for i in range(train_epoch):
         net_optimizer.zero_grad()
         loss.backward()
         net_optimizer.step()
-        net_scheduler.step()
+        # net_scheduler.step()
 
         total_train_step += 1
         if total_train_step % 20 == 0:
@@ -91,7 +91,7 @@ for i in range(train_epoch):
 
     # 保存训练模型
     if (i + 1) % 5 == 0:
-        torch.save(net, 'net_2_{}.pth'.format(i + 1))
+        torch.save(net, 'net_1_{}.pth'.format(i + 1))
         print('模型已保存')
 
 writer.close()
