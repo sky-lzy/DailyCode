@@ -14,10 +14,15 @@ Score::Score(const std::string &s, const std::string &sn, const std::string &tn,
 
 void Score::print() const
 {
-    std::cout << subject << '\t';
-    if (subject.size() < 8)
-        std::cout << '\t';
-    std::cout << credit << '\t' << HundredMark_Score << '\t' << Graded_Score << '\t';
+    std::cout << subject;
+    for (int i = 0; i < 12 - subject.size(); i++)
+        std::cout << " ";
+    
+    std::cout << student_name;
+    for (int i = 0; i < 10 - student_name.size(); i++)
+        std::cout << " ";
+    
+    std::cout << credit << "   " << HundredMark_Score << '\t' << Graded_Score << "\t";
     std::cout << std::fixed << std::setprecision(2) << courseGPA << std::endl;
     std::cout.unsetf(std::ios::fixed);
 }
@@ -97,7 +102,21 @@ std::istream &operator>>(std::istream &input, Score &sc)
 
 std::ostream &operator<<(std::ostream &output, const Score &sc)
 {
-    output << sc.getSubject() << '\t' << sc.getStudentName() << '\t' << sc.getTeacherName() << '\t' << sc.getHundredMarkScore()
-           << '\t' << sc.getGradedScore() << '\t' << sc.getCourseGPA() << '\t' << sc.getCredit() << std::endl;
+    output << sc.getSubject();
+    for (int i = 0; i < 12 - sc.getSubject().size(); i++)
+        output << " ";
+
+    output << sc.getStudentName();
+    for (int i = 0; i < 10 - sc.getStudentName().size(); i++)
+        output << " ";
+
+    output << sc.getTeacherName();
+    for (int i = 0; i < 6 - sc.getTeacherName().size(); i++)
+        output << " ";
+
+    output << sc.getHundredMarkScore() << '\t' << sc.getGradedScore() << '\t'
+           << std::fixed << std::setprecision(2) << sc.getCourseGPA() << '\t' ;
+    output.unsetf(std::ios::fixed);
+    output << sc.getCredit() << std::endl;
     return output;
 }

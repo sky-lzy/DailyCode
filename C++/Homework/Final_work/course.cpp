@@ -1,5 +1,6 @@
 #include "course.h"
 #include <algorithm>
+#include <iomanip>
 
 Course::Course() : subject(""), teacher_name(""), credit(0), average(0) {}
 
@@ -7,18 +8,23 @@ Course::Course(const std::string &s, const std::string &tn, const int c) : subje
 
 void Course::calculate()
 {
-    int n = 0, s = 0;
-    std::for_each(report.begin(), report.end(), [&n, &s](const Score &sc)
-                  {
-                      ++n;
-                      s += sc.getHundredMarkScore();
-                  });
-    average = s / n;
+    int s = 0;
+    std::for_each(report.begin(), report.end(), [&s](const Score &sc)
+                  { s += sc.getHundredMarkScore(); });
+    average = double(s) / report.size();
 }
 
 void Course::add_score(const Score &inputScore)
 {
     Report::add_score(inputScore.getSubject(), inputScore.getStudentName(), inputScore.getTeacherName(), inputScore.getHundredMarkScore(), inputScore.getCredit());
+    calculate();
+}
+
+bool Course::delete_score(const std::string &sub)
+{
+    bool flag = Report::delete_score(sub);
+    calculate();
+    return flag;
 }
 
 void Course::print(bool flag) const
@@ -44,8 +50,14 @@ std::istream &operator>>(std::istream &input, Course &cs)
 
 std::ostream &operator<<(std::ostream &output, const Course &cs)
 {
-    output << cs.getSubject() << '\t' << cs.getTeacherName() << '\t' << cs.getCredit() << '\t' << cs.getAverage() << std::endl;
+    output << "Subject: " << cs.getSubject() << std::endl;
+    output << "Teacher Name: " << cs.getTeacherName() << std::endl;
+    output << "Credit: " << cs.getCredit() << std::endl;
+    output << "Average Score: " << std::fixed << std::setprecision(2) << cs.getAverage() << std::endl;
+    output.unsetf(std::ios::fixed);
+
     std::for_each(cs.report.begin(), cs.report.end(), [&output](const Score &s)
                   { output << s; });
+    output << std::endl;
     return output;
 }

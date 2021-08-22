@@ -18,7 +18,7 @@ public:
     virtual double add_score(const std::string &sub, const std::string &sn, const std::string &tn, const int s, const int c);
 
     //删除给出科目成绩，返回是否成功
-    bool delete_score(const std::string &sub);
+    virtual bool delete_score(const std::string &sub);
 
     //打印信息
     virtual void print() const;

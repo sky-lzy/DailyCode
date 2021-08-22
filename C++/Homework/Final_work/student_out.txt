@@ -1,130 +1,381 @@
-Alice		f	202101034	2	Physics
-Analysis	Alice	Chen	90	A-	4	5
-Algebra	Alice	Wu	86	B+	3.6	4
-Writing	Alice	Jiang	92	A-	4	2
-11	3.85
-Bob			m	202101035	1	Math
-Analysis	Bob	Chen	88	B+	3.6	5
-Algebra	Bob	Wu	92	A-	4	4
-Writing	Bob	Jiang	95	A	4	2
-11	3.82
-Carol		f	202101036	2	Math
-Analysis	Carol	Chen	68	C-	2	5
-Algebra	Carol	Wu	62	D	1.3	4
-Writing	Carol	Jiang	85	B+	3.6	2
-11	2.04
-Dave		m	202101037	3	Biology
-Analysis	Dave	Chen	75	C+	2.6	5
-Algebra	Dave	Wu	62	D	1.3	4
-Writing	Dave	Jiang	79	B-	3	2
-11	2.20
-Eve			m	202101038	1	ElectronicEngineering
-Analysis	Eve	Chen	60	D	1.3	5
-Algebra	Eve	Wu	83	B	3.3	4
-Writing	Eve	Jiang	91	A-	4	2
-11	2.52
-Francis		f	202101039	3	Chemistry
-Analysis	Francis	Chen	95	A	4	5
-Algebra	Francis	Wu	89	B+	3.6	4
-Writing	Francis	Jiang	85	B+	3.6	2
-11	3.78
-Grace		f	202101040	3	Chemistry
-Analysis	Grace	Chen	100	A+	4	5
-Algebra	Grace	Wu	97	A	4	4
-Writing	Grace	Jiang	88	B+	3.6	2
-11	3.93
-Hans		m	202101041	2	Physics
-Analysis	Hans	Chen	92	A-	4	5
-Algebra	Hans	Wu	98	A+	4	4
-Writing	Hans	Jiang	93	A-	4	2
-11	4.00
-Isabella	f	202101042	1	ElectronicEngineering
-Analysis	Isabella	Chen	83	B	3.3	5
-Algebra	Isabella	Wu	92	A-	4	4
-Writing	Isabella	Jiang	87	B+	3.6	2
-11	3.61
-Jason		m	202101043	3	ComputerScience
-Analysis	Jason	Chen	75	C+	2.6	5
-Algebra	Jason	Wu	69	C-	2	4
-Writing	Jason	Jiang	91	A-	4	2
-11	2.64
-Kate		f	202101044	2	Biology
-Analysis	Kate	Chen	91	A-	4	5
-Algebra	Kate	Wu	77	B-	3	4
-Writing	Kate	Jiang	96	A	4	2
-11	3.64
-Louis		f	202101045	1	Math
-Analysis	Louis	Chen	64	D+	1.6	5
-Algebra	Louis	Wu	56	F	0	4
-Writing	Louis	Jiang	90	A-	4	2
-11	1.45
-Margaret	m	202101046	1	ComputerScience
-Analysis	Margaret	Chen	72	C	2.3	5
-Algebra	Margaret	Wu	60	D	1.3	4
-Writing	Margaret	Jiang	81	B	3.3	2
-11	2.12
-Nathan		m	202101047	1	Chemistry
-Analysis	Nathan	Sun	78	B-	3	5
-Algebra	Nathan	Wu	83	B	3.3	4
-Writing	Nathan	Jiang	89	B+	3.6	2
-11	3.22
-Olivia		f	202101048	3	Chemistry
-Analysis	Olivia	Sun	80	B	3.3	5
-Algebra	Olivia	Wu	75	C+	2.6	4
-Writing	Olivia	Jiang	93	A-	4	2
-11	3.17
-Paul		m	202101049	4	Physics
-Analysis	Paul	Sun	91	A-	4	5
-Algebra	Paul	Wu	92	A-	4	4
-Writing	Paul	Jiang	92	A-	4	2
-11	4.00
-Queen		f	202101033	2	ElectronicEngineering
-Analysis	Queen	Sun	87	B+	3.6	5
-Algebra	Queen	Wu	74	C+	2.6	4
-Writing	Queen	Jiang	83	B	3.3	2
-11	3.18
-Richard		m	202101050	1	Physics
-Analysis	Richard	Sun	54	F	0	5
-Algebra	Richard	Wu	62	D	1.3	4
-Writing	Richard	Jiang	91	A-	4	2
-11	1.20
-Susan		f	202101051	3	Math
-Analysis	Susan	Sun	79	B-	3	5
-Algebra	Susan	Wu	67	C-	2	4
-Writing	Susan	Jiang	88	B+	3.6	2
-11	2.75
-Thomas		m	202101052	4	ComputerScience
-Analysis	Thomas	Sun	67	C-	2	5
-Algebra	Thomas	Wu	53	F	0	4
-Writing	Thomas	Jiang	75	C+	2.6	2
-11	1.38
-Uma			f	202101053	2	Biology
-Analysis	Uma	Sun	95	A	4	5
-Algebra	Uma	Wu	80	B	3.3	4
-Writing	Uma	Jiang	84	B	3.3	2
-11	3.62
-Vivian		m	202101054	2	ElectronicEngineering
-Analysis	Vivian	Sun	66	D+	1.6	5
-Algebra	Vivian	Wu	78	B-	3	4
-Writing	Vivian	Jiang	89	B+	3.6	2
-11	2.47
-Winnie		f	202101055	1	Chemistry
-Analysis	Winnie	Sun	72	C	2.3	5
-Algebra	Winnie	Wu	64	D+	1.6	4
-Writing	Winnie	Jiang	97	A	4	2
-11	2.35
-Xander		m	202101056	1	Physics
-Analysis	Xander	Sun	85	B+	3.6	5
-Algebra	Xander	Wu	79	B-	3	4
-Writing	Xander	Jiang	91	A-	4	2
-11	3.45
-Yansmine	m	202101057	3	Math
-Analysis	Yansmine	Sun	47	F	0	5
-Algebra	Yansmine	Wu	56	F	0	4
-Writing	Yansmine	Jiang	87	B+	3.6	2
-11	0.65
-Zach		f	202101058	2	ComputerScience
-Analysis	Zach	Sun	83	B	3.3	5
-Algebra	Zach	Wu	74	C+	2.6	4
-Writing	Zach	Jiang	82	B	3.3	2
-11	3.05
+Name: Alice
+Sex: f
+Student Number: 202101034
+Grade: 2
+Department: Physics
+Analysis    Alice     Chen  90	A-	4.00	5
+Algebra     Alice     Wu    86	B+	3.60	4
+Writing     Alice     Jiang 92	A-	4.00	2
+Physics     Alice     Zhou  87	B+	3.60	4
+Astronomy   Alice     Zhao  91	A-	4.00	3
+Program     Alice     Feng  89	B+	3.60	3
+PE(1)       Alice     Shen  75	C+	2.60	1
+PE(2)       Alice     Shen  82	B	3.30	1
+Total Credits: 23	GPA: 3.72
+
+Name: Bob
+Sex: m
+Student Number: 202101035
+Grade: 1
+Department: Math
+Analysis    Bob       Chen  88	B+	3.60	5
+Algebra     Bob       Wu    92	A-	4.00	4
+Writing     Bob       Jiang 95	A	4.00	2
+Physics     Bob       Chu   97	A	4.00	4
+PE(1)       Bob       Shen  57	F	0.00	1
+PE(2)       Bob       Shen  67	C-	2.00	1
+Total Credits: 17	GPA: 3.53
+
+Name: Carol
+Sex: f
+Student Number: 202101036
+Grade: 2
+Department: Math
+Analysis    Carol     Chen  68	C-	2.00	5
+Algebra     Carol     Wu    62	D	1.30	4
+Writing     Carol     Jiang 85	B+	3.60	2
+Physics     Carol     Zhou  79	B-	3.00	4
+Astronomy   Carol     Zhao  90	A-	4.00	3
+Program     Carol     Feng  79	B-	3.00	3
+PE(1)       Carol     Shen  93	A-	4.00	1
+PE(2)       Carol     Shen  90	A-	4.00	1
+Total Credits: 23	GPA: 2.76
+
+Name: Dave
+Sex: m
+Student Number: 202101037
+Grade: 3
+Department: Biology
+Analysis    Dave      Chen  75	C+	2.60	5
+Algebra     Dave      Wu    62	D	1.30	4
+Writing     Dave      Jiang 79	B-	3.00	2
+Physics     Dave      Chu   83	B	3.30	4
+Astronomy   Dave      Zhao  87	B+	3.60	3
+Program     Dave      Feng  73	C+	2.60	3
+Algorithm   Dave      Zheng 58	F	0.00	4
+PE(1)       Dave      Shen  83	B	3.30	1
+PE(2)       Dave      Shen  80	B	3.30	1
+Total Credits: 27	GPA: 2.32
+
+Name: Eve
+Sex: m
+Student Number: 202101038
+Grade: 1
+Department: ElectronicEngineering
+Analysis    Eve       Chen  60	D	1.30	5
+Algebra     Eve       Wu    83	B	3.30	4
+Writing     Eve       Jiang 91	A-	4.00	2
+Physics     Eve       Zhou  67	C-	2.00	4
+PE(1)       Eve       Shen  75	C+	2.60	1
+PE(2)       Eve       Shen  71	C	2.30	1
+Total Credits: 17	GPA: 2.39
+
+Name: Francis
+Sex: f
+Student Number: 202101039
+Grade: 3
+Department: Chemistry
+Analysis    Francis   Chen  95	A	4.00	5
+Algebra     Francis   Wu    89	B+	3.60	4
+Writing     Francis   Jiang 85	B+	3.60	2
+Physics     Francis   Chu   83	B	3.30	4
+Astronomy   Francis   Zhao  92	A-	4.00	3
+Program     Francis   Feng  88	B+	3.60	3
+Algorithm   Francis   Zheng 82	B	3.30	4
+PE(1)       Francis   Shen  68	C-	2.00	1
+PE(2)       Francis   Shen  78	B-	3.00	1
+Total Credits: 27	GPA: 3.55
+
+Name: Grace
+Sex: f
+Student Number: 202101040
+Grade: 3
+Department: Chemistry
+Analysis    Grace     Chen  100	A+	4.00	5
+Algebra     Grace     Wu    97	A	4.00	4
+Writing     Grace     Jiang 88	B+	3.60	2
+Physics     Grace     Zhou  92	A-	4.00	4
+Astronomy   Grace     Zhao  90	A-	4.00	3
+Program     Grace     Feng  85	B+	3.60	3
+Algorithm   Grace     Zheng 83	B	3.30	4
+PE(1)       Grace     Shen  81	B	3.30	1
+PE(2)       Grace     Shen  85	B+	3.60	1
+Total Credits: 27	GPA: 3.78
+
+Name: Hans
+Sex: m
+Student Number: 202101041
+Grade: 2
+Department: Physics
+Analysis    Hans      Chen  92	A-	4.00	5
+Algebra     Hans      Wu    98	A+	4.00	4
+Writing     Hans      Jiang 93	A-	4.00	2
+Physics     Hans      Chu   96	A	4.00	4
+Astronomy   Hans      Zhao  89	B+	3.60	3
+Program     Hans      Feng  86	B+	3.60	3
+PE(1)       Hans      Shen  73	C+	2.60	1
+PE(2)       Hans      Shen  82	B	3.30	1
+Total Credits: 23	GPA: 3.80
+
+Name: Isabella
+Sex: f
+Student Number: 202101042
+Grade: 1
+Department: ElectronicEngineering
+Analysis    Isabella  Chen  83	B	3.30	5
+Algebra     Isabella  Wu    92	A-	4.00	4
+Writing     Isabella  Jiang 87	B+	3.60	2
+Physics     Isabella  Zhou  83	B	3.30	4
+PE(1)       Isabella  Shen  62	D	1.30	1
+PE(2)       Isabella  Shen  74	C+	2.60	1
+Total Credits: 17	GPA: 3.34
+
+Name: Jason
+Sex: m
+Student Number: 202101043
+Grade: 3
+Department: ComputerScience
+Analysis    Jason     Chen  75	C+	2.60	5
+Algebra     Jason     Wu    69	C-	2.00	4
+Writing     Jason     Jiang 91	A-	4.00	2
+Physics     Jason     Chu   95	A	4.00	4
+Astronomy   Jason     Zhao  86	B+	3.60	3
+Program     Jason     Feng  81	B	3.30	3
+Algorithm   Jason     Zheng 87	B+	3.60	4
+PE(1)       Jason     Shen  95	A	4.00	1
+PE(2)       Jason     Shen  92	A-	4.00	1
+Total Credits: 27	GPA: 3.26
+
+Name: Kate
+Sex: f
+Student Number: 202101044
+Grade: 2
+Department: Biology
+Analysis    Kate      Chen  91	A-	4.00	5
+Algebra     Kate      Wu    77	B-	3.00	4
+Writing     Kate      Jiang 96	A	4.00	2
+Physics     Kate      Zhou  85	B+	3.60	4
+Astronomy   Kate      Zhao  90	A-	4.00	3
+Program     Kate      Feng  89	B+	3.60	3
+PE(1)       Kate      Shen  54	F	0.00	1
+PE(2)       Kate      Shen  64	D+	1.60	1
+Total Credits: 23	GPA: 3.43
+
+Name: Louis
+Sex: f
+Student Number: 202101045
+Grade: 1
+Department: Math
+Analysis    Louis     Chen  64	D+	1.60	5
+Algebra     Louis     Wu    56	F	0.00	4
+Writing     Louis     Jiang 90	A-	4.00	2
+Physics     Louis     Chu   84	B	3.30	4
+PE(1)       Louis     Shen  67	C-	2.00	1
+PE(2)       Louis     Shen  77	B-	3.00	1
+Total Credits: 17	GPA: 2.01
+
+Name: Margaret
+Sex: m
+Student Number: 202101046
+Grade: 1
+Department: ComputerScience
+Analysis    Margaret  Chen  72	C	2.30	5
+Algebra     Margaret  Wu    60	D	1.30	4
+Writing     Margaret  Jiang 81	B	3.30	2
+Physics     Margaret  Zhou  86	B+	3.60	4
+PE(1)       Margaret  Shen  71	C	2.30	1
+PE(2)       Margaret  Shen  69	C-	2.00	1
+Total Credits: 17	GPA: 2.47
+
+Name: Nathan
+Sex: m
+Student Number: 202101047
+Grade: 1
+Department: Chemistry
+Analysis    Nathan    Sun   78	B-	3.00	5
+Algebra     Nathan    Wu    83	B	3.30	4
+Writing     Nathan    Jiang 89	B+	3.60	2
+Physics     Nathan    Chu   92	A-	4.00	4
+PE(1)       Nathan    Shen  82	B	3.30	1
+PE(2)       Nathan    Shen  92	A-	4.00	1
+Total Credits: 17	GPA: 3.45
+
+Name: Olivia
+Sex: f
+Student Number: 202101048
+Grade: 3
+Department: Chemistry
+Analysis    Olivia    Sun   80	B	3.30	5
+Algebra     Olivia    Wu    75	C+	2.60	4
+Writing     Olivia    Jiang 93	A-	4.00	2
+Physics     Olivia    Zhou  99	A+	4.00	4
+Astronomy   Olivia    Zhao  97	A	4.00	3
+Program     Olivia    Feng  87	B+	3.60	3
+Algorithm   Olivia    Zheng 90	A-	4.00	4
+PE(1)       Olivia    Shen  65	D+	1.60	1
+PE(2)       Olivia    Shen  73	C+	2.60	1
+Total Credits: 27	GPA: 3.48
+
+Name: Paul
+Sex: m
+Student Number: 202101049
+Grade: 4
+Department: Physics
+Analysis    Paul      Sun   91	A-	4.00	5
+Algebra     Paul      Wu    92	A-	4.00	4
+Writing     Paul      Jiang 92	A-	4.00	2
+Physics     Paul      Chu   89	B+	3.60	4
+Astronomy   Paul      Zhao  99	A+	4.00	3
+Program     Paul      Feng  85	B+	3.60	3
+Algorithm   Paul      Zheng 89	B+	3.60	4
+PE(1)       Paul      Shen  72	C	2.30	1
+PE(2)       Paul      Shen  88	B+	3.60	1
+Total Credits: 27	GPA: 3.76
+
+Name: Queen
+Sex: f
+Student Number: 202101033
+Grade: 2
+Department: ElectronicEngineering
+Analysis    Queen     Sun   87	B+	3.60	5
+Algebra     Queen     Wu    74	C+	2.60	4
+Writing     Queen     Jiang 83	B	3.30	2
+Physics     Queen     Zhou  76	C+	2.60	4
+Astronomy   Queen     Zhao  91	A-	4.00	3
+Program     Queen     Feng  76	C+	2.60	3
+PE(1)       Queen     Shen  92	A-	4.00	1
+PE(2)       Queen     Shen  85	B+	3.60	1
+Total Credits: 23	GPA: 3.17
+
+Name: Richard
+Sex: m
+Student Number: 202101050
+Grade: 1
+Department: Physics
+Analysis    Richard   Sun   54	F	0.00	5
+Algebra     Richard   Wu    62	D	1.30	4
+Writing     Richard   Jiang 91	A-	4.00	2
+Physics     Richard   Chu   79	B-	3.00	4
+PE(1)       Richard   Shen  94	A-	4.00	1
+PE(2)       Richard   Shen  97	A	4.00	1
+Total Credits: 17	GPA: 1.95
+
+Name: Susan
+Sex: f
+Student Number: 202101051
+Grade: 3
+Department: Math
+Analysis    Susan     Sun   79	B-	3.00	5
+Algebra     Susan     Wu    67	C-	2.00	4
+Writing     Susan     Jiang 88	B+	3.60	2
+Physics     Susan     Zhou  93	A-	4.00	4
+Astronomy   Susan     Zhao  86	B+	3.60	3
+Program     Susan     Feng  74	C+	2.60	3
+Algorithm   Susan     Zheng 94	A-	4.00	4
+PE(1)       Susan     Shen  63	D+	1.60	1
+PE(2)       Susan     Shen  74	C+	2.60	1
+Total Credits: 27	GPA: 3.15
+
+Name: Thomas
+Sex: m
+Student Number: 202101052
+Grade: 4
+Department: ComputerScience
+Analysis    Thomas    Sun   67	C-	2.00	5
+Algebra     Thomas    Wu    53	F	0.00	4
+Writing     Thomas    Jiang 75	C+	2.60	2
+Physics     Thomas    Chu   57	F	0.00	4
+Astronomy   Thomas    Zhao  82	B	3.30	3
+Program     Thomas    Feng  63	D+	1.60	3
+Algorithm   Thomas    Zheng 86	B+	3.60	4
+PE(1)       Thomas    Shen  82	B	3.30	1
+PE(2)       Thomas    Shen  82	B	3.30	1
+Total Credits: 27	GPA: 1.89
+
+Name: Uma
+Sex: f
+Student Number: 202101053
+Grade: 2
+Department: Biology
+Analysis    Uma       Sun   95	A	4.00	5
+Algebra     Uma       Wu    80	B	3.30	4
+Writing     Uma       Jiang 84	B	3.30	2
+Physics     Uma       Zhou  77	B-	3.00	4
+Astronomy   Uma       Zhao  90	A-	4.00	3
+Program     Uma       Feng  88	B+	3.60	3
+PE(1)       Uma       Shen  83	B	3.30	1
+PE(2)       Uma       Shen  89	B+	3.60	1
+Total Credits: 23	GPA: 3.54
+
+Name: Vivian
+Sex: m
+Student Number: 202101054
+Grade: 2
+Department: ElectronicEngineering
+Analysis    Vivian    Sun   66	D+	1.60	5
+Algebra     Vivian    Wu    78	B-	3.00	4
+Writing     Vivian    Jiang 89	B+	3.60	2
+Physics     Vivian    Chu   93	A-	4.00	4
+Astronomy   Vivian    Zhao  87	B+	3.60	3
+Program     Vivian    Feng  93	A-	4.00	3
+PE(1)       Vivian    Shen  78	B-	3.00	1
+PE(2)       Vivian    Shen  84	B	3.30	1
+Total Credits: 23	GPA: 3.14
+
+Name: Winnie
+Sex: f
+Student Number: 202101055
+Grade: 1
+Department: Chemistry
+Analysis    Winnie    Sun   72	C	2.30	5
+Algebra     Winnie    Wu    64	D+	1.60	4
+Writing     Winnie    Jiang 97	A	4.00	2
+Physics     Winnie    Zhou  84	B	3.30	4
+PE(1)       Winnie    Shen  60	D	1.30	1
+PE(2)       Winnie    Shen  64	D+	1.60	1
+Total Credits: 17	GPA: 2.47
+
+Name: Xander
+Sex: m
+Student Number: 202101056
+Grade: 1
+Department: Physics
+Analysis    Xander    Sun   85	B+	3.60	5
+Algebra     Xander    Wu    79	B-	3.00	4
+Writing     Xander    Jiang 91	A-	4.00	2
+Physics     Xander    Chu   95	A	4.00	4
+PE(1)       Xander    Shen  92	A-	4.00	1
+PE(2)       Xander    Shen  93	A-	4.00	1
+Total Credits: 17	GPA: 3.65
+
+Name: Yansmine
+Sex: m
+Student Number: 202101057
+Grade: 3
+Department: Math
+Analysis    Yansmine  Sun   47	F	0.00	5
+Algebra     Yansmine  Wu    56	F	0.00	4
+Writing     Yansmine  Jiang 87	B+	3.60	2
+Physics     Yansmine  Zhou  85	B+	3.60	4
+Astronomy   Yansmine  Zhao  93	A-	4.00	3
+Program     Yansmine  Feng  79	B-	3.00	3
+Algorithm   Yansmine  Zheng 93	A-	4.00	4
+PE(1)       Yansmine  Shen  76	C+	2.60	1
+PE(2)       Yansmine  Shen  81	B	3.30	1
+Total Credits: 27	GPA: 2.39
+
+Name: Zach
+Sex: f
+Student Number: 202101058
+Grade: 2
+Department: ComputerScience
+Analysis    Zach      Sun   83	B	3.30	5
+Algebra     Zach      Wu    74	C+	2.60	4
+Writing     Zach      Jiang 82	B	3.30	2
+Physics     Zach      Chu   94	A-	4.00	4
+Astronomy   Zach      Zhao  90	A-	4.00	3
+Program     Zach      Feng  84	B	3.30	3
+PE(1)       Zach      Shen  82	B	3.30	1
+PE(2)       Zach      Shen  90	A-	4.00	1
+Total Credits: 23	GPA: 3.42
+

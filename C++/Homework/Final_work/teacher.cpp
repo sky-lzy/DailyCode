@@ -25,7 +25,10 @@ Teacher::Teacher(const Teacher &copyTeacher) : People(copyTeacher.name, copyTeac
 
 void Teacher::print(bool flag) const
 {
-    std::cout << "姓名：" << name << '\t';
+    std::cout << "姓名：" << name;
+    for (int i = 0; i < 6 - name.size(); i++)
+        std::cout << " ";
+
     std::cout << "性别：" << sex << '\t';
     std::cout << "工号：" << number << '\t';
     std::cout << "院系：" << department << std::endl;
@@ -63,6 +66,10 @@ std::istream &operator>>(std::istream &input, Teacher &t)
 
 std::ostream &operator<<(std::ostream &output, const Teacher &t)
 {
-    output << t.getName() << '\t' << t.getSex() << '\t' << t.getNumber() << '\t' << t.getDepartment() << std::endl;
+    output << t.getName();
+    for (int i = 0; i < 8 - t.getName().size(); i++)
+        output << " ";
+
+    output << t.getSex() << '\t' << t.getNumber() << '\t' << t.getDepartment() << std::endl;
     return output;
 }

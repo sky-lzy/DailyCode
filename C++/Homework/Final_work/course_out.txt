@@ -1,81 +1,254 @@
-Analysis	Chen	5	0
-Analysis	Alice	Chen	90	A-	4	5
-Analysis	Bob	Chen	88	B+	3.6	5
-Analysis	Carol	Chen	68	C-	2	5
-Analysis	Dave	Chen	75	C+	2.6	5
-Analysis	Eve	Chen	60	D	1.3	5
-Analysis	Francis	Chen	95	A	4	5
-Analysis	Grace	Chen	100	A+	4	5
-Analysis	Hans	Chen	92	A-	4	5
-Analysis	Isabella	Chen	83	B	3.3	5
-Analysis	Jason	Chen	75	C+	2.6	5
-Analysis	Kate	Chen	91	A-	4	5
-Analysis	Louis	Chen	64	D+	1.6	5
-Analysis	Margaret	Chen	72	C	2.3	5
-Analysis	Nathan	Sun	78	B-	3	5
-Analysis	Olivia	Sun	80	B	3.3	5
-Analysis	Paul	Sun	91	A-	4	5
-Analysis	Queen	Sun	87	B+	3.6	5
-Analysis	Richard	Sun	54	F	0	5
-Analysis	Susan	Sun	79	B-	3	5
-Analysis	Thomas	Sun	67	C-	2	5
-Analysis	Uma	Sun	95	A	4	5
-Analysis	Vivian	Sun	66	D+	1.6	5
-Analysis	Winnie	Sun	72	C	2.3	5
-Analysis	Xander	Sun	85	B+	3.6	5
-Analysis	Yansmine	Sun	47	F	0	5
-Analysis	Zach	Sun	83	B	3.3	5
-Algebra	Wu	4	0
-Algebra	Alice	Wu	86	B+	3.6	4
-Algebra	Bob	Wu	92	A-	4	4
-Algebra	Carol	Wu	62	D	1.3	4
-Algebra	Dave	Wu	62	D	1.3	4
-Algebra	Eve	Wu	83	B	3.3	4
-Algebra	Francis	Wu	89	B+	3.6	4
-Algebra	Grace	Wu	97	A	4	4
-Algebra	Hans	Wu	98	A+	4	4
-Algebra	Isabella	Wu	92	A-	4	4
-Algebra	Jason	Wu	69	C-	2	4
-Algebra	Kate	Wu	77	B-	3	4
-Algebra	Louis	Wu	56	F	0	4
-Algebra	Margaret	Wu	60	D	1.3	4
-Algebra	Nathan	Wu	83	B	3.3	4
-Algebra	Olivia	Wu	75	C+	2.6	4
-Algebra	Paul	Wu	92	A-	4	4
-Algebra	Queen	Wu	74	C+	2.6	4
-Algebra	Richard	Wu	62	D	1.3	4
-Algebra	Susan	Wu	67	C-	2	4
-Algebra	Thomas	Wu	53	F	0	4
-Algebra	Uma	Wu	80	B	3.3	4
-Algebra	Vivian	Wu	78	B-	3	4
-Algebra	Winnie	Wu	64	D+	1.6	4
-Algebra	Xander	Wu	79	B-	3	4
-Algebra	Yansmine	Wu	56	F	0	4
-Algebra	Zach	Wu	74	C+	2.6	4
-Writing	Jiang	2	0
-Writing	Alice	Jiang	92	A-	4	2
-Writing	Bob	Jiang	95	A	4	2
-Writing	Carol	Jiang	85	B+	3.6	2
-Writing	Dave	Jiang	79	B-	3	2
-Writing	Eve	Jiang	91	A-	4	2
-Writing	Francis	Jiang	85	B+	3.6	2
-Writing	Grace	Jiang	88	B+	3.6	2
-Writing	Hans	Jiang	93	A-	4	2
-Writing	Isabella	Jiang	87	B+	3.6	2
-Writing	Jason	Jiang	91	A-	4	2
-Writing	Kate	Jiang	96	A	4	2
-Writing	Louis	Jiang	90	A-	4	2
-Writing	Margaret	Jiang	81	B	3.3	2
-Writing	Nathan	Jiang	89	B+	3.6	2
-Writing	Olivia	Jiang	93	A-	4	2
-Writing	Paul	Jiang	92	A-	4	2
-Writing	Queen	Jiang	83	B	3.3	2
-Writing	Richard	Jiang	91	A-	4	2
-Writing	Susan	Jiang	88	B+	3.6	2
-Writing	Thomas	Jiang	75	C+	2.6	2
-Writing	Uma	Jiang	84	B	3.3	2
-Writing	Vivian	Jiang	89	B+	3.6	2
-Writing	Winnie	Jiang	97	A	4	2
-Writing	Xander	Jiang	91	A-	4	2
-Writing	Yansmine	Jiang	87	B+	3.6	2
-Writing	Zach	Jiang	82	B	3.3	2
+Subject: Analysis
+Teacher Name: Chen
+Credit: 5
+Average Score: 81.00
+Analysis    Alice     Chen  90	A-	4.00	5
+Analysis    Bob       Chen  88	B+	3.60	5
+Analysis    Carol     Chen  68	C-	2.00	5
+Analysis    Dave      Chen  75	C+	2.60	5
+Analysis    Eve       Chen  60	D	1.30	5
+Analysis    Francis   Chen  95	A	4.00	5
+Analysis    Grace     Chen  100	A+	4.00	5
+Analysis    Hans      Chen  92	A-	4.00	5
+Analysis    Isabella  Chen  83	B	3.30	5
+Analysis    Jason     Chen  75	C+	2.60	5
+Analysis    Kate      Chen  91	A-	4.00	5
+Analysis    Louis     Chen  64	D+	1.60	5
+Analysis    Margaret  Chen  72	C	2.30	5
+
+Subject: Analysis
+Teacher Name: Sun
+Credit: 5
+Average Score: 75.69
+Analysis    Nathan    Sun   78	B-	3.00	5
+Analysis    Olivia    Sun   80	B	3.30	5
+Analysis    Paul      Sun   91	A-	4.00	5
+Analysis    Queen     Sun   87	B+	3.60	5
+Analysis    Richard   Sun   54	F	0.00	5
+Analysis    Susan     Sun   79	B-	3.00	5
+Analysis    Thomas    Sun   67	C-	2.00	5
+Analysis    Uma       Sun   95	A	4.00	5
+Analysis    Vivian    Sun   66	D+	1.60	5
+Analysis    Winnie    Sun   72	C	2.30	5
+Analysis    Xander    Sun   85	B+	3.60	5
+Analysis    Yansmine  Sun   47	F	0.00	5
+Analysis    Zach      Sun   83	B	3.30	5
+
+Subject: Algebra
+Teacher Name: Wu
+Credit: 4
+Average Score: 75.38
+Algebra     Alice     Wu    86	B+	3.60	4
+Algebra     Bob       Wu    92	A-	4.00	4
+Algebra     Carol     Wu    62	D	1.30	4
+Algebra     Dave      Wu    62	D	1.30	4
+Algebra     Eve       Wu    83	B	3.30	4
+Algebra     Francis   Wu    89	B+	3.60	4
+Algebra     Grace     Wu    97	A	4.00	4
+Algebra     Hans      Wu    98	A+	4.00	4
+Algebra     Isabella  Wu    92	A-	4.00	4
+Algebra     Jason     Wu    69	C-	2.00	4
+Algebra     Kate      Wu    77	B-	3.00	4
+Algebra     Louis     Wu    56	F	0.00	4
+Algebra     Margaret  Wu    60	D	1.30	4
+Algebra     Nathan    Wu    83	B	3.30	4
+Algebra     Olivia    Wu    75	C+	2.60	4
+Algebra     Paul      Wu    92	A-	4.00	4
+Algebra     Queen     Wu    74	C+	2.60	4
+Algebra     Richard   Wu    62	D	1.30	4
+Algebra     Susan     Wu    67	C-	2.00	4
+Algebra     Thomas    Wu    53	F	0.00	4
+Algebra     Uma       Wu    80	B	3.30	4
+Algebra     Vivian    Wu    78	B-	3.00	4
+Algebra     Winnie    Wu    64	D+	1.60	4
+Algebra     Xander    Wu    79	B-	3.00	4
+Algebra     Yansmine  Wu    56	F	0.00	4
+Algebra     Zach      Wu    74	C+	2.60	4
+
+Subject: Writing
+Teacher Name: Jiang
+Credit: 2
+Average Score: 88.23
+Writing     Alice     Jiang 92	A-	4.00	2
+Writing     Bob       Jiang 95	A	4.00	2
+Writing     Carol     Jiang 85	B+	3.60	2
+Writing     Dave      Jiang 79	B-	3.00	2
+Writing     Eve       Jiang 91	A-	4.00	2
+Writing     Francis   Jiang 85	B+	3.60	2
+Writing     Grace     Jiang 88	B+	3.60	2
+Writing     Hans      Jiang 93	A-	4.00	2
+Writing     Isabella  Jiang 87	B+	3.60	2
+Writing     Jason     Jiang 91	A-	4.00	2
+Writing     Kate      Jiang 96	A	4.00	2
+Writing     Louis     Jiang 90	A-	4.00	2
+Writing     Margaret  Jiang 81	B	3.30	2
+Writing     Nathan    Jiang 89	B+	3.60	2
+Writing     Olivia    Jiang 93	A-	4.00	2
+Writing     Paul      Jiang 92	A-	4.00	2
+Writing     Queen     Jiang 83	B	3.30	2
+Writing     Richard   Jiang 91	A-	4.00	2
+Writing     Susan     Jiang 88	B+	3.60	2
+Writing     Thomas    Jiang 75	C+	2.60	2
+Writing     Uma       Jiang 84	B	3.30	2
+Writing     Vivian    Jiang 89	B+	3.60	2
+Writing     Winnie    Jiang 97	A	4.00	2
+Writing     Xander    Jiang 91	A-	4.00	2
+Writing     Yansmine  Jiang 87	B+	3.60	2
+Writing     Zach      Jiang 82	B	3.30	2
+
+Subject: Physics
+Teacher Name: Zhou
+Credit: 4
+Average Score: 84.08
+Physics     Alice     Zhou  87	B+	3.60	4
+Physics     Carol     Zhou  79	B-	3.00	4
+Physics     Eve       Zhou  67	C-	2.00	4
+Physics     Grace     Zhou  92	A-	4.00	4
+Physics     Isabella  Zhou  83	B	3.30	4
+Physics     Kate      Zhou  85	B+	3.60	4
+Physics     Margaret  Zhou  86	B+	3.60	4
+Physics     Olivia    Zhou  99	A+	4.00	4
+Physics     Queen     Zhou  76	C+	2.60	4
+Physics     Susan     Zhou  93	A-	4.00	4
+Physics     Uma       Zhou  77	B-	3.00	4
+Physics     Winnie    Zhou  84	B	3.30	4
+Physics     Yansmine  Zhou  85	B+	3.60	4
+
+Subject: Physics
+Teacher Name: Chu
+Credit: 4
+Average Score: 87.46
+Physics     Bob       Chu   97	A	4.00	4
+Physics     Dave      Chu   83	B	3.30	4
+Physics     Francis   Chu   83	B	3.30	4
+Physics     Hans      Chu   96	A	4.00	4
+Physics     Jason     Chu   95	A	4.00	4
+Physics     Louis     Chu   84	B	3.30	4
+Physics     Nathan    Chu   92	A-	4.00	4
+Physics     Paul      Chu   89	B+	3.60	4
+Physics     Richard   Chu   79	B-	3.00	4
+Physics     Thomas    Chu   57	F	0.00	4
+Physics     Vivian    Chu   93	A-	4.00	4
+Physics     Xander    Chu   95	A	4.00	4
+Physics     Zach      Chu   94	A-	4.00	4
+
+Subject: Astronomy
+Teacher Name: Zhao
+Credit: 3
+Average Score: 90.00
+Astronomy   Alice     Zhao  91	A-	4.00	3
+Astronomy   Carol     Zhao  90	A-	4.00	3
+Astronomy   Dave      Zhao  87	B+	3.60	3
+Astronomy   Francis   Zhao  92	A-	4.00	3
+Astronomy   Grace     Zhao  90	A-	4.00	3
+Astronomy   Hans      Zhao  89	B+	3.60	3
+Astronomy   Jason     Zhao  86	B+	3.60	3
+Astronomy   Kate      Zhao  90	A-	4.00	3
+Astronomy   Olivia    Zhao  97	A	4.00	3
+Astronomy   Paul      Zhao  99	A+	4.00	3
+Astronomy   Queen     Zhao  91	A-	4.00	3
+Astronomy   Susan     Zhao  86	B+	3.60	3
+Astronomy   Thomas    Zhao  82	B	3.30	3
+Astronomy   Uma       Zhao  90	A-	4.00	3
+Astronomy   Vivian    Zhao  87	B+	3.60	3
+Astronomy   Yansmine  Zhao  93	A-	4.00	3
+Astronomy   Zach      Zhao  90	A-	4.00	3
+
+Subject: Program
+Teacher Name: Feng
+Credit: 3
+Average Score: 82.29
+Program     Alice     Feng  89	B+	3.60	3
+Program     Carol     Feng  79	B-	3.00	3
+Program     Dave      Feng  73	C+	2.60	3
+Program     Francis   Feng  88	B+	3.60	3
+Program     Grace     Feng  85	B+	3.60	3
+Program     Hans      Feng  86	B+	3.60	3
+Program     Jason     Feng  81	B	3.30	3
+Program     Kate      Feng  89	B+	3.60	3
+Program     Olivia    Feng  87	B+	3.60	3
+Program     Paul      Feng  85	B+	3.60	3
+Program     Queen     Feng  76	C+	2.60	3
+Program     Susan     Feng  74	C+	2.60	3
+Program     Thomas    Feng  63	D+	1.60	3
+Program     Uma       Feng  88	B+	3.60	3
+Program     Vivian    Feng  93	A-	4.00	3
+Program     Yansmine  Feng  79	B-	3.00	3
+Program     Zach      Feng  84	B	3.30	3
+
+Subject: Algorithm
+Teacher Name: Zheng
+Credit: 4
+Average Score: 84.67
+Algorithm   Dave      Zheng 58	F	0.00	4
+Algorithm   Francis   Zheng 82	B	3.30	4
+Algorithm   Grace     Zheng 83	B	3.30	4
+Algorithm   Jason     Zheng 87	B+	3.60	4
+Algorithm   Olivia    Zheng 90	A-	4.00	4
+Algorithm   Paul      Zheng 89	B+	3.60	4
+Algorithm   Susan     Zheng 94	A-	4.00	4
+Algorithm   Thomas    Zheng 86	B+	3.60	4
+Algorithm   Yansmine  Zheng 93	A-	4.00	4
+
+Subject: PE(1)
+Teacher Name: Shen
+Credit: 1
+Average Score: 75.96
+PE(1)       Alice     Shen  75	C+	2.60	1
+PE(1)       Bob       Shen  57	F	0.00	1
+PE(1)       Carol     Shen  93	A-	4.00	1
+PE(1)       Dave      Shen  83	B	3.30	1
+PE(1)       Eve       Shen  75	C+	2.60	1
+PE(1)       Francis   Shen  68	C-	2.00	1
+PE(1)       Grace     Shen  81	B	3.30	1
+PE(1)       Hans      Shen  73	C+	2.60	1
+PE(1)       Isabella  Shen  62	D	1.30	1
+PE(1)       Jason     Shen  95	A	4.00	1
+PE(1)       Kate      Shen  54	F	0.00	1
+PE(1)       Louis     Shen  67	C-	2.00	1
+PE(1)       Margaret  Shen  71	C	2.30	1
+PE(1)       Nathan    Shen  82	B	3.30	1
+PE(1)       Olivia    Shen  65	D+	1.60	1
+PE(1)       Paul      Shen  72	C	2.30	1
+PE(1)       Queen     Shen  92	A-	4.00	1
+PE(1)       Richard   Shen  94	A-	4.00	1
+PE(1)       Susan     Shen  63	D+	1.60	1
+PE(1)       Thomas    Shen  82	B	3.30	1
+PE(1)       Uma       Shen  83	B	3.30	1
+PE(1)       Vivian    Shen  78	B-	3.00	1
+PE(1)       Winnie    Shen  60	D	1.30	1
+PE(1)       Xander    Shen  92	A-	4.00	1
+PE(1)       Yansmine  Shen  76	C+	2.60	1
+PE(1)       Zach      Shen  82	B	3.30	1
+
+Subject: PE(2)
+Teacher Name: Shen
+Credit: 1
+Average Score: 80.88
+PE(2)       Alice     Shen  82	B	3.30	1
+PE(2)       Bob       Shen  67	C-	2.00	1
+PE(2)       Carol     Shen  90	A-	4.00	1
+PE(2)       Dave      Shen  80	B	3.30	1
+PE(2)       Eve       Shen  71	C	2.30	1
+PE(2)       Francis   Shen  78	B-	3.00	1
+PE(2)       Grace     Shen  85	B+	3.60	1
+PE(2)       Hans      Shen  82	B	3.30	1
+PE(2)       Isabella  Shen  74	C+	2.60	1
+PE(2)       Jason     Shen  92	A-	4.00	1
+PE(2)       Kate      Shen  64	D+	1.60	1
+PE(2)       Louis     Shen  77	B-	3.00	1
+PE(2)       Margaret  Shen  69	C-	2.00	1
+PE(2)       Nathan    Shen  92	A-	4.00	1
+PE(2)       Olivia    Shen  73	C+	2.60	1
+PE(2)       Paul      Shen  88	B+	3.60	1
+PE(2)       Queen     Shen  85	B+	3.60	1
+PE(2)       Richard   Shen  97	A	4.00	1
+PE(2)       Susan     Shen  74	C+	2.60	1
+PE(2)       Thomas    Shen  82	B	3.30	1
+PE(2)       Uma       Shen  89	B+	3.60	1
+PE(2)       Vivian    Shen  84	B	3.30	1
+PE(2)       Winnie    Shen  64	D+	1.60	1
+PE(2)       Xander    Shen  93	A-	4.00	1
+PE(2)       Yansmine  Shen  81	B	3.30	1
+PE(2)       Zach      Shen  90	A-	4.00	1
+

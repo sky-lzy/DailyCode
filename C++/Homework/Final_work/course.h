@@ -9,7 +9,7 @@ protected:
     std::string subject;      //学科
     std::string teacher_name; //授课教师
     int credit;               //学分
-    int average;              //平均分
+    double average;              //平均分
 
 public:
     Course();
@@ -18,6 +18,9 @@ public:
 
     //增加成绩
     virtual void add_score(const Score &inputScore);
+
+    //删除成绩，返回是否成功
+    virtual bool delete_score(const std::string &sub);
 
     //计算课程平均分
     void calculate();
@@ -32,7 +35,7 @@ public:
     std::string getSubject() const { return subject; }
     std::string getTeacherName() const { return teacher_name; }
     int getCredit() const { return credit; }
-    int getAverage() const { return average; }
+    double getAverage() const { return average; }
 
     friend std::istream &operator>>(std::istream &, Course &);
     friend std::ostream &operator<<(std::ostream &, const Course &);

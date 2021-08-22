@@ -91,10 +91,10 @@ void Database::ReadScore(const std::string &ScoreFile_in)
 
         auto ptrTeacher = std::find_if(Teacher_List.begin(), Teacher_List.end(), [&tempTeacherName](const Teacher &st)
                                        { return tempTeacherName == st.getName(); });
-        ptrTeacher->add_course(tempTeacherName);
+        ptrTeacher->add_course(tempCourseName);
 
-        auto ptrCourse = std::find_if(Course_List.begin(), Course_List.end(), [&tempCourseName](const Course &st)
-                                      { return tempCourseName == st.getSubject(); });
+        auto ptrCourse = std::find_if(Course_List.begin(), Course_List.end(), [&tempCourseName, &tempTeacherName](const Course &st)
+                                      { return tempCourseName == st.getSubject() && tempTeacherName == st.getTeacherName(); });
         if (ptrCourse == Course_List.end())
         {
             Course_List.emplace_back(tempScore.getSubject(), tempScore.getTeacherName(), tempScore.getCredit());

@@ -1,5 +1,6 @@
 #include "interface.h"
 #include <iostream>
+#include <conio.h>
 
 bool Interface::First = true;
 
@@ -172,6 +173,9 @@ bool Interface::Search() const
         break;
     }
 
+    if (mode == 4)
+        return false;
+
     std::cout << "请输入姓名：";
     std::cin.clear();
     std::cin.sync();
@@ -245,6 +249,9 @@ bool Interface::AddData()
         break;
     }
 
+    if (mode == 4)
+        return false;
+    
     std::cout << "请输入信息：";
     std::cin.clear();
     std::cin.sync();
@@ -367,5 +374,5 @@ void Interface::pause() const
     std::cin.clear();
     std::cin.sync();
     std::cout << "请按任意键继续..." << std::endl;
-    getchar();
+    getch();
 }

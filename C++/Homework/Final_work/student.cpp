@@ -68,15 +68,14 @@ std::istream &operator>>(std::istream &input, Student &stu)
 
 std::ostream &operator<<(std::ostream &output, const Student &stu)
 {
-    output << stu.getName() << '\t';
-    int numt = 2 - stu.getName().size() / 4;
-    for (int i = 0; i < numt; i++)
-        output << '\t';
-
-    output << stu.getSex() << '\t' << stu.getNumber() << '\t' << stu.getGrade() << '\t' << stu.getDepartment() << std::endl;
+    output << "Name: " << stu.getName() << std::endl;
+    output << "Sex: " << stu.getSex() << std::endl;
+    output << "Student Number: " << stu.getNumber() << std::endl;
+    output << "Grade: " << stu.getGrade() << std::endl;
+    output << "Department: " << stu.getDepartment() << std::endl;
     std::for_each(stu.report.begin(), stu.report.end(), [&output](const Score &s)
                   { output << s; });
-    output << stu.total_credits << '\t' << std::fixed << std::setprecision(2) << stu.GPA << std::endl;
+    output << "Total Credits: " << stu.total_credits << '\t' << "GPA: " << std::fixed << std::setprecision(2) << stu.GPA << std::endl << std::endl;
     output.unsetf(std::ios::fixed);
     return output;
 }
