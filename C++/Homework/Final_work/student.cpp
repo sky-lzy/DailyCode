@@ -22,6 +22,8 @@ Student::Student(const Student &copyStudent)
 {
     number = 202101000 + student_number;
     ++student_number;
+    for(Score tempScore : copyStudent.report)
+        report.emplace_back(tempScore);
 }
 
 void Student::add_score(const std::string &sub, const std::string &tn, const int s, const int c)
