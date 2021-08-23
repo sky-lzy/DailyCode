@@ -28,15 +28,21 @@ public:
     //打印信息
     virtual void print(bool flag = false) const;
 
+    //更改信息
     void setSubject(const std::string &s) { subject = s; }
     void setTeacherName(const std::string &tn) { teacher_name = tn; }
     void setCredit(const int c) { credit = c; }
 
+    //获取信息
     std::string getSubject() const { return subject; }
     std::string getTeacherName() const { return teacher_name; }
     int getCredit() const { return credit; }
     double getAverage() const { return average; }
 
+    //按照成绩排序
+    void sortGrade();
+
+    //重载输入输出流
     friend std::istream &operator>>(std::istream &, Course &);
     friend std::ostream &operator<<(std::ostream &, const Course &);
 };

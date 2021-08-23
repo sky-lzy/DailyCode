@@ -31,11 +31,15 @@ public:
     virtual void add_score(const std::string &sub, const std::string &tn, const int s, const int c);
     virtual void add_score(const Score &inputScore);
 
+    //更改信息
     void setGrade(const int g) { grade = g; }
     void setDepartment(const std::string &d) { department = d; }
 
+    //获取信息
     int getGrade() const { return grade; }
     std::string getDepartment() const { return department; }
+    int getCredits() const { return total_credits; }
+    double getGPA() const { return GPA; }
 
     friend std::istream &operator>>(std::istream &, Student &);
     friend std::ostream &operator<<(std::ostream &, const Student &);

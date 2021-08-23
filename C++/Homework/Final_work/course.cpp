@@ -18,6 +18,7 @@ void Course::add_score(const Score &inputScore)
 {
     Report::add_score(inputScore.getSubject(), inputScore.getStudentName(), inputScore.getTeacherName(), inputScore.getHundredMarkScore(), inputScore.getCredit());
     calculate();
+    sortGrade();
 }
 
 bool Course::delete_score(const std::string &sub)
@@ -32,7 +33,8 @@ void Course::print(bool flag) const
     std::cout << "课程：" << subject << '\t';
     std::cout << "授课教师：" << teacher_name << '\t';
     std::cout << "学分：" << credit << '\t';
-    std::cout << "平均分：" << average << std::endl;
+    std::cout << "平均分：" << std::fixed << std::setprecision(2) << average << std::endl;
+    std::cout.unsetf(std::ios::fixed);
 
     if (flag)
     {
@@ -40,6 +42,12 @@ void Course::print(bool flag) const
         std::for_each(report.begin(), report.end(), [](const Score &s)
                       { s.print(); });
     }
+}
+
+void Course::sortGrade()
+{
+    std::sort(report.begin(), report.end(), [](const Score &sc1, const Score &sc2)
+              { return sc1.getHundredMarkScore() > sc2.getHundredMarkScore(); });
 }
 
 std::istream &operator>>(std::istream &input, Course &cs)

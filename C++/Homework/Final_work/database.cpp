@@ -104,6 +104,8 @@ void Database::ReadScore(const std::string &ScoreFile_in)
             ptrCourse->add_score(tempScore);
     }
 
+    sortGPA();
+
     score_in.close();
 }
 
@@ -204,6 +206,12 @@ void Database::searchCourse(const std::string &CourseName) const
         throw "没有找到该课程！";
 }
 
+void Database::sortGPA()
+{
+    std::sort(Student_List.begin(), Student_List.end(), [](const Student &stu1, const Student &stu2)
+              { return stu1.getGPA() > stu2.getGPA(); });
+}
+
 void Database::AddStudent(const Student &addStudent)
 {
     const std::string tempName = addStudent.getName();
@@ -259,6 +267,8 @@ void Database::AddScore(const Score &addScore)
     ptrStudent->add_score(addScore);
     ptrCourse->add_score(addScore);
     ptrTeacher->add_course(addScore.getSubject());
+
+    sortGPA();
 }
 
 void Database::DeleteScore(const Score &deleteScore)
@@ -276,4 +286,6 @@ void Database::DeleteScore(const Score &deleteScore)
     auto ptrCourse = std::find_if(Course_List.begin(), Course_List.end(), [&deleteScore](const Course &cour)
                                   { return deleteScore.getSubject() == cour.getSubject(); });
     ptrCourse->delete_score(deleteScore.getSubject());
+
+    sortGPA();
 }

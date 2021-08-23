@@ -51,6 +51,9 @@ public:
     void searchTeacher(const std::string &TeacherName) const;
     void searchCourse(const std::string &CourseName) const;
 
+    //按照GPA由高到低排序
+    void sortGPA();
+
     //增加信息
     void AddStudent(const Student &addStudent);
     void AddTeacher(const Teacher &addTeacher);
