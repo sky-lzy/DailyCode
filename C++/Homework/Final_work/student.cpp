@@ -22,20 +22,40 @@ Student::Student(const Student &copyStudent)
 {
     number = 202101000 + student_number;
     ++student_number;
-    for(Score tempScore : copyStudent.report)
+    for (Score tempScore : copyStudent.report)
         report.emplace_back(tempScore);
 }
 
 void Student::add_score(const std::string &sub, const std::string &tn, const int s, const int c)
 {
-    double tem = Report::add_score(sub, name, tn, s, c);         //保存返回的课程绩点
-    GPA = (total_credits * GPA + c * tem) / (total_credits + c); //计算总学分绩
-    total_credits += c;                                          //计算总学分
+    Report::add_score(sub, name, tn, s, c);
+    calculate();
 }
 
 void Student::add_score(const Score &inputScore)
 {
     add_score(inputScore.getSubject(), inputScore.getTeacherName(), inputScore.getHundredMarkScore(), inputScore.getCredit());
+}
+
+bool Student::delete_score(const std::string &sub)
+{
+    bool flag = Report::delete_score(sub);
+    calculate();
+    return flag;
+}
+
+void Student::calculate()
+{
+    int tempCredit = 0;
+    double tempGPA = 0;
+    std::for_each(report.begin(), report.end(), [&tempCredit, &tempGPA](const Score &tempScore)
+                  {
+                      tempCredit += tempScore.getCredit();
+                      tempGPA += tempScore.getCourseGPA() * tempScore.getCredit();
+                  });
+    tempGPA /= tempCredit;
+    GPA = tempGPA;
+    total_credits = tempCredit;
 }
 
 void Student::print(bool flag) const
@@ -77,7 +97,8 @@ std::ostream &operator<<(std::ostream &output, const Student &stu)
     output << "Department: " << stu.getDepartment() << std::endl;
     std::for_each(stu.report.begin(), stu.report.end(), [&output](const Score &s)
                   { output << s; });
-    output << "Total Credits: " << stu.total_credits << '\t' << "GPA: " << std::fixed << std::setprecision(2) << stu.GPA << std::endl << std::endl;
+    output << "Total Credits: " << stu.total_credits << '\t' << "GPA: " << std::fixed << std::setprecision(2) << stu.GPA << std::endl
+           << std::endl;
     output.unsetf(std::ios::fixed);
     return output;
 }

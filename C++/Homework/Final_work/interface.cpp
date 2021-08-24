@@ -175,15 +175,18 @@ bool Interface::Search() const
 
     if (mode == 4)
         return false;
+    else if (mode == 1 || mode == 2)
+        std::cout << "请输入姓名：";
+    else if (mode == 3)
+        std::cout << "请输入课程名及授课教师姓名：";
 
-    std::cout << "请输入姓名：";
     std::cin.clear();
     std::cin.sync();
 
-    std::string name;
+    std::string name, tname;
     while (true)
     {
-        if (!(std::cin >> name))
+        if (!(std::cin >> name) || (mode == 3 && !(std::cin >> tname)))
         {
             std::cout << "输入有误！请重新输入。";
             std::cin.clear();
@@ -204,7 +207,7 @@ bool Interface::Search() const
             database.searchTeacher(name);
             break;
         case 3:
-            database.searchCourse(name);
+            database.searchCourse(name, tname);
             break;
         case 4:
             break;
@@ -251,7 +254,7 @@ bool Interface::AddData()
 
     if (mode == 4)
         return false;
-    
+
     std::cout << "请输入信息：";
     std::cin.clear();
     std::cin.sync();

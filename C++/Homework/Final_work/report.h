@@ -15,7 +15,7 @@ public:
     Report();
 
     //向report中添加成绩，返回对应绩点
-    virtual double add_score(const std::string &sub, const std::string &sn, const std::string &tn, const int s, const int c);
+    virtual void add_score(const std::string &sub, const std::string &sn, const std::string &tn, const int s, const int c);
 
     //删除给出科目成绩，返回是否成功
     virtual bool delete_score(const std::string &sub);

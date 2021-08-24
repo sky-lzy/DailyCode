@@ -35,9 +35,14 @@ void Teacher::print(bool flag) const
 
     if (flag)
     {
-        std::cout << "教授的课程：" << std::endl;
-        std::for_each(course.begin(), course.end(), [](const std::string &s)
-                      { std::cout << s << std::endl; });
+        if (course.size())
+        {
+            std::cout << "教授的课程：" << std::endl;
+            std::for_each(course.begin(), course.end(), [](const std::string &s)
+                          { std::cout << s << std::endl; });
+        }
+        else
+            std::cout << "该教师尚未开课！" << std::endl;
     }
 }
 

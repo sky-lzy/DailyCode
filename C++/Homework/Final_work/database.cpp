@@ -196,10 +196,10 @@ void Database::searchTeacher(const std::string &TeacherName) const
         throw "没有找到该教师！";
 }
 
-void Database::searchCourse(const std::string &CourseName) const
+void Database::searchCourse(const std::string &CourseName, const std::string &TeacherName) const
 {
-    auto ptrCourse = std::find_if(Course_List.begin(), Course_List.end(), [&CourseName](const Course &c)
-                                  { return CourseName == c.getSubject(); });
+    auto ptrCourse = std::find_if(Course_List.begin(), Course_List.end(), [&CourseName, &TeacherName](const Course &c)
+                                  { return CourseName == c.getSubject() && TeacherName == c.getTeacherName(); });
     if (ptrCourse != Course_List.end())
         ptrCourse->print(true);
     else

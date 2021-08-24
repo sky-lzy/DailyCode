@@ -49,7 +49,7 @@ public:
     //查找并显示相关信息
     void searchStudent(const std::string &StudentName) const;
     void searchTeacher(const std::string &TeacherName) const;
-    void searchCourse(const std::string &CourseName) const;
+    void searchCourse(const std::string &CourseName, const std::string &TeacherName) const;
 
     //按照GPA由高到低排序
     void sortGPA();

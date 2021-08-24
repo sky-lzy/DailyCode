@@ -31,6 +31,12 @@ public:
     virtual void add_score(const std::string &sub, const std::string &tn, const int s, const int c);
     virtual void add_score(const Score &inputScore);
 
+    //删除科目的成绩，返回是否成功
+    virtual bool delete_score(const std::string &sub);
+
+    //计算总学分和均绩
+    void calculate();
+
     //更改信息
     void setGrade(const int g) { grade = g; }
     void setDepartment(const std::string &d) { department = d; }
