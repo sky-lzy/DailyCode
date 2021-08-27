@@ -20,10 +20,10 @@ const int output_min = -100;             //最小反馈
 const int output_max = 100;              //最大反馈
 
 int output_pwm = 0; //输出转速
-int count = 0;        //计数
-int rpm = 0;          //转速 转每分
-double pwm = 100;     //控制误差
-double d_pwm = 0;     //微分误差控制
+int count = 0;      //计数
+int rpm = 0;        //转速 转每分
+double pwm = 100;   //控制误差
+double d_pwm = 0;   //微分误差控制
 
 double err = 0.0;    //误差
 double p1_err = 0.0; //前一次误差
