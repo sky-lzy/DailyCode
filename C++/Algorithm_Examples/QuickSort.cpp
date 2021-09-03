@@ -27,12 +27,22 @@ int Partition(int *list, int p, int q)
     return i;
 }
 
+//随机划分函数; 防止特定的输入导致复杂度较大
+int RandomPartition(int *list, int p, int q)
+{
+    int i = p + rand() % (q - p);
+    int t = list[i];
+    list[i] = list[q - 1];
+    list[q - 1] = t;
+    return Partition(list, p, q);
+}
+
 //快速排序函数
 void QuickSort(int *list, int p, int q)
 {
     if (p + 1 >= q)
         return;
-    int r = Partition(list, p, q);
+    int r = RandomPartition(list, p, q);
     QuickSort(list, p, r);
     QuickSort(list, r + 1, q);
 }
