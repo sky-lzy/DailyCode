@@ -9,6 +9,7 @@
 #include <iostream>
 using namespace std;
 
+//数组划分函数; 复杂度: Θ(n)
 int Partition(int *list, int p, int q)
 {
     int i = p;
@@ -26,18 +27,19 @@ int Partition(int *list, int p, int q)
     return i;
 }
 
+//快速排序函数
 void QuickSort(int *list, int p, int q)
 {
-    if (p + 1 == q)
+    if (p + 1 >= q)
         return;
     int r = Partition(list, p, q);
-    QuickSort(list, p, r - 1);
+    QuickSort(list, p, r);
     QuickSort(list, r + 1, q);
 }
 
 int main()
 {
-    int a[10] = {3, 2, 6, 4, 9, 7, 0, 1, 5, 8};
+    int a[10] = {3, 2, 6, 4, 9, 7, 0, 1, 8, 5};
     QuickSort(a, 0, 10);
     for (int i : a)
         cout << i << " ";
