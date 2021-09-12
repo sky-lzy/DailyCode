@@ -1,3 +1,10 @@
+/*************************************************
+ * 开发环境：Arduino UNO
+ * 模块：红外接收模块、LED、舵机
+ * 功能：实现红外信号传输、机械臂控制、LED工作状态显示
+ * 编号：3
+ * *********************************************** */
+
 #include <IRremote.h>
 #include <Servo.h>
 
@@ -17,8 +24,6 @@ decode_results results; //解码结果放在 decode results结构的 result中
 Servo servo_1;
 Servo servo_2;
 
-// int pos_1 = 0;
-// int pos_2 = 0;
 bool mode_1 = 0;
 bool mode_2 = 0;
 bool mode_3 = 0;
@@ -160,55 +165,55 @@ void loop()
 	{
 		switch (results.value)
 		{
-		case 0xFFA25D:
+		case 0xFFA25D:// 1
 			mode_1 = !mode_1;
 			digitalWrite(RED_1, mode_1);
 			break;
 
-		case 0xFF629D:
+		case 0xFF629D:// 2
 			mode_2 = !mode_2;
 			digitalWrite(GREEN_1, mode_2);
 			break;
 
-		case 0xFFE21D:
+		case 0xFFE21D:// 3
 			mode_3 = !mode_3;
 			digitalWrite(BLUE_1, mode_3);
 			break;
 
-		case 0xFF22DD:
+		case 0xFF22DD:// 4
 			mode_4 = !mode_4;
 			digitalWrite(RED_2, mode_4);
 			break;
 
-		case 0xFF02FD:
+		case 0xFF02FD:// 5
 			mode_5 = !mode_5;
 			digitalWrite(GREEN_2, mode_5);
 			break;
 
-		case 0xFFC23D:
+		case 0xFFC23D:// 6
 			mode_6 = !mode_6;
 			digitalWrite(BLUE_2, mode_6);
 			break;
 
-		case 0xFF38C7:
+		case 0xFF38C7:// OK
 			break;
 
-		case 0xFF18E7:
+		case 0xFF18E7:// 上(机械臂: 上)
 			digitalWrite(RED_2, HIGH);
 			moveup();
 			break;
 
-		case 0xFF4AB5:
+		case 0xFF4AB5:// 下(机械臂: 下)
 			digitalWrite(RED_2, HIGH);
 			movedown();
 			break;
 
-		case 0xFF10EF:
+		case 0xFF10EF:// 左(机械臂: 开)
 			digitalWrite(RED_2, HIGH);
 			moveleft();
 			break;
 
-		case 0xFF5AA5:
+		case 0xFF5AA5:// 右(机械臂: 关)
 			digitalWrite(RED_2, HIGH);
 			moveright();
 			break;
@@ -220,18 +225,3 @@ void loop()
 	}
 	delay(100);
 }
-
-/* #include <Servo.h>
-Servo myservo;
-void setup()
-{
-	myservo.attach(8);
-}
-
-void loop()
-{
-	myservo.writeMicroseconds(1400); // 舵机顺时针旋转
-	delay(2000);
-	myservo.writeMicroseconds(1500); // 舵机逆时针旋转
-	delay(2000);
-} */

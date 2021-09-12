@@ -1,9 +1,9 @@
-/*******************************************
+/******************************************
  * 开发环境：Arduino UNO
  * 模块：电机、LD3320语音识别（连线情况见代码）
- * 功能：实现PID控制电机、语音识别功能、板间通信
+ * 功能：语音识别功能、小车移动
  * 编号：1
- * ***************************************** */
+ * **************************************** */
 
 #include "ld3320.h"
 #include <IRremote.h>
@@ -141,9 +141,7 @@ void loop()
 		break;
 
 	case FORWARD:
-		// move_forward();
 		move_forward();
-		// Serial.print("hello\n");
 		// Serial.print("Forward!\n");
 		break;
 
@@ -160,13 +158,6 @@ void loop()
 	default:
 		break;
 	}
-	// delay(100);
-	/* analogWrite(ENA_1, 100);
-	analogWrite(ENA_2, 100);
-	delay(1000);
-	analogWrite(ENA_1, 0);
-	analogWrite(ENA_2, 0);
-	delay(1000); */
 
 	//延时保持稳定
 	// delay(25);
