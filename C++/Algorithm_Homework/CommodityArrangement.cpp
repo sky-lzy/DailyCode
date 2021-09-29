@@ -120,5 +120,6 @@ int main()
         }
     }
     printf("-1\n");
+    delete[] Goods;
     return 0;
 }
