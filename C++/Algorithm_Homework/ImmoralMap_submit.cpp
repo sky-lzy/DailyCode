@@ -45,8 +45,6 @@ private:
     void Disjkstra(int NS);
     //显示一种最短路径
     void ShowPath(int NS, int ND) const;
-    bool ShowPathDetail(std::vector<int> &NodeList, int NS, int ND) const;
-    void ShowPath_2(int NS, int ND) const;
     //寻找并显示一条“几乎”最短路径
     void SearchShortPath(int NS, int ND);
 };
@@ -71,8 +69,7 @@ void Map::Build()
 void Map::Search(int NS, int ND)
 {
     Disjkstra(NS);
-    // ShowPath(NS, ND);
-    ShowPath_2(NS, ND);
+    ShowPath(NS, ND);
     DeleteAllPath(NS, ND);
     SearchShortPath(NS, ND);
 }
@@ -118,14 +115,12 @@ void Map::DeleteEdge(int N1, int N2)
     if (temptr != EdgeList[N1].end())
         EdgeList[N1].erase(temptr);
     else
-        // throw("Edge Not Exist!");
         return;
     temptr = std::find_if(EdgeList[N2].begin(), EdgeList[N2].end(), [N1](const EdgeNode &tempEdge)
                           { return tempEdge.Number == N1; });
     if (temptr != EdgeList[N2].end())
         EdgeList[N2].erase(temptr);
     else
-        // throw("Edge Not Exist!");
         return;
     EdgeNum -= 1;
 }
@@ -142,36 +137,6 @@ void Map::DeleteAllPath(int NS, int ND)
 }
 
 void Map::ShowPath(int NS, int ND) const
-{
-    std::vector<int> NodeList;
-    if (!ShowPathDetail(NodeList, NS, ND))
-        return;
-    printf("start\n");
-    std::for_each(NodeList.begin(), NodeList.end(), [](const int &tempNodeMumber)
-                  { printf("%d\n", tempNodeMumber); });
-    printf("end\n%d\n", MiniDis[ND].second);
-}
-
-bool Map::ShowPathDetail(std::vector<int> &NodeList, int NS, int ND) const
-{
-    if (NS == ND)
-    {
-        NodeList.push_back(NS);
-        return true;
-    }
-    if (MiniDis[ND].first.size() == 0)
-        return false;
-    std::vector<int>::iterator i;
-    for (auto i : MiniDis[ND].first)
-        if (ShowPathDetail(NodeList, NS, i))
-        {
-            NodeList.push_back(ND);
-            return true;
-        }
-    return false;
-}
-
-void Map::ShowPath_2(int NS, int ND) const
 {
     if (MiniDis[ND].second == 0x7fffffff)
         return;
@@ -200,8 +165,7 @@ void Map::SearchShortPath(int NS, int ND)
         temptr->second = 0x7fffffff;
     }
     Disjkstra(NS);
-    // ShowPath(NS, ND);
-    ShowPath_2(NS, ND);
+    ShowPath(NS, ND);
 }
 
 int main()
