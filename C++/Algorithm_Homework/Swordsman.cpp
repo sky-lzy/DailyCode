@@ -1,5 +1,6 @@
 #include <iostream>
-// #include <vector>
+#include <vector>
+#include <queue>
 
 #define MAXSIZE 1000001
 
@@ -33,11 +34,37 @@ int main()
     int N, max, sum = 0;
     scanf("%d", &N);
     // int value[N];
+    std::priority_queue<int, std::vector<int>, std::greater<int>> tempMax;
+    for (int i = 0; i < 3; i++)
+        tempMax.push(-0x7fffffff);
+
     for (int i = 0; i < N; i++)
     {
         scanf("%d", &value[i]);
         sum += value[i];
+        if (value[i] > tempMax.top())
+        {
+            tempMax.pop();
+            tempMax.push(value[i]);
+        }
     }
+
+    int MaxSum3 = 0;
+    bool flag = false;
+    while (!tempMax.empty())
+    {
+        MaxSum3 += tempMax.top();
+        if (tempMax.top() < 0)
+            flag = true;
+        tempMax.pop();
+    }
+    
+    if (flag)
+    {
+        printf("%d\n", MaxSum3);
+        return 0;
+    }
+    
 
     max = Calculate(N);
 
