@@ -18,6 +18,7 @@ public:
     Graph(int inputNodeNum, int inputEdgeNum);
 
     void Prim() const;
+    void Kruskal() const;
 };
 
 Graph::Graph(int inputNodeNum, int inputEdgeNum) : NodeNum(inputNodeNum), EdgeNum(inputEdgeNum), EdgeList(inputNodeNum)
@@ -54,11 +55,59 @@ void Graph::Prim() const
                   { std::cout << std::get<0>(t) << " -> " << std::get<1>(t) << "  cost: " << std::get<2>(t) << "\n"; });
 }
 
+struct CompairEdge
+{
+    bool operator()(const std::tuple<int, int, int> &t1, const std::tuple<int, int, int> &t2) { return std::get<2>(t1) > std::get<2>(t2); }
+};
+
+void Graph::Kruskal() const
+{
+    std::vector<int> rootNode(NodeNum, 0x7fffffff);
+    std::priority_queue<std::tuple<int, int, int>, std::vector<std::tuple<int, int, int>>, CompairEdge> tempEdge;
+    std::vector<std::tuple<int, int, int>> tempMST;
+    for (int i = 0; i < NodeNum; i++)
+        std::for_each(EdgeList[i].begin(), EdgeList[i].end(), [&tempEdge, &i](const std::pair<int, int> &t)
+                      {
+                          if (t.first > i)
+                              tempEdge.emplace(i, t.first, t.second);
+                      });
+    while (!tempEdge.empty())
+    {
+        auto temp = tempEdge.top();
+        tempEdge.pop();
+        bool flag = true;
+        if (rootNode[std::get<0>(temp)] < NodeNum && rootNode[std::get<1>(temp)] < NodeNum && rootNode[std::get<0>(temp)] == rootNode[std::get<1>(temp)])
+            flag = false;
+        else
+        {
+            if (rootNode[std::get<0>(temp)] > NodeNum && rootNode[std::get<1>(temp)] > NodeNum)
+                rootNode[std::get<0>(temp)] = rootNode[std::get<1>(temp)] = std::get<0>(temp);
+            else if (rootNode[std::get<0>(temp)] < NodeNum && rootNode[std::get<1>(temp)] > NodeNum)
+                rootNode[std::get<1>(temp)] = rootNode[std::get<0>(temp)];
+            else if (rootNode[std::get<0>(temp)] > NodeNum && rootNode[std::get<1>(temp)] < NodeNum)
+                rootNode[std::get<0>(temp)] = rootNode[std::get<1>(temp)];
+            else
+            {
+                int t = rootNode[std::get<0>(temp)];
+                for (int i = 0; i < NodeNum; i++)
+                    if (rootNode[i] == t)
+                        rootNode[i] = rootNode[std::get<1>(temp)];
+            }
+        }
+
+        if (flag)
+            tempMST.emplace_back(std::get<0>(temp), std::get<1>(temp), std::get<2>(temp));
+    }
+    std::for_each(tempMST.begin(), tempMST.end(), [](const std::tuple<int, int, int> &t)
+                  { std::cout << std::get<0>(t) << " -> " << std::get<1>(t) << "  cost: " << std::get<2>(t) << "\n"; });
+}
+
 int main()
 {
     int NodeNum, EdgeNum;
     std::cin >> NodeNum >> EdgeNum;
     Graph graph(NodeNum, EdgeNum);
-    graph.Prim();
+    // graph.Prim();
+    graph.Kruskal();
     return 0;
 }
