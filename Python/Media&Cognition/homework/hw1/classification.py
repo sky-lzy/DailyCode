@@ -9,6 +9,7 @@
 #========================================================
 
 # ==== Part 0: import libs
+from cProfile import label
 import numpy as np
 import torch
 import torch.nn as nn
@@ -28,14 +29,17 @@ class MyDataset(Dataset):
         '''
         # TODO: load all items of the dataset stored in file_path
         # you may need np.load() function
-        pass
+        with open(file_path, 'rb') as f:
+            data = np.load(f)
+            self.features = data[:, 0:2]
+            self.labels = data[:, 2]
 
     def __len__(self):
         '''
         :return length: the number of items in the dataset
         '''
         # TODO: get the number of items in the dataset
-        pass
+        return len(self.features)
 
     def __getitem__(self, index):
         '''
@@ -45,7 +49,8 @@ class MyDataset(Dataset):
         '''
         # TODO: get the feature and label of the current item
         # pay attention to the type of the outputs
-        pass
+        assert index <= len(self), 'index range error'
+        return self.features[index], self.labels[index]
 
 
 # ==== Part 2: network structure
@@ -58,7 +63,11 @@ class Model(nn.Module):
         '''
         # TODO: initialization of the linear classifier, the model should include a linear layer and a Sigmoid layer
         # remember to initialize the father class and pay attention to the dimension of the model
-        pass
+        super().__init__()
+        self.weight = nn.Parameter(torch.randn(input_size, output_size))
+        self.bias = nn.Parameter(torch.zeros(output_size))
+        self.linear = lambda x : torch.matmul(x, self.weight) + self.bias
+        self.active = nn.Sigmoid()
 
     def forward(self, x):
         '''
@@ -67,7 +76,10 @@ class Model(nn.Module):
         '''
         # TODO: forward the model
         # pay attention that pred should be shape of (batch_size, ) rather than (batch_size, 1)
-        pass
+        y = torch.zeros(x.size(0))
+        for i in range(x.size(0)):
+            y[i] = self.active(self.linear(x[i]))
+        return y
 
 
 # ==== Part 3: define binary cross entropy loss for classification task
@@ -81,7 +93,11 @@ def bce_loss(pred, label):
     '''
     # TODO: calculate the mean of losses for the samples in the batch
     # you should not use the nn.BCELoss class to implement the loss function
-    pass
+    out = torch.tensor([0.])
+    for i in range(len(pred)):
+        out[0] -= label[i] * torch.log(pred[i]-1e-5) + (1 - label[i]) * torch.log(1 - pred[i] + 1e-5)
+    out[0] /= len(pred)
+    return out
 
 
 # ==== Part 4: training and validation
@@ -102,12 +118,15 @@ def train_val(train_file_path='data/character_classification/train_feat.npy',
     '''
 
     # TODO: instantiate training and validation data loaders
-
+    traindata = MyDataset(train_file_path)
+    valdata = MyDataset(val_file_path)
+    trainloader = DataLoader(traindata, batch_size=batch_size, shuffle=True)
+    valloader = DataLoader(valdata, batch_size=batch_size, shuffle=True)
     # TODO: instantiate the linear classifier
     # you can change the device if you have a gpu
-
+    model = Model(2, 1)
     # TODO: instantiate the SGD optimizer
-
+    optimizer = optim.SGD(model.parameters(), lr=lr, momentum=momentum)
     # to save loss of each training epoch in a python "list" data structure
     losses = []
 
@@ -116,24 +135,51 @@ def train_val(train_file_path='data/character_classification/train_feat.npy',
 
         # ===== training stage =====
         # TODO: set the model in training mode
-
+        model.train()
         # TODO: train the model for one epoch, which may include data loading, model forwarding, loss calculating, back propagation and parameters updating
         # pay attention to clear the gradient before the back propagation
+        total_loss = 0.
+        for step, (feas, labs) in enumerate(trainloader):
+            feas, labs = feas.to(device), labs.to(device)
+            optimizer.zero_grad()
+            out = model(feas)
+            loss = bce_loss(out, labs)
+            loss.backward()
+            total_loss += loss.item()
 
+            optimizer.step()
         # TODO: calculate average of the total loss for iterations and store it in losses
+        avg_loss = total_loss / len(trainloader)
+        losses.append(avg_loss)
+        print('Epoch {}: loss = {}'.format(epoch + 1, avg_loss))
 
 
         # ===== validation stage =====
         # validate the model every valInterval epochs
         if (epoch + 1) % valInterval == 0:
             # TODO: set the model in evaluation mode
-
+            model.eval()
+            n_correct = 0
+            n_feas = 0
             # TODO: evaluate the model on the validation set, which may include data loading, model forwarding and accuracy calculating
             # remember to use torch.no_grad() because we do not need to compute gradients during validation
+            with torch.no_grad():
+                for feas, labs in valloader:
+                    feas, labs = feas.to(device), labs.to(device)
+                    out = model(feas)
+                    predictions = torch.zeros(len(out))
+                    for i in range(len(out)):
+                        if (out[i] > 0.5):
+                            predictions[i] = 1 
+                    n_correct += torch.sum(predictions == labs)
+                    n_feas += feas.size(0)
+            
+            print('Epoch {:02d}: validation accuracy = {:.1f}%'.format(epoch + 1, 100 * n_correct / n_feas))
 
             # TODO: save model parameters in model_save_path
             model_save_path = 'saved_models/model_epoch{:02d}.pth'.format(epoch + 1)
-        
+            torch.save({'state_dict': model.state_dict()}, model_save_path)
+            print('[Info] Model saved in {}\n'.format(model_save_path))
 
     # draw the loss curve
     plot_loss(losses)
@@ -252,8 +298,18 @@ def visual(model_path, file_path):
     backgrounds_pred = torch.cat(backgrounds_pred, 0)
 
     # get weights and bias of the linear layer
-    weights = model.linear.weight
-    bias = model.linear.bias
+    input_a = torch.tensor([1.0, 0.0]).float().view(1, 2)
+    input_b = torch.tensor([0.0, 1.0]).float().view(1, 2)
+    input_zeros = torch.tensor([0.0, 0.0]).float().view(1, 2)
+    out_a = model(input_a)
+    out_a = torch.log((out_a / (1.0 - out_a + 1e-7)) + 1e-7)
+    out_b = model(input_b)
+    out_b = torch.log((out_b / (1.0 - out_b + 1e-7)) + 1e-7)
+    out_zeros = model(input_zeros)
+    out_zeros = torch.log((out_zeros / (1.0 - out_zeros + 1e-7)) + 1e-7)
+    weights = [[(out_a - out_zeros).item(),(out_b - out_zeros).item()]]
+    bias = out_zeros.item()
+
 
     # compute slope and intercept of the dividing line
     a = - weights[0][0] / weights[0][1]
