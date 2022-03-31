@@ -2,8 +2,8 @@
 #             Media and Cognition
 #             Homework 2 Multilayer Perceptron
 #             losses.py - loss functions
-#             Student ID:
-#             Name:
+#             Student ID: 2020010625
+#             Name: Zhiyi Li
 #             Tsinghua University
 #             (C) Copyright 2022
 #========================================================
@@ -48,28 +48,31 @@ class CrossEntropyLoss(torch.autograd.Function):
         # e.g., if label = [0, 2] and n_classes=4, then the one-hot version is [[1,0,0,0], [0,0,1,0]]
 
         # 1.1: calculate z_max
-
+        z_max = logits.max(1)
         # 1.2: calculate exps = exp(z - z_max)
-
+        # exps = torch.exp(logits - z_max.values.view(-1, 1))
+        exps = logits - z_max.values.view(-1, 1)
         # 1.3: calculate p = softmax(y - y_max) 
-
+        p = torch.softmax(exps, 1)
         # step 2: convert label into one-hot version by using F.one_hot()
         # e.g., if label = [0, 2] and n_classes=4, then the one-hot version is [[1,0,0,0], [0,0,1,0]]
         # the converted label has shape [batch_size, n_classes]
-
+        con_label = F.one_hot(label, logits.size(1))
         # step 3: calculate cross entropy loss = - log q_i, and averaged by batch
+        loss = -(torch.log(p + 1e-6) * con_label).sum() / label.size(0)
         # save result of softmax and one-hot label in ctx for gradient computation
-
+        ctx.save_for_backward(p, con_label)
         
-
         return loss
 
     @staticmethod
     def backward(ctx, grad_output):
 
         # step 4: get q and label from ctx and calculate the derivative of loss w.r.t. pred (dL/dz)
+        q, label = ctx.saved_tensors
+        grad_input = q - label
         
-
+        grad_input *= grad_output
         # return None for gradient of label since we do not need to compute dL/dlabel
         return grad_input, None
 # End TODO 2

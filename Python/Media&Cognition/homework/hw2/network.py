@@ -2,8 +2,8 @@
 #             Media and Cognition
 #             Homework 2 Multilayer Perceptron
 #             network.py - linear layer and MLP network
-#             Student ID:
-#             Name:
+#             Student ID: 2020010625
+#             Name: Zhiyi Li
 #             Tsinghua University
 #             (C) Copyright 2022
 #========================================================
@@ -39,7 +39,8 @@ class LinearFunction(torch.autograd.Function):
         '''
 
         # TODO 1: calculate y = xW^T + b and save results in ctx
-        
+        y = torch.matmul(x, W.t()) + b
+        ctx.save_for_backward(x, W)
         # End TODO 1
         return y
 
@@ -56,11 +57,14 @@ class LinearFunction(torch.autograd.Function):
         '''
 
         # TODO 2: get x and W from ctx and calculate the gradients by ctx.saved_variables
-        
+        x, W = ctx.saved_tensors
 
         # calculate dL/dx (grad_input) by using dL/dy (grad_output) and W, eg., dL/dx = dL/dy*W
+        grad_input = torch.matmul(grad_output, W)
         # calculate dL/dW (grad_W) by using dL/dy (grad_output) and x
+        grad_W = torch.matmul(grad_output.t(), x)
         # calculate dL/db (grad_b) using dL/dy (grad_output)
+        grad_b = grad_output.sum(0)
         # you can use torch.matmul(A, B) to compute matrix product of A and B
 
         # End TODO 2
@@ -81,8 +85,8 @@ class Linear(nn.Module):
 
         # TODO 3: initialize weights and bias of the linear layer and set W and b trainable parameters
         # hint: you can refer homework 1
-
-
+        self.W = nn.Parameter(torch.rand(output_size, input_size))
+        self.b = nn.Parameter(torch.rand(output_size))
         # End TODO 3
 
     def forward(self, x):
@@ -122,20 +126,23 @@ class MLP(nn.Module):
         # TODO 4: Finish MLP with at least 2 layers
         else:
             # step 1: initialize the input layer
-
+            layer = Linear(input_size, hidden_size[0])
             # step 2: append the input layer and the activation layer into layers
-
+            layers.append(layer)
+            layers.append(self.act)
             # step 3: construct the hidden layers and add it to layers
             for i in range(1, n_layers - 1):
                 #initialize a hidden layer and activation layer
                 # hint: Noting that the output size of a hidden layer is hidden_size[i], so what is its input size?
-
+                layer = Linear(hidden_size[i - 1], hidden_size[i])
+                layers.append(layer)
+                layers.append(self.act)
 
             # step 4: initialize the output layer and append the layer into layers
             # hint: what is the output size of the output layer?
             # hint: here we do not need activation layer
-
-
+            layer = Linear(hidden_size[-1], output_size)
+            layers.append(layer)
             # End TODO 4
         
         #Use nn.Sequential to get the neural network

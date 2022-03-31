@@ -2,8 +2,8 @@
 #             Media and Cognition
 #             Homework 2 Multilayer Perceptron
 #             classification.py - character classification
-#             Student ID:
-#             Name:
+#             Student ID: 2020010625
+#             Name: Zhiyi Li
 #             Tsinghua University
 #             (C) Copyright 2022
 #========================================================
@@ -137,9 +137,9 @@ def train_val(im_dir, train_file_path, val_file_path,
     # hint 1: we convert an image to a vector as the input of the MLP, 
     # each image has shape [norm_size[0], norm_size[1]]
     # hint 2: Input parameters for MLP: input_size, output_size, hidden_size, n_layers, act_type
-
+    model = MLP(norm_size[0] * norm_size[1], n_letters, hidden_size, n_layers, act_type)
     # loss function
-
+    cal_loss = CrossEntropyLoss.apply
     # End TODO 1
     # put the model on CPU or GPU
     model = model.to(device)
@@ -174,20 +174,22 @@ def train_val(im_dir, train_file_path, val_file_path,
         for step, (ims, labels) in enumerate(trainloader):  # get a batch of data
 
             # step 1: set data type and device
-
+            ims = ims.to(device)
+            labels = labels.to(device)
             # step 2: convert an image to a vector as the input of the MLP
-
+            ims = ims.view(batch_size, norm_size[0] * norm_size[1])
             # hint: clear gradients in the optimizer
-
+            optimizer.zero_grad()
             # step 3: run the model which is the forward process
-
+            pred = model(ims)
             # step 4: compute the loss, and call backward propagation function
-
+            loss = cal_loss(pred, labels)
+            loss.backward()
             # step 5: sum up of total loss, loss.item() return the value of the tensor as a standard python number
             # this operation is not differentiable
-
+            total_loss += loss.item()
             # step 6: call a function, optimizer.step(), to update the parameters of the model
-
+            optimizer.step()
             # End TODO 2
 
         # average of the total loss for iterations
@@ -337,12 +339,19 @@ def predict(model_path, im_path):
     # step 1: load configurations from saved model using torch.load(model_path)
     # and get the configs dictionary, configs = checkpoint['configs'],
     # then get each config from configs, eg., norm_size = configs['norm_size']
+    checkpoint = torch.load(model_path)
+    configs = checkpoint['configs']
+    norm_size = configs['norm_size']
+    output_size = configs['output_size']
+    hidden_size = configs['hidden_size']
+    n_layers = configs['n_layers']
+    act_type = configs['act_type']
 
     # step 2: initialize the model by MLP()
-
+    model = MLP(norm_size[0] * norm_size[1], output_size, hidden_size, n_layers, act_type)
     # step 3: load model parameters we saved in model_path
     # hint: similar to what we do in Part 4: test.
-
+    model.load_state_dict(checkpoint['state_dict'])
     # End TODO 3
     # enter the evaluation mode
     model.eval()
