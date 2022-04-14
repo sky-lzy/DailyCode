@@ -12,7 +12,7 @@ module detect (sys_clk, clk, res, in, dict, out);
 
     debounce xdebounce(sys_clk, clk, clk_o);
 
-    always @(negedge res or posedge clk_o)
+    always @(posedge res or posedge clk_o)
     begin
         if (res)
             dict <= 6'b0;

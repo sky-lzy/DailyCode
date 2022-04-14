@@ -12,7 +12,7 @@ module top (sys_clk, clk, res, en, leds);
 
     debounce xdebounce(sys_clk, clk, clk_o);
 
-    always @(negedge res or posedge clk_o)
+    always @(posedge res or posedge clk_o)
     begin
         if(res)
             counter <= 4'b0;
@@ -20,7 +20,7 @@ module top (sys_clk, clk, res, en, leds);
             if (counter == 4'b1001)
                 counter <= 4'b0;
             else
-                counter <= counter + 1;
+                counter <= counter + 4'b0001;
     end
 
     BCD7 bcd27seg (counter, leds);

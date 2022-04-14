@@ -18,7 +18,7 @@ module detect (sys_clk, clk, res, state, in, out);
     wire clk_o;
 
     debounce xdebounce(sys_clk, clk, clk_o);
-    always @(negedge res or posedge clk_o)
+    always @(posedge res or posedge clk_o)
     begin
         if (res)
         begin
