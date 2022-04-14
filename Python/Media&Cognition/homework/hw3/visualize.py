@@ -2,8 +2,8 @@
 #             Media and Cognition
 #             Homework 3 Convolutional Neural Network
 #             visual.py - visualization
-#             Student ID:
-#             Name:
+#             Student ID: 2020010625
+#             Name: Zhiyi Li
 #             Tsinghua University
 #             (C) Copyright 2022
 #========================================================
@@ -21,6 +21,7 @@ import torchvision.transforms as transforms
 from network import CNN
 # Import Conv2d layer and MaxPool2d layer
 from conv import Conv2d
+from pool import MaxPool2d
 import matplotlib.pyplot as plt
 import sklearn
 from sklearn.manifold import TSNE
@@ -100,7 +101,7 @@ class ConvFeatureVisualization():
             os.mkdir(save_dir)
         for i in range(self.conv_output.shape[0]):
             x = self.conv_output[i].detach().numpy()
-            x = (x - x.min()) / (x.max() - x.min())
+            x = ((x - x.min()) / (x.max() - x.min())) if x.max() > x.min() else (x - x.min())
             x = cv2.resize(x, (32, 32), interpolation = cv2.INTER_CUBIC)
             axes[i//w, i%w].imshow(x, cmap='rainbow')
             axes[i//w, i%w].set_title(str(i), fontsize='small')
@@ -148,7 +149,7 @@ if __name__ == '__main__':
         conv_layer_indices = []
         filter_nums = []
         for i, m in enumerate(conv_net.children()):
-            if not isinstance(m, torch.nn.MaxPool2d):
+            if not isinstance(m, MaxPool2d):
                 conv_layer_indices.append(i)
                 filter_nums.append(m[0].out_channels)
         
@@ -173,7 +174,7 @@ if __name__ == '__main__':
 
         conv_layer_indices = []
         for i, m in enumerate(conv_net.children()):
-            if not isinstance(m, torch.nn.MaxPool2d):
+            if not isinstance(m, MaxPool2d):
                 conv_layer_indices.append(i)
 
         visual = ConvFeatureVisualization(conv_net, feature_dir)

@@ -2,8 +2,8 @@
 #             Media and Cognition
 #             Homework 3 Convolutional Neural Network
 #             train.py - train character classification model
-#             Student ID:
-#             Name:
+#             Student ID: 2020010625
+#             Name: Zhiyi Li
 #             Tsinghua University
 #             (C) Copyright 2022
 #========================================================
@@ -45,7 +45,7 @@ def dataLoader(data_path, norm_size, batch_size, workers=0):
         transforms.Normalize(0.5, 0.5)
     ])
     # TODO 3.1: use ImageFolder to construct a dataset for image classification task
-
+    dataset = ImageFolder(data_path, transform)
     # end TODO 3.1
     return DataLoader(dataset,
                       batch_size=batch_size,
