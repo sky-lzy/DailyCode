@@ -1,0 +1,128 @@
+% Homework template for Inference and Information
+% UPDATE: September 26, 2017 by Xiangxiang
+\documentclass[a4paper]{article}
+\usepackage{ctex}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{moreenum}
+\usepackage{mathtools}
+\usepackage{url}
+\usepackage{bm}
+\usepackage{enumitem}
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage{color}
+
+\lstset{
+    basicstyle          =   \sffamily,          % 基本代码风格
+    keywordstyle        =   \bfseries,          % 关键字风格
+    commentstyle        =   \rmfamily\itshape,  % 注释的风格，斜体
+    stringstyle         =   \ttfamily,  % 字符串风格
+    flexiblecolumns,                % 别问为什么，加上这个
+    numbers             =   left,   % 行号的位置在左边
+    showspaces          =   false,  % 是否显示空格，显示了有点乱，所以不现实了
+    numberstyle         =   \zihao{-5}\ttfamily,    % 行号的样式，小五号，tt等宽字体
+    showstringspaces    =   false,
+    captionpos          =   t,      % 这段代码的名字所呈现的位置，t指的是top上面
+    frame               =   lrtb,   % 显示边框
+}
+
+\lstdefinestyle{Python}{
+    language        =   Python, % 语言选Python
+    basicstyle      =   \zihao{-5}\ttfamily,
+    numberstyle     =   \zihao{-5}\ttfamily,
+    keywordstyle    =   \color{blue},
+    keywordstyle    =   [2] \color{teal},
+    stringstyle     =   \color{magenta},
+    commentstyle    =   \color{red}\ttfamily,
+    breaklines      =   true,   % 自动换行，建议不要写太长的行
+    columns         =   fixed,  % 如果不加这一句，字间距就不固定，很丑，必须加
+    basewidth       =   0.5em,
+}
+\usepackage{subcaption}
+\usepackage{booktabs} % toprule
+\usepackage[mathcal]{eucal}
+\usepackage[thehwcnt = 5]{iidef}
+
+\thecourseinstitute{清华大学电子工程系}
+\thecoursename{\textbf{媒体与认知} \space 课堂2}
+\theterm{2021-2022学年春季学期}
+\hwname{作业}
+\begin{document}
+\courseheader
+\name{YOUR NAME}
+\vspace{3mm}
+\centerline{\textbf{\Large{理论部分}}}
+
+\section{单选题（15分）}
+\subsection{\underline{?}}
+
+\subsection{\underline{?}}
+
+\subsection{\underline{?}}
+
+\subsection{\underline{?}}
+
+\subsection{\underline{?}}
+
+\section{计算题（15 分）}
+% 计算题1
+\subsection{隐含马尔可夫模型的解码}
+
+\hspace{2em}某手机专卖店今年元旦新开业，每月上旬进货时，由专卖店经理决策，采用三种进货方案中的一种：高档手机(H)，中档手机(M)，低档手机(L)。
+
+\hspace{2em}当月市场行情假设分为畅销($S_1$)和滞销($S_2$)两种。畅销时，三种进货方案的概率分别为0.4, 0.4, 0.2；滞销时，三种进货方案的概率分别为0.2, 0.3, 0.5。
+
+\hspace{2em}某月份市场行情为畅销，下一个月份为畅销和滞销的概率分别为0.6 和0.4；某月份市场行情为滞销，下一个月份为畅销和滞销的概率分别为0.5 和0.5。
+
+\hspace{2em}开业第一个月市场行情为畅销和滞销的可能性均为0.5。
+
+\vspace{3mm}
+(1) 如果我们采用隐含马尔可夫模型(HMM)对该专卖店进货环节建模，{\color{blue}请写出HMM对应的参数$\lambda=\{\pi, A, B\}$}。
+
+\vspace{3mm}
+(2) 在第一季度中，采购业务员执行的进货方案为“高档手机，中档手机，低档手机”，即观测序列为H, M, L。{\color{blue}请利用Viterbi算法推测前三个月的市场行情}。
+
+
+% 计算题2
+\subsection{循环神经网络的长时相关性建模能力}
+
+\hspace{2em}对序列中的长距离相关信息进行建模是涉及序列的任务中十分重要的一点，例如在阅读理解任务里，题目和正文中的关键词可能相距很远，这就需要模型具备足够好的长距离相关信息建模能力。传统RNN在训练时存在梯度消失问题，较远的误差无法得到有效传递，因此学习长距离相关信息时面临较大挑战，在本题中我们对传统RNN难以学习长距离相关信息的问题进行一个简单的讨论。
+
+\hspace{2em}对RNN的计算过程进行简化，考虑一个暂不采用激活函数以及输入x的RNN:
+\begin{equation*}
+    \bm{h}_t = U\bm{h}_{t-1} = U \left( U\bm{h}_{t-2} \right) = ... = U^t\bm{h}_0
+\end{equation*}
+\hspace{2em}其中$U^t$为$t$个$U$矩阵连乘。若矩阵$U$存在如下特征值分解：
+\begin{equation*}
+    U = Q \Lambda Q^\top
+\end{equation*}
+\hspace{2em}其中$Q$为单位正交矩阵（每一列为模长为1的特征向量），$Q^\top$为$Q$的转置，Λ为特征值对角矩阵，则上述的RNN计算过程可表示为：
+\begin{equation*}
+    \bm{h}_t = Q \Lambda^t Q^\top \bm{h}_0
+\end{equation*}
+
+\vspace{3mm}
+本题目包含以下三个问题：
+
+(1) 假设某一特征值$\lambda_i < 1$，{\color{blue}当时刻$t$增大时，$\Lambda^t$中第$i$行$i$列的值会怎样变化？}
+
+(2) 假设$\bm{h}_0=\bm{q}_i$，其中$\bm{q}_i$为$U$矩阵的第$i$个特征向量（即Q的第$i$列），设$\mathcal{L}$为目标函数计算出的loss。{\color{blue}试验证：
+\begin{equation*}
+    \frac{\partial \mathcal{L}}{\partial \bm{h}_0} = \lambda_i^t \frac{\partial \mathcal{L}}{\partial \bm{h}_t}
+\end{equation*}}
+(3) 对于更一般的$\bm{h}_0$，由于$Q$中的特征向量构成一组完备正交基，可以将$\bm{h}_0$分解为$Q$中不同特征向量的线性组合，即$\bm{h}_0=\sum_{i=1}^{n}k_i\bm{q}_i$。通过上述分析，{\color{blue}请尝试解释传统RNN训练中的梯度消失现象}，由此理解传统RNN对长距离相关信息建模的困难。
+
+
+
+% 请根据是否选择自选课题的情况选择“编程作业报告”或“自选课题开题报告”中的一项完成
+\section{编程作业报告}
+\section{自选课题工作进度汇报}
+
+\end{document}
+
+
+
+%%% Local Variables:
+%%% mode: late\rvx
+%%% TeX-master: t
+%%% End:
