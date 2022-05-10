@@ -2,8 +2,8 @@
 #             Media and Cognition
 #             Homework 5 Recurrent Neural Network
 #             main.py: CNN-RNN-CTC based scene text recognition
-#             Student ID:
-#             Name:
+#             Student ID: 2020010625
+#             Name: Zhiyi Li
 #             Tsinghua University
 #             (C) Copyright 2022
 # ========================================================
@@ -118,14 +118,28 @@ def train_one_epoch(model, trainloader, optimizer, criterion, label_converter, d
 
     # you may follow the below steps
     # 1. set model into training mode
+    model.train()
     # 2. initialize a "total_loss" variable to sum up losses from each training step
+    total_loss = 0.
     # 3. start to loop, fetch images and labels of each step from "trainloader"
+    for images, texts in trainloader:
     # 4.   convert label texts into tensors by "label_converter"
+        targets, target_lengths = label_converter.encode(texts)
+        images = images.to(device)
+        targets = targets.to(device)
+        target_lengths = target_lengths.to(device)
     # 5.   run the model forward process
+        logits, seq_lengths = model(images)
     # 6.   compute loss by "criterion"
+        loss = criterion(logits.log_softmax(2), targets, seq_lengths, target_lengths)
     # 7.   run the backward process and update model parameters
+        optimizer.zero_grad()
+        loss.backward()
+        optimizer.step()
     # 8.   update "total_loss"
+        total_loss += loss.item()
     # 9. return avg_loss, which is total_loss / len(trainloader)
+    avg_loss = total_loss / len(trainloader)
 
     # hint: in general, we need log_probs, targets, input_lengths and target_lengths to compute CTC loss,
     #       "log_probs" can be transformed from "logits" output by model using "nn.functional.log_softmax(dim)",
@@ -153,13 +167,24 @@ def val_one_epoch(model, valloader, label_converter, device):
 
     # hint: you may follow the below steps
     # 1. set model into evaluation mode
+    model.eval()
     # 2. initialize "n_correct" and "n_total" variables to save the numbers of correct and total images
+    n_correct = 0.
+    n_total = 0.
     # 3. loop under the no-gradient environment, fetch images and labels of each step from "valloader"
+    with torch.no_grad():
+        for images, texts in valloader:
     # 4.   run model forward process and compute "logits"
+            logits, _ = model(images)
     # 5.   get raw predictions "raw_preds" by "logits.argmax(2)"
+            raw_preds = logits.argmax(2)
     # 6.   use "label_converter.decode(raw_preds)" to obtain decoded texts
+            preds = label_converter.decode(raw_preds)
     # 7.   update "n_total" and update "n_correct" by comparing decoded texts with labels
+            n_total += len(texts)
+            n_correct += sum([pred == text for pred, text in zip(preds, texts)])
     # 8. return accuracy, which is n_correct / n_total
+        accuracy = n_correct / n_total
 
     # ================================
     # TODO 4: complete val_one_epoch()

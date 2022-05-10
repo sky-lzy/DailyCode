@@ -6,6 +6,7 @@
 #             (C) Copyright 2022
 # ========================================================
 
+from unicodedata import bidirectional
 import torch
 import torch.nn as nn
 
@@ -27,6 +28,25 @@ class CRNN(nn.Module):  # a model consists of a CNN, an RNN, and a linear layer
         #   3   | #k=64, ksize=3x3, s=1x1, p=1x1 |    yes     |    ReLU    | ksize=2x1, s=2x1
         #   4   | #k=64, ksize=1x1, s=1x1, p=0   |     no     |    None    |       None
         # ------------------------------------------------------------------------------------
+        self.cnn = nn.Sequential(
+            nn.Conv2d(3, 16, 3, 2, 1),
+            nn.BatchNorm2d(16),
+            nn.ReLU(),
+            nn.MaxPool2d(2, 2),
+            nn.Conv2d(16, 32, 3, 1, 1),
+            nn.BatchNorm2d(32),
+            nn.ReLU(),
+            nn.MaxPool2d((2, 1), (2, 1)),
+            nn.Conv2d(32, 48, 3, 1, 1),
+            nn.BatchNorm2d(48),
+            nn.ReLU(),
+            nn.MaxPool2d((2, 1), (2, 1)),
+            nn.Conv2d(48, 64, 3, 1, 1),
+            nn.BatchNorm2d(64),
+            nn.ReLU(),
+            nn.MaxPool2d((2, 1), (2, 1)),
+            nn.Conv2d(64, 64, 1, 1, 0)
+        )
 
         # step 2: define self.rnn for sequence modeling
         # -- hint 1: you may use nn.LSTM(), but it is also OK to use nn.RNN() or nn.GRU()
@@ -36,6 +56,7 @@ class CRNN(nn.Module):  # a model consists of a CNN, an RNN, and a linear layer
         #            which is 64 if you use the optional CNN
         # -- here we give an optional RNN configuration
         #    input_size = 64, hidden_size = 32, num_layers = 1, bidirectional = True
+        self.rnn = nn.LSTM(input_size=64, hidden_size=32, num_layers=1, bidirectional=True)
 
         # step 3: define self.linear for classification
         # -- hint 1: input dimension of self.linear should be output dimension of RNN,
@@ -43,6 +64,7 @@ class CRNN(nn.Module):  # a model consists of a CNN, an RNN, and a linear layer
         #            will be 2 times the hidden_size of RNN.
         # -- hint 2: output dimension of self.linear should be number of classes,
         #            in this task we have 38 classes (26 letters, 10 digits, 'blank' and '<unk>')
+        self.linear = nn.Linear(64, 38)
 
         # =======================================
         # TODO 1: complete network initialization
@@ -56,22 +78,27 @@ class CRNN(nn.Module):  # a model consists of a CNN, an RNN, and a linear layer
         '''
 
         # step 1: apply self.cnn on input "x" and get feature maps "feats"
+        feats = self.cnn(x)
 
         # step 2: compute the length of feature sequence "seq_lengths" for CTC loss
         # -- hint: seq_lengths is [w, w, ..., w] (b times)
         #          you can use feats.size(0) and feats.size(3) to get "b" and "w"
+        seq_lengths = torch.LongTensor(feats.size(0) * [feats.size(3)])
 
         # step 3: transform feature maps into RNN input
         # -- hint: the size of feature maps is [b, c, h, w] (h=1 if you use the optional CNN),
         #          but the input size of RNN should be [w, b, c].
         #          you may use functions such as tensor.squeeze(dim) and tensor.permute(*dims)
         #          to change the shape of CNN output.
+        feats = feats.squeeze(2).permute(2, 0, 1)
 
         # step 4: apply self.rnn on feature sequences
         # -- hint: the outputs of RNN is "output, h_n" or "output, (h_n, c_n)"
         #          we only need "output" for the subsequent recognition
+        output, _ = self.rnn(feats)
 
         # step 5: apply self.linear on RNN output to obtain "logits"
+        logits = self.linear(output)
 
         # ========================================
         # TODO 2: complete network forward process
