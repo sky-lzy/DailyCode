@@ -94,4 +94,14 @@ module top (sysclk, key, res, an, leds, state);
     LED7 led7(temp_led, leds[6:0]);
     assign leds[7] = an[1];
 
+    initial 
+    begin
+        an = 4'b0;
+        count = 14'b0;
+        bcd = 16'b0;
+        an_temp = 2'b0;
+        temp_led = 4'b0;
+        temp_state = 2'b0;
+    end
+
 endmodule
