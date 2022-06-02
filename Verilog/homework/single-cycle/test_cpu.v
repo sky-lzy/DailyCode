@@ -1,17 +1,27 @@
 
 module test_cpu();
 	
+	reg sysclk;
 	reg reset;
 	reg clk;
+	reg [1:0] RegShow;
 	
-	CPU cpu1(reset, clk);
+	wire [7:0] ENs;
+	wire [7:0] LEDs;
+	wire [6:0] BCDs;
+	CPU cpu1(sysclk, reset, clk, RegShow, ENs, LEDs, BCDs);
 	
 	initial begin
-		reset = 1;
-		clk = 1;
-		#100 reset = 0;
+		sysclk = 1'b1;
+		reset = 1'b1;
+		clk = 1'b1;
+		RegShow = 2'b11;
+		#100 reset = 1'b0;
+
+		#10000 $finish;
 	end
 	
 	always #50 clk = ~clk;
+	always #5 sysclk = ~sysclk;
 		
 endmodule

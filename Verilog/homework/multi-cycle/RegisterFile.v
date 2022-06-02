@@ -20,7 +20,7 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module RegisterFile(reset, clk, RegWrite, Read_register1, Read_register2, Write_register, Write_data, Read_data1, Read_data2);
+module RegisterFile(reset, clk, RegShow, RegWrite, Read_register1, Read_register2, Write_register, Write_data, Read_data1, Read_data2, RegShowData);
 	//Input Clock Signals
 	input reset;
 	input clk;
@@ -34,6 +34,9 @@ module RegisterFile(reset, clk, RegWrite, Read_register1, Read_register2, Write_
 	//Output Data Signals
 	output [31:0] Read_data1;
 	output [31:0] Read_data2;
+	//Visual
+	input [1:0] RegShow;
+	output [31:0] RegShowData;
 	
 	reg [31:0] RF_data[31:1];
 	
@@ -52,5 +55,12 @@ module RegisterFile(reset, clk, RegWrite, Read_register1, Read_register2, Write_
 		end
 	end
 
+	//Visual
+	assign RegShowData = (RegShow == 2'b00)? RF_data[4]:
+						 (RegShow == 2'b01)? RF_data[2]:
+						 (RegShow == 2'b10)? RF_data[29]:
+						 (RegShow == 2'b11)? RF_data[31]:
+						 32'h0;
+	
 endmodule
 			

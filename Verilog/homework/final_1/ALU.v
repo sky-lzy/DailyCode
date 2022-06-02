@@ -30,7 +30,7 @@ module ALU (ALUCtrl, Sign, in1, in2, out, zero);
             OR:  out <= in1 | in2;
             XOR: out <= in1 ^ in2;
             NOR: out <= ~(in1 | in2);
-            SLT: begin if (Sign) out = (in1[31] & ~in2[31]) | ((in1[31] & in2[31]) & (in1 < in2)) | ((~in1[31] & ~in2[31]) & (in1 > in2));
+            SLT: begin if (Sign) out = (in1[31] & ~in2[31]) | ((~in1[31] & ~in2[31]) & (in1 < in2)) | ((in1[31] & in2[31]) & (in1 > in2));
                        else out <= in1 < in2; end
             SLL: out <= in1 << in2;
             SRL: out <= in1 >> in2;

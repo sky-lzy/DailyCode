@@ -34,5 +34,11 @@ module InstructionMemory(Address, Instruction);
 			
 			default: Instruction <= 32'h00000000;
 		endcase
+
+	// My Code
+	initial
+	begin
+		Instruction = 32'b0;
+	end
 		
 endmodule
