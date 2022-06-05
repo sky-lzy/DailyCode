@@ -42,6 +42,7 @@ class CNNTransformer(nn.Module):
 		
 		# =======================================
         # TODO 1: complete the initialization for self.transformer
+        self.transformer = TransformerModel(64, 32, 2, 1, 1, 32, 36 + 4)
         # =======================================
 
     def forward(self, x, tgt, tgt_length):
@@ -59,6 +60,7 @@ class CNNTransformer(nn.Module):
         
         # ========================================
         # TODO 2: complete network forward process
+        logits = self.transformer.forward(feats, tgt, tgt_length)
         # ========================================
 
         return logits
@@ -72,6 +74,7 @@ class CNNTransformer(nn.Module):
         
         # ========================================
         # TODO 3: complete network inference process
+        preds, logits = self.transformer.inference(feats)
         # ========================================
 
         return preds, logits

@@ -139,6 +139,22 @@ def train_one_epoch(model, trainloader, optimizer, criterion, label_converter, d
 
     # ==================================
     # TODO 7: complete train_one_epoch()
+    model.train()
+    total_loss = 0.
+    for ims, labels in trainloader:
+        tgt, tgt_length = label_converter.encode(labels)
+        ims, tgt, tgt_length = ims.to(device), tgt.to(device), tgt_length.to(device)
+        logits = model(ims, tgt, tgt_length)
+        log_probs = nn.functional.log_softmax(logits, dim=2)
+        log_probs = log_probs[:-1, ...].view(-1, log_probs.size(-1))
+        targets = tgt[1:, :].view(-1)
+
+        loss = criterion(log_probs, targets)
+        optimizer.zero_grad()
+        loss.backward()
+        optimizer.step()
+        total_loss += loss.item()
+
     # ==================================
 
     return total_loss / len(trainloader)

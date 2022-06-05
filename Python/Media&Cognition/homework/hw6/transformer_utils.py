@@ -47,6 +47,8 @@ class PositionalEncoding(nn.Module):
 	    # -- hint: firstly add x with self.pe, and then apply self.dropout to it
 	    # ========================================
 	    # TODO 4: complete positional encoding forward process
+        x_hat = x + self.pe[:x.size(0), :]
+        x_hat = self.dropout(x_hat)
 	    # ========================================
 
         return x_hat
@@ -93,6 +95,12 @@ class TransformerModel(nn.Module):
 		
 		# =======================================
         # TODO 5: complete the initialization for the transformer model
+        self.input_fc = nn.Linear(d_input, d_model)
+        encoder_layer = nn.TransformerEncoderLayer(d_model, n_head, dim_feedforward)
+        self.encoder = nn.TransformerEncoder(encoder_layer, num_encoder_layers)
+        decoder_layer = nn.TransformerDecoderLayer(d_model, n_head, dim_feedforward)
+        self.decoder = nn.TransformerDecoder(decoder_layer, num_decoder_layers)
+        self.fc = nn.Linear(d_model, output_class)
         # =======================================
         
 
@@ -136,6 +144,18 @@ class TransformerModel(nn.Module):
         
         # =======================================
         # TODO 6: complete the inference process for the transformer
+        src = self.pos_emb(self.input_fc(src))
+        memory = self.encoder(src)
+        tgt = torch.zeros(self.max_timestep, src.size(1)).long().to(src.device)
+        for t in range(1, self.max_timestep):
+            tgt_emb = self.pos_emb(self.char_emb(tgt[:t, :]))
+            tgt_mask = self._generate_square_subsequent_mask(t).to(src.device)
+            decoder_output = self.decoder(tgt_emb, memory, tgt_mask)
+            char_classes = self.fc(decoder_output[-1, ...])
+            char_class = torch.argmax(char_classes, dim=1)
+            tgt[t, :] = char_class
+        
+        logits = self.fc(decoder_output)
         # =======================================
         
         return tgt, logits
