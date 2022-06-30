@@ -5,7 +5,7 @@
 // 
 // Create Date: 2021/04/30
 // Design Name: MultiCycleCPU
-// Module Name: MultiCycleCPU
+// Module Name: RegTemp
 // Project Name: Multi-cycle-cpu
 // Target Devices: 
 // Tool Versions: 
@@ -20,30 +20,20 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module test_cpu();
-	
-	reg sysclk;
-	reg reset;
-	reg clk;
-	reg [1:0] RegShow;
-	
-	wire [3:0] ENs;
-	wire [7:0] LEDs;
-	wire [6:0] BCDs;
-	MultiCycleCPU MultiCycleCPU_1(sysclk, reset, clk, RegShow, ENs, LEDs, BCDs);
-	
-	initial begin
-		sysclk = 1'b1;
-		reset = 1'b1;
-		clk = 1'b1;
-		RegShow = 2'b11;
-		#100 reset = 1'b0;
-
-		#40000 $finish;
-        // #5000 $finish;
-	end
-	
-	always #50 clk = ~clk;
-	always #5 sysclk = ~sysclk;
-		
+module RegTemp(reset, clk, Data_i, Data_o);
+    //Input Clock Signals
+    input reset;
+    input clk;
+    //Input Data
+    input [31:0] Data_i;
+    //Output Data
+    output reg [31:0] Data_o;
+    
+    always@(posedge reset or posedge clk) begin
+        if (reset) begin
+            Data_o <= 32'h00000000;
+        end else begin
+            Data_o <= Data_i;
+        end
+    end
 endmodule

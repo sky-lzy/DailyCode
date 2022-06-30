@@ -5,7 +5,7 @@
 // 
 // Create Date: 2021/04/30
 // Design Name: MultiCycleCPU
-// Module Name: MultiCycleCPU
+// Module Name: ALUControl
 // Project Name: Multi-cycle-cpu
 // Target Devices: 
 // Tool Versions: 
@@ -20,30 +20,19 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module test_cpu();
-	
-	reg sysclk;
-	reg reset;
-	reg clk;
-	reg [1:0] RegShow;
-	
-	wire [3:0] ENs;
-	wire [7:0] LEDs;
-	wire [6:0] BCDs;
-	MultiCycleCPU MultiCycleCPU_1(sysclk, reset, clk, RegShow, ENs, LEDs, BCDs);
-	
-	initial begin
-		sysclk = 1'b1;
-		reset = 1'b1;
-		clk = 1'b1;
-		RegShow = 2'b11;
-		#100 reset = 1'b0;
+module ALUControl(ALUOp, Funct, ALUConf, Sign);
+	//Control Signals
+	input [3:0] ALUOp;
+	//Inst. Signals
+	input [5:0] Funct;
+	//Output Control Signals
+	output reg [4:0] ALUConf;
+	output Sign;
 
-		#40000 $finish;
-        // #5000 $finish;
-	end
-	
-	always #50 clk = ~clk;
-	always #5 sysclk = ~sysclk;
-		
+    //--------------Your code below-----------------------
+
+    //...
+        
+    //--------------Your code above-----------------------
+
 endmodule

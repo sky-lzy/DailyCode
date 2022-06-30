@@ -86,7 +86,10 @@ module MultiCycleCPU (sysclk, reset, clk, RegShow, ENs, LEDs, BCDs);
     assign PCWriteControl = PCWrite | (PCWriteCond & Zero);
 
     //debounce
+    wire clk_o;
+    wire [31:0] RegShowData;
     debounce my_debounce(sysclk, clk, clk_o);
+    // assign clk_o = clk;
 
     // InstAndDataMemory my_Memory(reset, clk_o, Address, Read_data2, MemRead, MemWrite, Mem_data);
     InstAndDataMemory2 my_Memory2(reset, clk_o, Address, Read_data2, MemRead, MemWrite, Mem_data);
@@ -107,7 +110,6 @@ module MultiCycleCPU (sysclk, reset, clk, RegShow, ENs, LEDs, BCDs);
     wire [7:0] LEDs;
     wire [6:0] BCDs;
     wire [3:0] ENs;
-    wire [31:0] RegShowData;
     reg [1:0] BCD_state;
     reg [13:0] sysclk_count;
 
