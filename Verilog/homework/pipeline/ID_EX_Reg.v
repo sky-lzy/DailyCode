@@ -4,10 +4,10 @@ module ID_EX_Reg (
     reset, clk, Control, 
     Data1_in, Data2_in, PC_in, 
     Imm32_in, OpCode_in, Funct_in, Rs_in, Rt_in, Rd_in, Shamt_in, 
-    Branch_in, RegWrite_in, RegDst_in, MemRead_in, MemWrite_in, MemtoReg_in, ALUSrc1_in, ALUSrc2_in, 
+    Branch_in, RegWrite_in, RegDst_in, MemRead_in, MemWrite_in, MemtoReg_in, ALUSrc1_in, ALUSrc2_in, LbuOp_in, 
     Data1_out, Data2_out, PC_out, 
     Imm32_out, Rs_out, Rt_out, Rd_out, Shamt_out, 
-    Branch_out, RegWrite_out, RegDst_out, MemRead_out, MemWrite_out, MemtoReg_out, ALUSrc1_out, ALUSrc2_out, 
+    Branch_out, RegWrite_out, RegDst_out, MemRead_out, MemWrite_out, MemtoReg_out, ALUSrc1_out, ALUSrc2_out, LbuOp_out, 
     ALUCtrl, Sign
     );
     //Input Signals
@@ -33,6 +33,7 @@ module ID_EX_Reg (
     input [1:0] MemtoReg_in;
     input ALUSrc1_in;
     input ALUSrc2_in;
+    input LbuOp_in;
     //Output Data
     output reg [31:0] Data1_out;
     output reg [31:0] Data2_out;
@@ -50,6 +51,7 @@ module ID_EX_Reg (
     output reg [1:0] MemtoReg_out;
     output reg ALUSrc1_out;
     output reg ALUSrc2_out;
+    output reg LbuOp_out;
     output reg [4:0] ALUCtrl;
     output reg Sign;
 
@@ -91,6 +93,7 @@ module ID_EX_Reg (
             MemtoReg_out <= 2'b00;
             ALUSrc1_out <= 1'b0;
             ALUSrc2_out <= 1'b0;
+            LbuOp_out <= 1'b0;
             ALUCtrl <= 5'b11111;
             Sign <= 1'b0;
         end
@@ -115,6 +118,7 @@ module ID_EX_Reg (
                     MemtoReg_out <= MemtoReg_in;
                     ALUSrc1_out <= ALUSrc1_in;
                     ALUSrc2_out <= ALUSrc2_in;
+                    LbuOp_out <= LbuOp_in;
 
                     case (OpCode_in)
                         6'b0: 
@@ -172,6 +176,7 @@ module ID_EX_Reg (
                     MemtoReg_out <= MemtoReg_out;
                     ALUSrc1_out <= ALUSrc1_out;
                     ALUSrc2_out <= ALUSrc2_out;
+                    LbuOp_out <= LbuOp_out;
                     ALUCtrl <= ALUCtrl;
                     Sign <= Sign;
                 end
@@ -193,6 +198,7 @@ module ID_EX_Reg (
                     MemtoReg_out <= 2'b00;
                     ALUSrc1_out <= 1'b0;
                     ALUSrc2_out <= 1'b0;
+                    LbuOp_out <= 1'b0;
                     ALUCtrl <= 5'b11111;
                     Sign <= 1'b0;
                 end

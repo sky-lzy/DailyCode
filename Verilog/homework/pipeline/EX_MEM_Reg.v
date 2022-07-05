@@ -3,9 +3,9 @@
 module EX_MEM_Reg (
     reset, clk, 
     ALU_in, Data_in, PC_in, RegWrAddr_in, 
-    RegWrite_in, MemRead_in, MemWrite_in, MemtoReg_in, 
+    RegWrite_in, MemRead_in, MemWrite_in, MemtoReg_in, LbuOp_in, 
     ALU_out, Data_out, PC_out, RegWrAddr_out, 
-    RegWrite_out, MemRead_out, MemWrite_out, MemtoReg_out
+    RegWrite_out, MemRead_out, MemWrite_out, MemtoReg_out, LbuOp_out 
     );
     //Input Signals
     input reset;
@@ -19,6 +19,7 @@ module EX_MEM_Reg (
     input MemRead_in;
     input MemWrite_in;
     input [1:0] MemtoReg_in;
+    input LbuOp_in;
     //Output Data
     output reg [31:0] ALU_out;
     output reg [31:0] Data_out;
@@ -28,6 +29,7 @@ module EX_MEM_Reg (
     output reg MemRead_out;
     output reg MemWrite_out;
     output reg [1:0] MemtoReg_out;
+    output reg LbuOp_out;
 
     always @(posedge reset or posedge clk) 
     begin
@@ -41,6 +43,7 @@ module EX_MEM_Reg (
             MemRead_out <= 1'b0;
             MemWrite_out <= 1'b0;
             MemtoReg_out <= 2'b00;
+            LbuOp_out <= 1'b0;
         end
         else 
         begin
@@ -52,6 +55,7 @@ module EX_MEM_Reg (
             MemRead_out <= MemRead_in;
             MemWrite_out <= MemWrite_in;
             MemtoReg_out <= MemtoReg_in;
+            LbuOp_out <= LbuOp_in;
         end
     end
     

@@ -35,12 +35,12 @@ module InstructionMemory_bf(Address, Instruction);
 			8'd12:   Instruction <= {6'h00, 5'd8 , 5'd9 , 5'd10, 5'd0 , 6'h20};
 			// add $t2, $s2, $t2
 			8'd13:   Instruction <= {6'h00, 5'd18, 5'd10, 5'd10, 5'd0 , 6'h20};
-			// lw $t2, 0($t2)
-			8'd14:   Instruction <= {6'h23, 5'd10, 5'd10, 16'd0};
+			// lbu $t2, 0($t2)
+			8'd14:   Instruction <= {6'h24, 5'd10, 5'd10, 16'd0};
 			// add $t3, $s3, $t1
 			8'd15:   Instruction <= {6'h00, 5'd19, 5'd9 , 5'd11, 5'd0 , 6'h20};
-			// lw $t3, 0($t3)
-			8'd16:   Instruction <= {6'h23, 5'd11, 5'd11, 16'd0};
+			// lbu $t3, 0($t3)
+			8'd16:   Instruction <= {6'h24, 5'd11, 5'd11, 16'd0};
 			// bne $t2, $t3, end_j
 			8'd17:   Instruction <= {6'h05, 5'd10, 5'd11, 16'd2};
 			// j for_j

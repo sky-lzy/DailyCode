@@ -18,9 +18,9 @@ blez	$t8, end_j          # if $t0 <= $t1 then target
 
 add		$t2, $t0, $t1		# $t2 = $t0 + $t1
 add		$t2, $s2, $t2		# $t2 = $s2 + $t2
-lw		$t2, 0($t2)		    # 
+lbu		$t2, 0($t2)		    # 
 add		$t3, $s3, $t1		# $t3 = $s3 + $t1
-lw		$t3, 0($t3)		    # 
+lbu		$t3, 0($t3)		    # 
 bne		$t2, $t3, end_j	    # if $t2 != $t3 then end_j
 addi	$t1, $t1, 1			# $t1 = $t1 + 1
 j		for_j				# jump to for_j
