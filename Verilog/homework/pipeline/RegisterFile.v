@@ -1,24 +1,4 @@
 `timescale 1ns / 1ps
-//////////////////////////////////////////////////////////////////////////////////
-// Class: Fundamentals of Digital Logic and Processor
-// Designer: Shulin Zeng
-// 
-// Create Date: 2021/04/30
-// Design Name: MultiCycleCPU
-// Module Name: RegisterFile
-// Project Name: Multi-cycle-cpu
-// Target Devices: 
-// Tool Versions: 
-// Description: 
-// 
-// Dependencies: 
-// 
-// Revision:
-// Revision 0.01 - File Created
-// Additional Comments:
-// 
-//////////////////////////////////////////////////////////////////////////////////
-
 
 module RegisterFile(reset, clk, RegWrite, Read_register1, Read_register2, Write_register, Write_data, Read_data1, Read_data2);
 	//Input Clock Signals
@@ -38,8 +18,8 @@ module RegisterFile(reset, clk, RegWrite, Read_register1, Read_register2, Write_
 	reg [31:0] RF_data[31:1];
 	
 	//read data
-	assign Read_data1 = (Read_register1 == 5'b00000)? 32'h00000000: RF_data[Read_register1];
-	assign Read_data2 = (Read_register2 == 5'b00000)? 32'h00000000: RF_data[Read_register2];
+	assign Read_data1 = (Read_register1 == 5'b00000)? 32'h00000000: ((RegWrite && Read_register1 == Write_register) ? Write_data : RF_data[Read_register1]);
+	assign Read_data2 = (Read_register2 == 5'b00000)? 32'h00000000: ((RegWrite && Read_register2 == Write_register) ? Write_data : RF_data[Read_register2]);
 	
 	integer i;
 	always @(posedge reset or posedge clk) begin

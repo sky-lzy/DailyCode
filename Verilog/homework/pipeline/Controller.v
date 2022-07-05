@@ -1,258 +1,35 @@
-`timescale 1ns / 1ps
-//////////////////////////////////////////////////////////////////////////////////
-// Class: Fundamentals of Digital Logic and Processor
-// Designer: Shulin Zeng, Shang Yang
-// 
-// Create Date: 2021/04/30
-// Design Name: MultiCycleCPU
-// Module Name: Controller
-// Project Name: Multi-cycle-cpu
-// Target Devices: 
-// Tool Versions: 
-// Description: 
-// 
-// Dependencies: 
-// 
-// Revision:
-// Revision 0.01 - File Created
-// Additional Comments:
-// 
-//////////////////////////////////////////////////////////////////////////////////
+`timescale 1ns/1ps
 
-
-module Controller(reset, clk, OpCode, Funct, 
-                PCWrite, PCWriteCond, IorD, MemWrite, MemRead,
-                IRWrite, MemtoReg, RegDst, RegWrite, ExtOp, LuiOp,
-                ALUSrcA, ALUSrcB, ALUOp, PCSource);
-    //Input Clock Signals
-    input reset;
-    input clk;
+module Controller (OpCode, Funct, PCSource, Branch, RegWrite, RegDst, MemRead, MemWrite, MemtoReg, ALUSrc1, ALUSrc2, ExtOp, LuiOp);
     //Input Signals
     input  [5:0] OpCode;
     input  [5:0] Funct;
-    //Output Control Signals
-    output reg PCWrite;
-    output reg PCWriteCond;
-    output reg IorD;
-    output reg MemWrite;
-    output reg MemRead;
-    output reg IRWrite;
-    output reg [1:0] MemtoReg;
-    output reg [1:0] RegDst;
-    output reg RegWrite;
-    output reg ExtOp;
-    output reg LuiOp;
-    output reg [1:0] ALUSrcA;
-    output reg [1:0] ALUSrcB;
-    output reg [3:0] ALUOp;
-    output reg [1:0] PCSource;
-      
-     reg [2:0] state; //current state
-     reg [2:0] next_state; //next_state
-     parameter sIF = 3'b0 ,sID = 3'b1; 
-     
-    //--------------Your code below-----------------------
+    //Output Signals
+    output [1:0] PCSource;
+    output Branch;
+    output RegWrite;
+    output [1:0] RegDst;
+    output MemRead;
+    output MemWrite;
+    output [1:0] MemtoReg;
+    output ALUSrc1;
+    output ALUSrc2;
+    output ExtOp;
+    output LuiOp;
 
-    always @(posedge reset or posedge clk) 
-    begin
-        if (reset) 
-            begin
-                state <= 3'b0;
-                next_state <=3'b0;
-                PCWrite <= 1'b0;
-                PCWriteCond <= 1'b0;
-                IorD <= 1'b0;
-                MemWrite <= 1'b0;
-                MemRead <= 1'b0;
-                IRWrite <= 1'b0;
-                MemtoReg <= 2'b00;
-                RegDst <= 2'b0;
-                RegWrite <= 1'b0;
-                ExtOp <= 1'b0;
-                LuiOp <= 1'b0;
-                ALUSrcA <= 2'b0;
-                ALUSrcB <= 2'b0;
-                PCSource <=2'b0;
-            end
-        else
-        begin
-            if (next_state == sIF) 
-                begin
-                    
-                    state <= next_state;
-                    next_state <= next_state + 3'b1;
-                    
-                    MemRead <= 1'b1;
-                    IRWrite <= 1'b1;
-                    PCWrite <= 1'b1;
-                    PCSource <= 2'b00;
-                    ALUSrcA <= 2'b00;
-                    IorD <= 1'b0;
-                    ALUSrcB <= 2'b01;
-        
-                    PCWriteCond <= 1'b0;
-                    MemWrite <= 1'b0;
-                    MemtoReg <= 2'b00;
-                    RegDst <= 2'b0;
-                    RegWrite <= 1'b0;
-                    ExtOp <= 1'b0;
-                    LuiOp <= 1'b0;
-                end
-                
-            else if (next_state == sID) 
-                begin
-                    state <= next_state;
-                    next_state <= next_state + 3'b1;
-                    ALUSrcA <= 2'b00;
-                    ALUSrcB <= 2'b11;    
-                    ExtOp <= 1'b1;
-                    
-                    PCWrite <= 1'b0;
-                    PCWriteCond <= 1'b0;
-                    IorD <= 1'b0;
-                    MemWrite <= 1'b0;
-                    MemRead <= 1'b0;
-                    IRWrite <= 1'b0;
-                    MemtoReg <= 2'b00;
-                    RegDst <= 2'b0;
-                    RegWrite <= 1'b0;
-                    LuiOp <= 1'b0;
-                    PCSource <=2'b0;
-                end
-            else if (next_state == 3'd2) 
-                begin
-                    state <= next_state;
-                    case(OpCode)
-                        6'h00: 
-                            begin
-                                ALUSrcA <= (Funct==6'h00 || Funct==6'h02 || Funct==6'h03 ) ? 2'b10 : 2'b01; 
-                                ALUSrcB <= 2'b00;                       
-                                case(Funct)
-                                    6'h08:      
-                                        begin
-                                            PCSource <= 2'b00;
-                                            PCWrite  <= 1'b1;
-                                            next_state <= sIF;
-                                        end
-                                    6'h09:        
-                                        begin
-                                            PCSource <= 2'b00;
-                                            PCWrite  <= 1'b1;
-                                            next_state <= sIF;
-                                            
-                                            RegDst <= 2'b01;   
-                                            MemtoReg <= 2'b10;
-                                            RegWrite <= 1'b1;
-                                        end
-                                    default:
-                                        begin
-                                            next_state <= next_state + 3'b1;
-                                        end
-                                endcase
-                            end
-                        6'h23,6'h2b,6'h0f,6'h08,6'h09,6'h0c,6'h0b,6'h0a:      
-                            begin
-                                ALUSrcA <= 2'b01;   
-                                ALUSrcB <= 2'b10;   
-                                ExtOp <=((OpCode==6'h0c)? 0 : 1);      
-                                LuiOp <=((OpCode==6'h0f)? 1 : 0);      
-                                next_state <= next_state +3'b1;
-                            end
-                        6'h04: 
-                            begin
-                                PCWriteCond <= 1'b1;
-                                ALUSrcA <= 2'b01;
-                                ALUSrcB <= 2'b00;
-                                PCSource <= 2'b01;
-                                next_state <= sIF;
-                            end
-                        6'h02: 
-                            begin
-                                PCWrite <= 1'b1;
-                                PCSource <= 2'b10;
-                                next_state <= sIF;
-                            end
-                        6'h03: 
-                            begin
-                                PCWrite <= 1'b1;
-                                PCSource <= 2'b10;
-                                                               
-                                RegDst <=  2'b10;   
-                                MemtoReg <= 2'b10;
-                                RegWrite <= 1'b1;
-                                
-                                next_state <= sIF;
-                            end 
-                        default: 
-                            begin
-                                next_state <= sIF;
-                            end
-                    endcase
-                end
-            else if (next_state == 3'd3) 
-                begin
-                    state<=next_state;
-                    case(OpCode)
-                        6'h00: 
-                            begin
-                                RegWrite <= 1'b1;
-                                RegDst <= 2'b01;
-                                MemtoReg <= 2'b01;
-                                next_state <= sIF;
-                            end
-                        6'h2b:      
-                            begin
-                                MemWrite<=1'b1;
-                                IorD <=1'b1;
-                                next_state <= sIF;
-                            end
-                        6'h08,6'h09,6'h0c,6'h0b,6'h0a,6'h0f:      
-                            begin
-                                RegWrite <= 1'b1;
-                                RegDst <= 2'b00;
-                                MemtoReg <= 2'b01;
-                                next_state <= sIF;
-                            end
-                        6'h23:      
-                            begin
-                                MemRead <= 1'b1;
-                                IorD <= 1'b1;
-                                IRWrite <=1'b0;
-                                next_state <= next_state +3'b001;
-                            end
-                        default: 
-                            begin
-                                next_state <= sIF;
-                            end
-                    endcase
-        
-                end
-            else if (next_state == 3'd4) 
-                begin
-                    state<=next_state;
-                    case(OpCode)
-                        6'h23: 
-                            begin
-                                RegWrite <= 1'b1;
-                                RegDst <= 2'b00;
-                                MemtoReg <= 2'b00;
-                                next_state <= sIF;
-                            end
-                        default: 
-                            begin
-                                next_state <= sIF;
-                            end
-                    endcase
-                 end
-         end
-    end
-    
-    
-    //--------------Your code below-----------------------
-    //ALUOp
-
-    //...
-
-    //--------------Your code above-----------------------
+	assign PCSource[0] = (OpCode == 6'h02 || OpCode == 6'h03) ? 1'b1 : 1'b0;
+	assign PCSource[1] = (OpCode == 6'h0 && (Funct == 6'h08 || Funct == 6'h09)) ? 1'b1 : 1'b0;
+	assign Branch = (OpCode == 6'h01 || OpCode == 6'h04 || OpCode == 6'h05 || OpCode == 6'h06 || OpCode == 6'h07) ? 1'b1 : 1'b0;
+	assign RegWrite = (OpCode == 6'h2b || OpCode == 6'h02 || (OpCode == 6'h0 && Funct == 6'h08) || Branch) ? 1'b0 : 1'b1;
+	assign RegDst[0] = (OpCode == 6'h023 || OpCode == 6'h0f || OpCode == 6'h08 || OpCode == 6'h09 || OpCode == 6'h0c || OpCode == 6'h0a || OpCode == 6'h0b || OpCode == 6'h03) ? 1'b0 : 1'b1;
+	assign RegDst[1] = (OpCode == 6'h03) ? 1'b1 : 1'b0;
+	assign MemRead = (OpCode == 6'h23) ? 1'b1 : 1'b0;
+	assign MemWrite = (OpCode == 6'h2b) ? 1'b1 : 1'b0;
+	assign MemtoReg[0] = ~MemRead;
+	assign MemtoReg[1] = (OpCode == 6'h03 || (OpCode == 6'h0 && Funct == 6'h09)) ? 1'b1 : 1'b0;
+	assign ALUSrc1 = (OpCode == 6'h0 && (Funct == 6'h0 || Funct == 6'h02 || Funct == 6'h03)) ? 1'b1 : 1'b0;
+	assign ALUSrc2 = (OpCode == 6'h23 || OpCode == 6'h2b || OpCode == 6'h0f || OpCode == 6'h08 || OpCode == 6'h09 || OpCode == 6'h0c || OpCode == 6'h0a || OpCode == 6'h0b) ? 1'b1 : 1'b0;
+	assign ExtOp = (OpCode == 6'h0c) ? 1'b0 : 1'b1;
+	assign LuiOp = (OpCode == 6'h0f) ? 1'b1 : 1'b0;
 
 endmodule
