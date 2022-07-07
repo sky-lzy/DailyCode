@@ -56,10 +56,17 @@ module InstructionMemory_bf(Address, Instruction);
             8'd22:   Instruction <= {6'h02, 26'd7};
             // addi	$v0, $v0, 1
             8'd23:   Instruction <= {6'h08, 5'd2 , 5'd2 , 16'd1};
+			// end_i: 
+			// lui $t8, 16384
+			8'd24:	 Instruction <= {6'h0f, 5'd0 , 5'd24, 16'h4000};
+			// addi $t9, $0, 347
+			8'd25:   Instruction <= {6'h08, 5'd0 , 5'd25, 16'h015B};
+			// sw $t9, 16($t8)
+			8'd26:   Instruction <= {6'h2b, 5'd24, 5'd25, 16'd16};
             // j end_i 
-            8'd24:   Instruction <= {6'h02, 26'd24};
+            8'd27:   Instruction <= {6'h02, 26'd24};
 			// nop
-			8'd25:   Instruction <= 32'h00000000;
+			8'd28:   Instruction <= 32'h00000000;
 			
 			default: Instruction <= 32'h00000000;
 		endcase

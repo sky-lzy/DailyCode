@@ -4,14 +4,16 @@ module test_cpu();
     
     reg reset;
     reg clk;
+    wire [7:0] LEDs;
+    wire [11:0] ENs;
     
-    PipelineCPU PipelineCPU_1(reset, clk);
+    PipelineCPU PipelineCPU_1(reset, clk, LEDs, ENs);
     
     initial begin
         reset = 1;
         clk = 1;
         #100 reset = 0;
-        #90000 $finish;
+        #200000 $finish;
     end
     
     always #50 clk = ~clk;

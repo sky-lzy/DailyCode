@@ -32,4 +32,7 @@ addi	$v0, $v0, 1			# $v0 = $v0 + 1
 j		for_i				# jump to for_i
 end_i:
 
+lui     $t8, 16384          # 0x4000
+addi	$t9, $0, 347		# $t9 = $0 + 347 (0x015B)
+sw		$t9, 16($t8)		# 
 j		end_i				# jump to end_i

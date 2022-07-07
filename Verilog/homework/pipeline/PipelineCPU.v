@@ -1,9 +1,15 @@
 `timescale 1ns / 1ps
 
-module PipelineCPU (reset, clk);
+module PipelineCPU (reset, sysclk, LEDs, ENs);
     //Input Clock Signals
     input reset;
-    input clk;
+    input sysclk;
+    output [7:0] LEDs;
+    output [11:0] ENs;
+
+    //Clock
+    wire clk;
+    Clock my_Clock(sysclk, reset, clk);
 
     //Wires
     wire IsBranch;
@@ -79,6 +85,10 @@ module PipelineCPU (reset, clk);
     wire Zero;
     wire [31:0] ALUResult;
     wire [31:0] DataFromMemory;
+    wire [7:0] ClkNumber;
+    wire [7:0] UART_TXD;
+    wire [7:0] UART_RXD;
+    wire [3:0] UART_CON;
 
     wire [1:0] ALUSrcA;
     wire [1:0] ALUSrcB;
@@ -121,12 +131,12 @@ module PipelineCPU (reset, clk);
 
     //Modules
     PC my_PC(reset, clk, PCWrite, PCMux, PCAddress);
-    InstructionMemory my_InstructionMemory(PCAddress, Instruction);
+    InstructionMemory_bf my_InstructionMemory(PCAddress, Instruction);
     RegisterFile my_Register(reset, clk, RegWrite_MEMWB, Rs, Rt, RegWrAddr_MEMWB, Data_MEMWB, Read_data1, Read_data2);
     Controller my_Controller(OpCode, Funct, PCSource, Branch, RegWrite, RegDst, MemRead, MemWrite, MemtoReg, ALUSrc1, ALUSrc2, ExtOp, LuiOp, LbuOp);
     ImmProcess my_ImmProcess(ExtOp, LuiOp, {Rd, Shamt, Funct}, Imm32);
     ALU my_ALU(ALUCtrl, Sign, ALUData1, ALUData2, Zero, ALUResult);
-    DataMemory my_DataMemory(reset, clk, ALUResult_EXMEM, Data_EXMEM, DataFromMemory, MemRead_EXMEM, MemWrite_EXMEM, LbuOp_EXMEM);
+    DataMemory my_DataMemory(reset, clk, ALUResult_EXMEM, Data_EXMEM, DataFromMemory, MemRead_EXMEM, MemWrite_EXMEM, LbuOp_EXMEM, LEDs, ENs, ClkNumber, UART_TXD, UART_RXD, UART_CON);
 
     //Forwarding
     Forwarding my_Forwarding(Rs, Rs_IDEX, Rt_IDEX, RegWrite_EXMEM, RegWrAddr_EXMEM, RegWrite_MEMWB, RegWrAddr_MEMWB, ALUSrcA, ALUSrcB, JumpConf);
