@@ -13,7 +13,7 @@ module test_cpu();
         reset = 1;
         clk = 1;
         #100 reset = 0;
-        #200000 $finish;
+        #1000000 $finish;
     end
     
     always #50 clk = ~clk;

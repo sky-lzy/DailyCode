@@ -52,12 +52,12 @@ module DataMemory(reset, clk, Address, Write_data, Read_data, MemRead, MemWrite,
 			else 
 			begin
 				case (Address)
-					32'h4000000C: LEDs <= Write_data[7:0];
-					32'h40000010: ENs <= Write_data[11:0];
-					32'h40000014: ClkNumber <= Write_data[7:0];
-					32'h40000018: UART_TXD <= Write_data[7:0];
-					32'h4000001C: UART_RXD <= Write_data[7:0];
-					32'h40000020: UART_CON <= Write_data[3:0];
+					32'h4000000C: LEDs <= {24'b0, Write_data[7:0]};
+					32'h40000010: ENs <= {20'b0, Write_data[11:0]};
+					32'h40000014: ClkNumber <= {24'b0, Write_data[7:0]};
+					32'h40000018: UART_TXD <= {24'b0, Write_data[7:0]};
+					32'h4000001C: UART_RXD <= {24'b0, Write_data[7:0]};
+					32'h40000020: UART_CON <= {28'b0, Write_data[3:0]};
 				endcase
 			end
 		end

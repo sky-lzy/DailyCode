@@ -126,7 +126,7 @@ module PipelineCPU (reset, sysclk, LEDs, ENs);
     //Registers
     IF_ID_Reg my_IFIDReg(reset, clk, IFIDCtrl, PCNext, Instruction, PC_IFID, Instruction_IFID);
     ID_EX_Reg my_IDEXReg(reset, clk, IDEXCtrl, Read_data1, Read_data2, PC_IFID, Imm32, OpCode, Funct, Rs, Rt, Rd, Shamt, Branch, RegWrite, RegDst, MemRead, MemWrite, MemtoReg, ALUSrc1, ALUSrc2, LbuOp, Data1_IDEX, Data2_IDEX, PC_IDEX, Imm32_IDEX, Rs_IDEX, Rt_IDEX, Rd_IDEX, Shamt_IDEX, Branch_IDEX, RegWrite_IDEX, RegDst_IDEX, MemRead_IDEX, MemWrite_IDEX, MemtoReg_IDEX, ALUSrc1_IDEX, ALUSrc2_IDEX, LbuOp_IDEX, ALUCtrl, Sign);
-    EX_MEM_Reg my_EXMEMReg(reset, clk, ALUResult, Data2_IDEX, PC_IDEX, RegWrAddr, RegWrite_IDEX, MemRead_IDEX, MemWrite_IDEX, MemtoReg_IDEX, LbuOp_IDEX, ALUResult_EXMEM, Data_EXMEM, PC_EXMEM, RegWrAddr_EXMEM, RegWrite_EXMEM, MemRead_EXMEM, MemWrite_EXMEM, MemtoReg_EXMEM, LbuOp_EXMEM);
+    EX_MEM_Reg my_EXMEMReg(reset, clk, ALUResult, ALUMuxB, PC_IDEX, RegWrAddr, RegWrite_IDEX, MemRead_IDEX, MemWrite_IDEX, MemtoReg_IDEX, LbuOp_IDEX, ALUResult_EXMEM, Data_EXMEM, PC_EXMEM, RegWrAddr_EXMEM, RegWrite_EXMEM, MemRead_EXMEM, MemWrite_EXMEM, MemtoReg_EXMEM, LbuOp_EXMEM);
     MEM_WB_Reg my_MEMWBReg(reset, clk , MemDataMux, RegWrAddr_EXMEM, RegWrite_EXMEM, Data_MEMWB, RegWrAddr_MEMWB, RegWrite_MEMWB);
 
     //Modules
