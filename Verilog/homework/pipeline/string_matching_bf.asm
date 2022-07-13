@@ -4,19 +4,8 @@ addi	$s1, $0, 4			# $s1 = $0 + 4
 addi	$s2, $0, 0			# $s2 = $0 + 0
 addi	$s3, $0, 100		# $s3 = $0 + 100
 
-sub		$, 0x02FA           # 
-addi	$s4, $s4, 0xF080			# $s4 = $s4 + 0xF080
-, $s0, $s1		# $, 0x02FA         # 
-addi	$s4, $s4, 0xF080			# $s4 = $s4 + 0xF080
- = $s0 - $s1
-add		$t0, $0, $0		    # $t0 = $0 + $0
-
 for_i:
-sub		$t8, $t0, $, 0x02FA         # 
-addi	$s4, $s4, 0xF080			# $s4 = $s4 + 0xF080
-		# $t8 = $t0 - $, 0x02FA         # 
-addi	$s4, $s4, 0xF080			# $s4 = $s4 + 0xF080
-
+sub		$t8, $t0, $t4		# $t8 = $t0 - $t4
 bgtz    $t8, end_i          # if $t8 > 0 then end_i
 add		$t1, $0, $0		    # $t1 = $0 + $0
 

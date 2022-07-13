@@ -36,8 +36,21 @@ module DataMemory(reset, clk, Address, Write_data, Read_data, MemRead, MemWrite,
 	always @(posedge reset or posedge clk)
 		if (reset)
 		begin
-			for (i = 0; i < RAM_SIZE; i = i + 1)
-				RAM_data[i] <= 32'h00000000;
+			RAM_data[0]  <= 32'h756E696C;
+			RAM_data[1]  <= 32'h73692078;
+			RAM_data[2]  <= 32'h746F6E20;
+			RAM_data[3]  <= 32'h696E7520;
+			RAM_data[4]  <= 32'h73692078;
+			RAM_data[5]  <= 32'h746F6E20;
+			RAM_data[6]  <= 32'h696E7520;
+			RAM_data[7]  <= 32'h73692078;
+			RAM_data[8]  <= 32'h746F6E20;
+			RAM_data[9]  <= 32'h696E7520;
+			RAM_data[10] <= 32'h00000078;
+
+			RAM_data[25] <= 32'h78696E75;
+			// for (i = 0; i < RAM_SIZE; i = i + 1)
+				// RAM_data[i] <= 32'h00000000;
 			LEDs <= 8'b0;
 			ENs <= 12'b0;
 			ClkNumber <= 8'b0;
@@ -66,19 +79,19 @@ module DataMemory(reset, clk, Address, Write_data, Read_data, MemRead, MemWrite,
 	initial
 	begin
 		#101;
-		RAM_data[0]  = 32'h756E696C;
-		RAM_data[1]  = 32'h73692078;
-		RAM_data[2]  = 32'h746F6E20;
-		RAM_data[3]  = 32'h696E7520;
-		RAM_data[4]  = 32'h73692078;
-		RAM_data[5]  = 32'h746F6E20;
-		RAM_data[6]  = 32'h696E7520;
-		RAM_data[7]  = 32'h73692078;
-		RAM_data[8]  = 32'h746F6E20;
-		RAM_data[9]  = 32'h696E7520;
-		RAM_data[10] = 32'h00000078;
+		// RAM_data[0]  = 32'h756E696C;
+		// RAM_data[1]  = 32'h73692078;
+		// RAM_data[2]  = 32'h746F6E20;
+		// RAM_data[3]  = 32'h696E7520;
+		// RAM_data[4]  = 32'h73692078;
+		// RAM_data[5]  = 32'h746F6E20;
+		// RAM_data[6]  = 32'h696E7520;
+		// RAM_data[7]  = 32'h73692078;
+		// RAM_data[8]  = 32'h746F6E20;
+		// RAM_data[9]  = 32'h696E7520;
+		// RAM_data[10] = 32'h00000078;
 
-		RAM_data[25] = 32'h78696E75;
+		// RAM_data[25] = 32'h78696E75;
 	end
 
 
