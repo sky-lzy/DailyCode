@@ -3,18 +3,21 @@
 module Clock (sysclk, reset, clk);
     input sysclk;
     input reset;
-    output reg clk;
+    output clk;
 
-    always @(posedge reset or posedge sysclk) 
-    begin
-        if (reset)
-            clk <= 1'b0;
-        else
-            clk <= ~clk;
-    end
+    assign clk = sysclk;
+    // output reg clk;
 
-    initial 
-    begin
-        clk = 1'b0;
-    end
+    // always @(posedge reset or posedge sysclk) 
+    // begin
+    //     if (reset)
+    //         clk <= 1'b0;
+    //     else
+    //         clk <= ~clk;
+    // end
+
+    // initial 
+    // begin
+    //     clk = 1'b0;
+    // end
 endmodule

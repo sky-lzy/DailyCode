@@ -3,12 +3,13 @@
 module ID_EX_Reg (
     reset, clk, Control, 
     Data1_in, Data2_in, PC_in, 
-    Imm32_in, OpCode_in, Funct_in, Rs_in, Rt_in, Rd_in, Shamt_in, 
+    Imm32_in, Rs_in, Rt_in, Rd_in, Shamt_in, 
     Branch_in, RegWrite_in, RegDst_in, MemRead_in, MemWrite_in, MemtoReg_in, ALUSrc1_in, ALUSrc2_in, LbuOp_in, 
+    ALUCtrl_in, Sign_in, 
     Data1_out, Data2_out, PC_out, 
     Imm32_out, Rs_out, Rt_out, Rd_out, Shamt_out, 
     Branch_out, RegWrite_out, RegDst_out, MemRead_out, MemWrite_out, MemtoReg_out, ALUSrc1_out, ALUSrc2_out, LbuOp_out, 
-    ALUCtrl, Sign
+    ALUCtrl_out, Sign_out
     );
     //Input Signals
     input reset;
@@ -19,8 +20,6 @@ module ID_EX_Reg (
     input [31:0] Data2_in;
     input [31:0] PC_in;
     input [31:0] Imm32_in;
-    input [5:0] OpCode_in;
-    input [5:0] Funct_in;
     input [4:0] Rs_in;
     input [4:0] Rt_in;
     input [4:0] Rd_in;
@@ -34,6 +33,8 @@ module ID_EX_Reg (
     input ALUSrc1_in;
     input ALUSrc2_in;
     input LbuOp_in;
+    input [4:0] ALUCtrl_in;
+    input Sign_in;
     //Output Data
     output reg [31:0] Data1_out;
     output reg [31:0] Data2_out;
@@ -52,8 +53,8 @@ module ID_EX_Reg (
     output reg ALUSrc1_out;
     output reg ALUSrc2_out;
     output reg LbuOp_out;
-    output reg [4:0] ALUCtrl;
-    output reg Sign;
+    output reg [4:0] ALUCtrl_out;
+    output reg Sign_out;
 
     //ALU parameters
     parameter ADD  = 5'b00000;
@@ -94,8 +95,8 @@ module ID_EX_Reg (
             ALUSrc1_out <= 1'b0;
             ALUSrc2_out <= 1'b0;
             LbuOp_out <= 1'b0;
-            ALUCtrl <= 5'b11111;
-            Sign <= 1'b0;
+            ALUCtrl_out <= 5'b11111;
+            Sign_out <= 1'b0;
         end
         else 
         begin
@@ -119,44 +120,8 @@ module ID_EX_Reg (
                     ALUSrc1_out <= ALUSrc1_in;
                     ALUSrc2_out <= ALUSrc2_in;
                     LbuOp_out <= LbuOp_in;
-
-                    case (OpCode_in)
-                        6'b0: 
-                        begin
-                            case (Funct_in)
-                                6'h20:   ALUCtrl <= ADD; 
-                                6'h21:   ALUCtrl <= ADD; 
-                                6'h22:   ALUCtrl <= SUB; 
-                                6'h23:   ALUCtrl <= SUB; 
-                                6'h24:   ALUCtrl <= AND; 
-                                6'h25:   ALUCtrl <=  OR; 
-                                6'h26:   ALUCtrl <= XOR; 
-                                6'h27:   ALUCtrl <= NOR; 
-                                6'h00:   ALUCtrl <= SLL; 
-                                6'h02:   ALUCtrl <= SRL; 
-                                6'h03:   ALUCtrl <= SRA; 
-                                6'h2a:   ALUCtrl <= SLT; 
-                                6'h2b:   ALUCtrl <= SLT; 
-                                default: ALUCtrl <= NULL;
-                            endcase
-                        end
-                        6'h23:   ALUCtrl <= ADD; 
-                        6'h2b:   ALUCtrl <= ADD; 
-                        6'h0f:   ALUCtrl <= ADD; 
-                        6'h08:   ALUCtrl <= ADD; 
-                        6'h09:   ALUCtrl <= ADD; 
-                        6'h0c:   ALUCtrl <= AND; 
-                        6'h0a:   ALUCtrl <= SLT; 
-                        6'h0b:   ALUCtrl <= SLT; 
-                        6'h04:   ALUCtrl <= BEQ;
-                        6'h05:   ALUCtrl <= BNE;
-                        6'h06:   ALUCtrl <= BLEZ;
-                        6'h07:   ALUCtrl <= BGTZ;
-                        6'h01:   ALUCtrl <= BLTZ;
-                        default: ALUCtrl <= NULL;
-                    endcase
-
-                    Sign <= (OpCode_in == 6'h09 || OpCode_in == 6'h0b || (OpCode_in == 6'h0 && (Funct_in == 6'h21 || Funct_in == 6'h23 || Funct_in ==6'h2b))) ? 1'b0 : 1'b1;
+                    ALUCtrl_out <= ALUCtrl_in;
+                    Sign_out <= Sign_in;
                 end
                 2'b01:
                 begin
@@ -177,8 +142,8 @@ module ID_EX_Reg (
                     ALUSrc1_out <= ALUSrc1_out;
                     ALUSrc2_out <= ALUSrc2_out;
                     LbuOp_out <= LbuOp_out;
-                    ALUCtrl <= ALUCtrl;
-                    Sign <= Sign;
+                    ALUCtrl_out <= ALUCtrl_out;
+                    Sign_out <= Sign_out;
                 end
                 default: 
                 begin
@@ -199,8 +164,8 @@ module ID_EX_Reg (
                     ALUSrc1_out <= 1'b0;
                     ALUSrc2_out <= 1'b0;
                     LbuOp_out <= 1'b0;
-                    ALUCtrl <= 5'b11111;
-                    Sign <= 1'b0;
+                    ALUCtrl_out <= 5'b11111;
+                    Sign_out <= 1'b0;
                 end
             endcase
         end

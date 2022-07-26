@@ -51,8 +51,8 @@ module PipelineCPU (reset, sysclk, LEDs, ENs);
     wire ALUSrc1_IDEX;
     wire ALUSrc2_IDEX;
     wire LbuOp_IDEX;
-    wire [4:0] ALUCtrl;
-    wire Sign;
+    wire [4:0] ALUCtrl_IDEX;
+    wire Sign_IDEX;
     wire [31:0] ALUResult_EXMEM;
     wire [31:0] Data_EXMEM;
     wire [31:0] PC_EXMEM;
@@ -81,6 +81,8 @@ module PipelineCPU (reset, sysclk, LEDs, ENs);
     wire ExtOp;
     wire LuiOp;
     wire LbuOp;
+    wire [4:0] ALUCtrl;
+    wire Sign;
     wire [31:0] Imm32;
     wire Zero;
     wire [31:0] ALUResult;
@@ -125,7 +127,7 @@ module PipelineCPU (reset, sysclk, LEDs, ENs);
 
     //Registers
     IF_ID_Reg my_IFIDReg(reset, clk, IFIDCtrl, PCNext, Instruction, PC_IFID, Instruction_IFID);
-    ID_EX_Reg my_IDEXReg(reset, clk, IDEXCtrl, Read_data1, Read_data2, PC_IFID, Imm32, OpCode, Funct, Rs, Rt, Rd, Shamt, Branch, RegWrite, RegDst, MemRead, MemWrite, MemtoReg, ALUSrc1, ALUSrc2, LbuOp, Data1_IDEX, Data2_IDEX, PC_IDEX, Imm32_IDEX, Rs_IDEX, Rt_IDEX, Rd_IDEX, Shamt_IDEX, Branch_IDEX, RegWrite_IDEX, RegDst_IDEX, MemRead_IDEX, MemWrite_IDEX, MemtoReg_IDEX, ALUSrc1_IDEX, ALUSrc2_IDEX, LbuOp_IDEX, ALUCtrl, Sign);
+    ID_EX_Reg my_IDEXReg(reset, clk, IDEXCtrl, Read_data1, Read_data2, PC_IFID, Imm32, Rs, Rt, Rd, Shamt, Branch, RegWrite, RegDst, MemRead, MemWrite, MemtoReg, ALUSrc1, ALUSrc2, LbuOp, ALUCtrl, Sign, Data1_IDEX, Data2_IDEX, PC_IDEX, Imm32_IDEX, Rs_IDEX, Rt_IDEX, Rd_IDEX, Shamt_IDEX, Branch_IDEX, RegWrite_IDEX, RegDst_IDEX, MemRead_IDEX, MemWrite_IDEX, MemtoReg_IDEX, ALUSrc1_IDEX, ALUSrc2_IDEX, LbuOp_IDEX, ALUCtrl_IDEX, Sign_IDEX);
     EX_MEM_Reg my_EXMEMReg(reset, clk, ALUResult, ALUMuxB, PC_IDEX, RegWrAddr, RegWrite_IDEX, MemRead_IDEX, MemWrite_IDEX, MemtoReg_IDEX, LbuOp_IDEX, ALUResult_EXMEM, Data_EXMEM, PC_EXMEM, RegWrAddr_EXMEM, RegWrite_EXMEM, MemRead_EXMEM, MemWrite_EXMEM, MemtoReg_EXMEM, LbuOp_EXMEM);
     MEM_WB_Reg my_MEMWBReg(reset, clk , MemDataMux, RegWrAddr_EXMEM, RegWrite_EXMEM, Data_MEMWB, RegWrAddr_MEMWB, RegWrite_MEMWB);
 
@@ -133,9 +135,9 @@ module PipelineCPU (reset, sysclk, LEDs, ENs);
     PC my_PC(reset, clk, PCWrite, PCMux, PCAddress);
     InstructionMemory_bf my_InstructionMemory(PCAddress, Instruction);
     RegisterFile my_Register(reset, clk, RegWrite_MEMWB, Rs, Rt, RegWrAddr_MEMWB, Data_MEMWB, Read_data1, Read_data2);
-    Controller my_Controller(OpCode, Funct, PCSource, Branch, RegWrite, RegDst, MemRead, MemWrite, MemtoReg, ALUSrc1, ALUSrc2, ExtOp, LuiOp, LbuOp);
+    Controller my_Controller(OpCode, Funct, PCSource, Branch, RegWrite, RegDst, MemRead, MemWrite, MemtoReg, ALUSrc1, ALUSrc2, ExtOp, LuiOp, LbuOp, ALUCtrl, Sign);
     ImmProcess my_ImmProcess(ExtOp, LuiOp, {Rd, Shamt, Funct}, Imm32);
-    ALU my_ALU(ALUCtrl, Sign, ALUData1, ALUData2, Zero, ALUResult);
+    ALU my_ALU(ALUCtrl_IDEX, Sign, ALUData1, ALUData2, Zero, ALUResult);
     DataMemory my_DataMemory(reset, clk, ALUResult_EXMEM, Data_EXMEM, DataFromMemory, MemRead_EXMEM, MemWrite_EXMEM, LbuOp_EXMEM, LEDs, ENs, ClkNumber, UART_TXD, UART_RXD, UART_CON);
 
     //Forwarding
