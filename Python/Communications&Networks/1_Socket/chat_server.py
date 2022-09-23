@@ -66,7 +66,7 @@ class Server():
         # TODO： 为接受消息和发送消息分别开启两个线程，实现双工聊天
         # 此处仅需替换param位置的参数；根据上一个位置的返回值仅需更改
         # Thread(target=self.p2p_send_msg,args=(param,)).start()
-        # hread(target=self.p2p_recv_msg,args=(param,)).start()
+        # Thread(target=self.p2p_recv_msg,args=(param,)).start()
         #---------------------------------------------
         a = 1
 
